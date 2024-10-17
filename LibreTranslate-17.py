@@ -33,3 +33,4 @@ def traduire_texte():
 
 # Appel de la fonction de traduction
 traduire_texte()
+
