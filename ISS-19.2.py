@@ -37,4 +37,4 @@ folium.Circle(
 
 # Display the map (for a Jupyter Notebook) or save it as HTML
 # map_iss # Uncomment for Notebook
-map_iss.save("iss_position.html")  # Uncomment to save the map as an HTML file
+map_iss.save("iss_position-19.2.html")  # Uncomment to save the map as an HTML file
