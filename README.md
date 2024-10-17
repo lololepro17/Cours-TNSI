@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 # Cours de NSI - Terminale
 Ce dépôt contient l'ensemble des cours et travaux pratiques de la spécialité Numérique et Sciences Informatiques (NSI) pour l'année de Terminale. 
 Ce matériel a été compilé au fil de l'année sous la direction de M. Thirion.
@@ -16,4 +15,3 @@ Pour l'instant, on peut retrouver deux branches en plus de la branche principale
 
 N'hésite pas à explorer les branches pour voir mes progrès et mes réalisations.
 
->>>>>>> Stashed changes
