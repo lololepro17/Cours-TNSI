@@ -12,16 +12,16 @@ print(type(donnees_ISS))
 print(donnees_ISS)
 
 # Extract latitude and longitude from the JSON
-latitude = float(donnees_ISS['iss_position']['latitude'])
-longitude = float(donnees_ISS['iss_position']['longitude'])
+LATITUDE = float(donnees_ISS['iss_position']['latitude'])
+LONGITUDE = float(donnees_ISS['iss_position']['longitude'])
 
 # Create a map centered on the current position of the ISS
-map_iss = folium.Map(location=[latitude, longitude], zoom_start=3)
+map_iss = folium.Map(location=[LATITUDE, LONGITUDE], zoom_start=3)
 
 # Add a marker for the position of the ISS
 folium.Marker(
-    location=[latitude, longitude],
-    popup="Latitude: {:.6f}, Longitude: {:.6f}".format(latitude, longitude),
+    location=[LATITUDE, LONGITUDE],
+    popup="Latitude: {:.6f}, Longitude: {:.6f}".format(LATITUDE, LONGITUDE),
     tooltip="ISS"
 ).add_to(map_iss)
 
