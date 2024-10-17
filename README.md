@@ -11,7 +11,7 @@ Description des fichier :
 - Parking+.py -> exercice 2 question 8 : Je crois faut pas le faire donc juste pour les curieux ;)
 - Parking.py - > exercice 2 question 8 : Renvoie tout les parking et le nombre de place dispo.
 - Poitiers.18.py -> Exercice 4 question 18 : Carte de poitiers avec les batiment B24 du campus et le campus futuroscope.
-- README.md -> Ce fichier bien utile.
+- README.md -> Ce fichier que tu lis.
 - iss_position-19.2.html -> resultat de : ISS-19.2.py
 - position_Iss-20.html -> resultat de : ISS-20.py
 - tableau_parkings_angers.html -> c'est pas a faire mais c'est fun a faire.
