@@ -17,7 +17,7 @@
 
 ## Question 16
 
-Il faut va utiliser `.post()`. Il faut mettre en argument soit `data` pour mettre un formulaire de données soit `json` pour un json (example: `requests.post(url, data={
+Il faut utiliser `.post()`. Il faut mettre en argument soit `data` pour mettre un formulaire de données soit `json` pour un json (example: `requests.post(url, data={
     "param1": "value1",
     "param2": "value2"
 })`)
