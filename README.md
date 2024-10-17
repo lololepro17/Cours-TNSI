@@ -1,12 +1,3 @@
-# Cours TNSI
+## Branches : **API-Web**
 
-Ce dépôt contient mes travaux de NSI en Terminale. 
-
-## Branches
-
-Pour l'instant, on peut retrouver deux branches en plus de la branche principale (`main`) :
-
-- **API-Web** : Détails et travaux concernant le développement d'API web.
-- **Modularite-et-Mise-au-point** : Projets axés sur la modularité et la mise au point.
-
-N'hésite pas à explorer les branches pour voir mes progrès et mes réalisations.
+Reponse pour le notebook API-web
