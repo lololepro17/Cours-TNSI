@@ -1,6 +1,8 @@
 ## Branches : **API-Web**
 
 Description des fichier :
+- Folium.1.2.py -> Découverte de folium : rien a faire.
+- 
 - ISS-19.1 -> Question 19.1 de l'exercice sur l'ISS : trouve les types de donees_ISS.
 - ISS-19.2 -> Question 19.2 de l'exercice sur l'ISS : Affiche la zone geographique survolée par l'ISS.
 - ISS-20 -> Question 20 de l'exercice sur l'ISS : Affiche les position de l'iss a different instant.
