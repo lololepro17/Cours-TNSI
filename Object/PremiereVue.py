@@ -1,4 +1,4 @@
-import math
+from math import sqrt
 
 
 class Point:
@@ -7,4 +7,4 @@ class Point:
         self.Y = Y
         
     def distance(self,point):
-        pass
+        return sqrt((point.X - self.X) ** 2 + (point.Y - self.Y) ** 2)
