@@ -6,5 +6,5 @@ class Point:
         self.X = X
         self.Y = Y
         
-    def distance(a,b):
+    def distance(self,point):
         pass
