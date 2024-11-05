@@ -339,4 +339,160 @@ print(mario.alive)
 mario.soin()
 print(mario.alive)
 print(mario.energie) 
+
+>>> 3
+>>> 4
+>>> True
+>>> False
+>>> False
+>>> 0
   ```
+
+## Exercice 8 - Un stage chez la Société Générale
+
+### Exercice 8
+
+- Définir une classe CompteBancaire dont le constructeur recevra en paramètres :
+
+- 1.un attribut titulaire stockant le nom du propriétaire.
+- 2.un attribut solde contenant le solde disponible sur le compte.
+- 3.Cette classe contiendra deux méthodes retrait et depot qui permettront de retirer ou de déposer de l'argent sur le compte.
+
+```python
+class CompteBancaire:
+    def __init__(self, titulaire, solde_initial):
+        self.titulaire = titulaire  # Nom du titulaire du compte
+        self.solde = solde_initial   # Solde initial du compte
+
+    def retrait(self, montant):
+        """Permet de retirer de l'argent du compte si le solde le permet."""
+        if montant <= self.solde:
+            self.solde -= montant
+            print(f"Vous avez retiré {montant} euros")
+            print(f"Solde actuel du compte : {self.solde} euros")
+        else:
+            print("Retrait impossible")
+
+    def depot(self, montant):
+        """Permet de déposer de l'argent sur le compte."""
+        self.solde += montant
+        print(f"Vous avez déposé {montant} euros")
+        print(f"Solde actuel du compte : {self.solde} euros")
+
+# Use
+mon_compte = CompteBancaire("A. Rouquan", 1000)
+mon_compte.retrait(50)         
+mon_compte.retrait(40000)      
+mon_compte.depot(10000000)
+
+>>> Vous avez retiré 50 euros
+>>> Solde actuel du compte : 950 euros
+>>> Retrait impossible
+>>> Vous avez déposé 10000000 euros
+>>> Solde actuel du compte : 10000950 euros
+```
+
+## Exercice 9 - Des dès
+
+### Énoncé
+
+- On souhaite construire une base d'objets servant à créer des jeux utilisant des dés.
+
+- Un dé possède un nombre de faces, ainsi qu'une valeur (la face supérieure du dé une fois qu'on l'a lancé, et la valeur -1 s'il n'a pas encore été lancé). On doit pouvoir lancer le dé, c'est-à-dire lui attribuer une valeur aléatoire entre 1 et son nombre de faces.
+
+- Un jeu de dés est un ensemble de dés. On doit pouvoir lancer tous les dés (en une fois), faire la somme des valeurs des dés, et on souhaite afficher la valeur des dés ainsi que leur somme.
+
+### Question 9.1
+
+- Déterminer les attributs et méthodes pour deux classes représentant ce problème : une classe Jeu et une classe Dé.
+
+```python
+import random
+
+class De:
+    def __init__(self, faces):
+        self.faces = faces 
+        self.valeur = -1     # Valeur initiale, -1 signifie qu'il n'a pas été lancé
+
+    def lancer(self):
+        """Lance le dé et attribue une valeur aléatoire entre 1 et le nombre de faces."""
+        self.valeur = random.randint(1, self.faces)
+
+class Jeu:
+    def __init__(self, nombre_de_de, faces):
+        self.des = [De(faces) for _ in range(nombre_de_de)]  # Création d'une liste de dés
+
+    def lancer(self):
+        """Lance tous les dés du jeu."""
+        for de in self.des:
+            de.lancer()
+
+    def somme(self):
+        """Calcule la somme des valeurs des dés."""
+        return sum(de.valeur for de in self.des)
+
+    def afficher(self):
+        """Affiche la valeur des dés et leur somme."""
+        if all(de.valeur == -1 for de in self.des):
+            print("Les dés n'ont pas été lancés !")
+        else:
+            valeurs = [de.valeur for de in self.des]
+            print(f"Les dés valent {', '.join(map(str, valeurs))} et leur somme vaut {self.somme()}.")
+
+            
+j = Jeu(3, 6)  
+j.afficher()   
+j.lancer()    
+print(j.somme())  
+j.afficher()   
+>>> Les dés n'ont pas été lancés !
+>>> 15
+>>> Les dés valent 4, 5, 6 et leur somme vaut 15.
+```
+
+### Question 9.2
+
+- Définir les classes en Python. sachant qu'une instance de classe Jeu doit prendre en arguments le nombre de dés et le nombre de faces de chaque dé (identique pour tous les dés), et qu'une instance de classe De doit prendre en argument son nombre de faces.
+
+```python
+import random
+
+class De:
+    def __init__(self, faces):
+        self.faces = faces  # Nombre de faces du dé
+        self.valeur = -1     # Valeur initiale, -1 signifie qu'il n'a pas été lancé
+
+    def lancer(self):
+        """Lance le dé et attribue une valeur aléatoire entre 1 et le nombre de faces."""
+        self.valeur = random.randint(1, self.faces)
+
+class Jeu:
+    def __init__(self, nombre_de_de, faces):
+        self.des = [De(faces) for _ in range(nombre_de_de)]  # Création d'une liste de dés
+
+    def lancer(self):
+        """Lance tous les dés du jeu."""
+        for de in self.des:
+            de.lancer()
+
+    def somme(self):
+        """Calcule la somme des valeurs des dés."""
+        return sum(de.valeur for de in self.des)
+
+    def afficher(self):
+        """Affiche la valeur des dés et leur somme."""
+        if all(de.valeur == -1 for de in self.des):
+            print("Les dés n'ont pas été lancés !")
+        else:
+            valeurs = [de.valeur for de in self.des]
+            print(f"Les dés valent {', '.join(map(str, valeurs))} et leur somme vaut {self.somme()}.")
+
+            
+j = Jeu(3, 6)  
+j.afficher() 
+j.lancer()   
+j.afficher()
+
+>>> Les dés n'ont pas été lancés !
+>>> Les dés valent 5, 2, 3 et leur somme vaut 10.
+```
