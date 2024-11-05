@@ -39,12 +39,12 @@ class Joueur:
 - Instruction 3 : joueur1 = Joueur("Sniper", 319, "A")
 - Instruction 4 : joueur1 = Joueur{"pseudo":"Sniper", "id":319, "equipe":"A"}
 
-Réponse : L'instruction correcte est : Instruction 3 : joueur1 = Joueur("Sniper", 319, "A")
+**Réponse** : L'instruction correcte est : Instruction 3 : joueur1 = Joueur("Sniper", 319, "A")
 
 2. **La méthode subit_un_tir ajoute l’identifiant du tireur à liste_id_tirs_recus et désactive le joueur (en réglant est_actif sur False). Il doit revenir à sa base pour redevenir actif.
 a. Écrire la méthode redevenir_actif qui rend le joueur actif uniquement s’il est actuellement désactivé.**
 
-Réponse :
+**Réponse** :
 
 ```python
 def redevenir_actif(self):
@@ -85,11 +85,11 @@ def collecte_information(self, participant):
 ```
 a. Quel test (test 1 ou test 2) permet de vérifier qu’en fin de partie un joueur n’a pas rejoint la base adverse ?
 
-Réponse : Le test 1 permet de vérifier que le joueur est bien dans l’équipe associée à la base.
+**Réponse** : Le test 1 permet de vérifier que le joueur est bien dans l’équipe associée à la base.
 
 b. Comment varie le score de la base lorsqu’un joueur de l’équipe a été touché par un coéquipier ?
 
-Réponse : Lorsqu’un joueur de l’équipe est touché par un coéquipier, le score de la base diminue de 20 points.
+**Réponse** : Lorsqu’un joueur de l’équipe est touché par un coéquipier, le score de la base diminue de 20 points.
 
 4. On souhaite accorder un bonus de 40 points à la base pour chaque joueur "déterminé" (qui effectue un grand nombre de tirs). Complétez les lignes de code suivantes à ajouter à la fin de la méthode collecte_information.
 
