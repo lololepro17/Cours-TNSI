@@ -154,3 +154,96 @@ rect2 = Rectangle(7, 4)
 ### Exercice 4.2
 
 - Transformer cette fonction en une méthode de la classe Rectangle.
+
+```python
+class Rectangle:
+    def __init__(self, longueur, largeur):
+        self.longueur = longueur
+        self.largeur = largeur
+        
+    def calculer_aire(self):
+        return self.longueur * self.largeur
+    
+    def calculer_perimetre(self):
+        return 2 * (self.longueur + self.largeur)  # Formule du périmètre
+
+    
+rect1 = Rectangle(5, 3)
+rect2 = Rectangle(7, 4)
+
+
+print(rect1.calculer_perimetre())
+print(rect2.calculer_perimetre()) 
+
+>>> 16
+>>> 22
+```
+
+### Exercice 4.3
+
+- Au sein du même script où est définit la classe Rectangle, définir une nouvelle classe Cercle. On souhaite une fonction ou une méthode qui permet de calculer aussi l'aire pour les instances de Cercle.
+
+```python
+class Cercle:
+    def __init__(self, rayon):
+        self.rayon = rayon
+        
+    def calculer_aire(self):
+        return math.pi * (self.rayon ** 2)  # Formule de l'aire
+
+    def calculer_circonference(self):
+        return 2 * math.pi * self.rayon  # Formule de la circonférence
+
+
+rect1 = Rectangle(5, 3)
+rect2 = Rectangle(7, 4)
+```
+
+## Exercice 5 - Vroum Vroum
+
+### Exercice 5
+
+- 1.Écrire une classe Voiture qui contiendra les attributs kilometrage, consommation (nombre de litres de carburant consommé pour 100 kilomètres) dont les valeurs seront données comme arguments à l'initialisation et un dernier attribut carburant valant 0 par défaut.
+
+- 2.Doter la classe d'une méthode affiche qui affiche le kilométrage et le carburant disponible.
+
+- 3.Doter la classe d'une méthode remplir qui prend en argument un entier correspondant au volume de carburant à ajouter au réservoir.
+
+- 4.Doter la classe d'une méthode avance qui prend en argument un entier correspondant au nombre de kilomètres parcourus et qui actualise les valeurs des attributs kilometrage et consommation.
+
+```python
+class Voiture:
+    def __init__(self, kilometrage, consommation):
+        self.kilometrage = kilometrage  
+        self.consommation = consommation  
+        self.carburant = 0 
+
+    def affiche(self):
+        """Affiche le kilométrage et le carburant disponible."""
+        print(f"La voiture a parcouru {self.kilometrage} kilomètres et il y a {self.carburant} litres d'essence dans le réservoir.")
+
+    def remplir(self, volume):
+        """Ajoute un volume de carburant au réservoir."""
+        self.carburant += volume
+
+    def avance(self, distance):
+        """Fait avancer la voiture sur une distance donnée, en ajustant le kilométrage et le carburant."""
+        # Calcul de la conso
+        carburant_necessaire = (self.consommation / 100) * distance
+        
+        if carburant_necessaire <= self.carburant:
+            self.kilometrage += distance  # Mise à jour du kilométrage
+            self.carburant -= carburant_necessaire  # Mise à jour du carburant
+        else:
+            print("Pas assez de carburant pour parcourir cette distance.")
+
+            
+vega_myssil = Voiture(0, 8)
+vega_myssil.affiche()  # Affiche le km et le carburant
+vega_myssil.remplir(25)  # Remplit le réservoir
+vega_myssil.avance(200)  # Avance de 200 km
+vega_myssil.affiche()  # Affiche le nouveau kilométrage et le carbu restant
+
+>>> La voiture a parcouru 0 kilomètres et il y a 0 litres d'essence dans le réservoir.
+>>> La voiture a parcouru 200 kilomètres et il y a 9.0 litres d'essence dans le réservoir.
+```
