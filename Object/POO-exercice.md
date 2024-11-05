@@ -59,3 +59,12 @@ print(plus_ancien(livre1, livre3))
 ### Exercice 2.1
 
 - Écrire une classe Eleve contenant les attributs nom, classe et moyenne.
+
+```python
+# Définition de la classe Eleve
+class Eleve:
+    def __init__(self, nom, classe, moyenne):
+        self.nom = nom      # Nom de l'élève
+        self.classe = classe  # Classe de l'élève (ex: 5ème, 1ère, etc.)
+        self.moyenne = moyenne  # Moyenne de l'élève
+```
