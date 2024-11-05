@@ -37,3 +37,19 @@ print(mon_livre_favori.titre)
 ## Exercice 1.3
 
 - Écrire une fonction plus_ancien(livre1, livre2) qui renvoie le titre du livre ayant été publié en premier parmi les deux livres passés en argument.
+
+```python
+def plus_ancien(livre1, livre2):
+    if livre1.année < livre2.année:
+        return livre1.titre
+    else:
+        return livre2.titre
+
+livre1 = Livre("L'Étranger", "Albert Camus", 1942)
+livre2 = Livre("Martin Eden", "Jack London", 1909)
+livre3 = Livre("Les Frères Karamazov", "Fiodor Dostoïevski", 1880)
+
+print(plus_ancien(livre1, livre3))
+
+>>> Les Frères Karamazov
+```
