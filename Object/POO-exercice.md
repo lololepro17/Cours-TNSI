@@ -5,7 +5,7 @@
 
 ### Exercice 1.1 :
 
-- Instancier un nouveau livre mon_livre_favori et afficher ensuite son titre.
+- Instancier un nouveau livre `mon_livre_favori` et afficher ensuite son titre.
 
 ```python
 
@@ -36,7 +36,7 @@ print(mon_livre_favori.titre)
 ```
 ### Exercice 1.3
 
-- Écrire une fonction plus_ancien(livre1, livre2) qui renvoie le titre du livre ayant été publié en premier parmi les deux livres passés en argument.
+- Écrire une fonction `plus_ancien(livre1, livre2)` qui renvoie le titre du livre ayant été publié en premier parmi les deux livres passés en argument.
 
 ```python
 def plus_ancien(livre1, livre2):
@@ -58,7 +58,7 @@ print(plus_ancien(livre1, livre3))
 
 ### Exercice 2.1
 
-- Écrire une classe Eleve contenant les attributs nom, classe et moyenne.
+- Écrire une classe Eleve contenant les attributs `nom`, `classe` et `moyenne`.
 
 ```python
 # Définition de la classe Eleve
@@ -89,7 +89,7 @@ print(f"Nom: {eleve3.nom}, Classe: {eleve3.classe}, Moyenne: {eleve3.moyenne}")
 
 ### Exercice 2.3
 
-- Écrire une fonction chouchou(eleve1, eleve2) qui renvoie le nom de l'élève ayant la meilleure moyenne.
+- Écrire une fonction `chouchou(eleve1, eleve2)` qui renvoie le nom de l'élève ayant la meilleure moyenne.
 
 ```python
 # Fonction pour déterminer l'élève avec la meilleure moyenne
@@ -108,7 +108,7 @@ print(chouchou(eleve1,eleve2))
 
 ### Exercice 3
 
-- Écrire une classe TriangleRectangle qui contiendra les attributs cote1, cote2 et hypotenuse. Cependant, le constructeur ne prendra en paramètres que cote1 et cote2, l'attribut hypotenuse se calculera automatiquement.
+- Écrire une classe `TriangleRectangle` qui contiendra les attributs cote1, cote2 et hypotenuse. Cependant, le constructeur ne prendra en paramètres que cote1 et cote2, l'attribut hypotenuse se calculera automatiquement.
 
 ```python
 import math
@@ -135,7 +135,7 @@ print(mon_triangle.hypotenuse)
 
 ### Exercice 4.1
 
-- Créer une fonction calculer_périmètre(rectangle) externe qui renvoie le périmètre du rectangle donné en argument.
+- Créer une fonction `calculer_périmètre(rectangle)` externe qui renvoie le périmètre du rectangle donné en argument.
 
 ```python
 class Rectangle:
@@ -181,7 +181,7 @@ print(rect2.calculer_perimetre())
 
 ### Exercice 4.3
 
-- Au sein du même script où est définit la classe Rectangle, définir une nouvelle classe Cercle. On souhaite une fonction ou une méthode qui permet de calculer aussi l'aire pour les instances de Cercle.
+- Au sein du même script où est définit la classe `Rectangle`, définir une nouvelle classe Cercle. On souhaite une fonction ou une méthode qui permet de calculer aussi l'aire pour les instances de Cercle.
 
 ```python
 class Cercle:
@@ -203,13 +203,13 @@ rect2 = Rectangle(7, 4)
 
 ### Exercice 5
 
-- 1.Écrire une classe Voiture qui contiendra les attributs kilometrage, consommation (nombre de litres de carburant consommé pour 100 kilomètres) dont les valeurs seront données comme arguments à l'initialisation et un dernier attribut carburant valant 0 par défaut.
+  1. Écrire une classe Voiture qui contiendra les attributs kilometrage, consommation (nombre de litres de carburant consommé pour 100 kilomètres) dont les valeurs seront données comme arguments à l'initialisation et un dernier attribut carburant valant 0 par défaut.
 
-- 2.Doter la classe d'une méthode affiche qui affiche le kilométrage et le carburant disponible.
+  2. Doter la classe d'une méthode affiche qui affiche le kilométrage et le carburant disponible.
 
-- 3.Doter la classe d'une méthode remplir qui prend en argument un entier correspondant au volume de carburant à ajouter au réservoir.
+  3. Doter la classe d'une méthode remplir qui prend en argument un entier correspondant au volume de carburant à ajouter au réservoir.
 
-- 4.Doter la classe d'une méthode avance qui prend en argument un entier correspondant au nombre de kilomètres parcourus et qui actualise les valeurs des attributs kilometrage et consommation.
+  4. Doter la classe d'une méthode avance qui prend en argument un entier correspondant au nombre de kilomètres parcourus et qui actualise les valeurs des attributs kilometrage et consommation.
 
 ```python
 class Voiture:
@@ -252,11 +252,11 @@ vega_myssil.affiche()  # Affiche le nouveau kilométrage et le carbu restant
 
 ### Exercice 6
 
-- 1.Écrire une classe Horloge qui contiendra les attributs heures, minutes et secondes.
+ 1. Écrire une classe Horloge qui contiendra les attributs heures, minutes et secondes.
 
-- 2.Doter la classe d'une méthode affiche(self) qui affiche le temps de l'instance self.
+ 2. Doter la classe d'une méthode affiche(self) qui affiche le temps de l'instance self.
 
-- 3.Doter la classe d'une méthode avance(self, s) qui avance le temps de s secondes de l'instance self.
+ 3. Doter la classe d'une méthode avance(self, s) qui avance le temps de s secondes de l'instance self.
 
 ```python
 class Horloge:
@@ -354,9 +354,9 @@ print(mario.energie)
 
 - Définir une classe CompteBancaire dont le constructeur recevra en paramètres :
 
-- 1.un attribut titulaire stockant le nom du propriétaire.
-- 2.un attribut solde contenant le solde disponible sur le compte.
-- 3.Cette classe contiendra deux méthodes retrait et depot qui permettront de retirer ou de déposer de l'argent sur le compte.
+  1. Un attribut titulaire stockant le nom du propriétaire.
+  2. Un attribut solde contenant le solde disponible sur le compte.
+  3. Cette classe contiendra deux méthodes retrait et depot qui permettront de retirer ou de déposer de l'argent sur le compte.
 
 ```python
 class CompteBancaire:
