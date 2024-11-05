@@ -11,7 +11,7 @@
 
 # Définition de la classe Livre
 class Livre:  
-    def __init__(self, un_titre, un_auteur, une_année): 
+    def __init__(self, un_titre, un_auteur, une_année, une_langue): 
         self.titre  = un_titre 
         self.auteur = un_auteur
         self.année  = une_année
