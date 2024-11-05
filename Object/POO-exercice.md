@@ -100,4 +100,6 @@ def chouchou(eleve1, eleve2):
         return eleve2.nom
 
 print(chouchou(eleve1,eleve2))
+
+>>> Romain Boutolleau
 ```
