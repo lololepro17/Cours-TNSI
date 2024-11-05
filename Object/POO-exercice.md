@@ -103,3 +103,54 @@ print(chouchou(eleve1,eleve2))
 
 >>> Romain Boutolleau
 ```
+
+## Exercice 3 - Un constructeur plus original
+
+### Exercice 3
+
+- Écrire une classe TriangleRectangle qui contiendra les attributs cote1, cote2 et hypotenuse. Cependant, le constructeur ne prendra en paramètres que cote1 et cote2, l'attribut hypotenuse se calculera automatiquement.
+
+```python
+import math
+
+class TriangleRectangle:
+    def __init__(self, cote1, cote2):
+        self.cote1 = cote1  # Premier côté
+        self.cote2 = cote2  # Deuxième côté
+        self.hypotenuse = math.sqrt(cote1 ** 2 + cote2 ** 2)  # Calcul de l'hypoténuse
+
+        
+mon_triangle = TriangleRectangle(3, 4)
+
+# Affichage
+print(mon_triangle.cote1)     
+print(mon_triangle.cote2)
+print(mon_triangle.hypotenuse)
+>>> 3
+>>> 4
+>>> 5.0
+```
+
+## Exercice 4 - Ça ne manque pas d'aire !
+
+### Exercice 4.1
+
+- Créer une fonction calculer_périmètre(rectangle) externe qui renvoie le périmètre du rectangle donné en argument.
+
+```python
+class Rectangle:
+    def __init__(self, longueur, largeur):
+        self.longueur = longueur
+        self.largeur  = largeur
+        
+    def calculer_aire(self):
+        return self.longueur * self.largeur
+
+# Création d'objets de la classe Rectangle
+rect1 = Rectangle(5, 3)
+rect2 = Rectangle(7, 4)
+```
+
+### Exercice 4.2
+
+- Transformer cette fonction en une méthode de la classe Rectangle.
