@@ -247,3 +247,96 @@ vega_myssil.affiche()  # Affiche le nouveau kilométrage et le carbu restant
 >>> La voiture a parcouru 0 kilomètres et il y a 0 litres d'essence dans le réservoir.
 >>> La voiture a parcouru 200 kilomètres et il y a 9.0 litres d'essence dans le réservoir.
 ```
+
+## Exercice 6 - Tic Tac
+
+### Exercice 6
+
+- 1.Écrire une classe Horloge qui contiendra les attributs heures, minutes et secondes.
+
+- 2.Doter la classe d'une méthode affiche(self) qui affiche le temps de l'instance self.
+
+- 3.Doter la classe d'une méthode avance(self, s) qui avance le temps de s secondes de l'instance self.
+
+```python
+class Horloge:
+    def __init__(self, heures, minutes, secondes):
+        self.heures = heures  # Heures de l'horloge
+        self.minutes = minutes  # Minutes de l'horloge
+        self.secondes = secondes  # Secondes de l'horloge
+
+    def affiche(self):
+        """Affiche l'heure actuelle au format 'Il est hh heures, mm minutes et ss secondes.'"""
+        print(f"Il est {self.heures} heures, {self.minutes} minutes et {self.secondes} secondes.")
+
+    def avance(self, s):
+        """Avance l'horloge de s secondes."""
+        total_secondes = self.heures * 3600 + self.minutes * 60 + self.secondes + s
+        total_secondes %= 86400  # Nombre de secondes en une journée
+
+        self.heures = total_secondes // 3600
+        self.minutes = (total_secondes % 3600) // 60
+        self.secondes = total_secondes % 60
+
+        
+h = Horloge(17, 25, 38)
+print(h.heures)    # Affiche 17
+print(h.minutes)   # Affiche 25
+print(h.secondes)  # Affiche 38
+h.affiche()        # Affiche l'heure
+h.avance(27)      # Avance de 27 secondes
+h.affiche()        # Affiche l'heure mise à jour
+>>> 17
+>>> 25
+>>> 38
+>>> Il est 17 heures, 25 minutes et 38 secondes.
+>>> Il est 17 heures, 26 minutes et 5 secondes.
+```
+
+## Exercice 7 - Un début de jeu vidéo
+
+### Exercice 7
+
+- Écrire une classe Player qui :
+  - ne prendra aucun argument lors de l'instanciation.
+  - affectera à chaque objet créé un attribut energie valant 3 par défaut.
+  - affectera à chaque objet créé un attribut alive valant True par défaut.
+  - fournira à chaque objet une méthode blessure() qui diminue l'attribut energie de 1.
+  - fournira à chaque objet une méthode soin() qui augmente l'attribut energie de 1.
+  - si l'attribut energie passe à 0, l'attribut alive doit passer à False et ne doit plus pouvoir évoluer.
+
+```python
+
+class Player:
+    def __init__(self):
+        self.energie = 3  # Énergie initiale
+        self.alive = True  # État du joueur, vivant par défaut
+
+    def blessure(self):
+        """Diminue l'énergie de 1. Si l'énergie atteint 0, le joueur meurt."""
+        if self.alive:  # Vérifie si le joueur est encore vivant
+            self.energie -= 1
+            if self.energie <= 0:
+                self.energie = 0  # S'assurer que l'énergie ne descend pas en dessous de 0
+                self.alive = False  # Le joueur est maintenant mort
+
+    def soin(self):
+        """Augmente l'énergie de 1, mais ne change pas l'état vivant."""
+        if self.alive:  # Vérifie si le joueur est encore vivant
+            self.energie += 1
+
+# Exemple d'utilisation
+mario = Player()
+print(mario.energie)  
+mario.soin()
+print(mario.energie) 
+mario.blessure()
+mario.blessure()
+mario.blessure()
+print(mario.alive)    
+mario.blessure()
+print(mario.alive)    
+mario.soin()
+print(mario.alive)
+print(mario.energie) 
+  ```
