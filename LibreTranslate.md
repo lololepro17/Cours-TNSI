@@ -8,7 +8,7 @@
 
 ## Question 15
 
-- L'URL à contacter est : `POST https://libretranslate.de/translate.
+- L'URL à contacter est : `POST https://libretranslate.de/translate`.
 - Les parametre sont :
   - `q`:le texte a traduire
   - `source`:la langue source du texte ("fr" pour francais)
