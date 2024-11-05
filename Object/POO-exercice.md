@@ -1,4 +1,4 @@
-# ** Poo exercice **
+#  Poo: Exercice 
 
 ## Exercice 1 - Un rat de bibliothèque
 
