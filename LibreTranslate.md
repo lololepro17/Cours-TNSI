@@ -10,10 +10,10 @@
 
 - L'URL à contacter est : `POST https://libretranslate.de/translate.
 - Les parametre sont :
-    - `q`:le texte a traduire
-    - `source`:la langue source du texte ("fr" pour francais)
-    - `target`:langue cible dans laquel traduire ("en" pour anglais)
-    - `format`(optionel):le format du text. Par default, c'est `text`.
+  - `q`:le texte a traduire
+  - `source`:la langue source du texte ("fr" pour francais)
+  - `target`:langue cible dans laquel traduire ("en" pour anglais)
+  - `format`(optionel):le format du text. Par default, c'est `text`.
 
 ## Question 16
 
