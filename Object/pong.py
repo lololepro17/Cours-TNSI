@@ -1,4 +1,5 @@
 import pyxel
+import math  # Pour utiliser cos et sin avec des angles
 
 # Dimensions de la fenêtre et du jeu
 LARGEUR_ECRAN = 160
@@ -53,18 +54,19 @@ class Balle:
     def __init__(self):
         self.x = LARGEUR_ECRAN // 2
         self.y = HAUTEUR_ECRAN // 2
-        self.vitesse_x = 2
-        self.vitesse_y = 2
+        self.vitesse = 2  # vitesse de déplacement de la balle
+        self.angle = math.radians(45)  # angle initial en radians (par exemple, 45°)
         self.taille = 4
 
     def deplacer(self):
-        """Déplace la balle selon sa vitesse actuelle"""
-        self.x += self.vitesse_x
-        self.y += self.vitesse_y
+        """Déplace la balle en fonction de l'angle et de la vitesse"""
+        # Calcul de la position selon l'angle
+        self.x += self.vitesse * math.cos(self.angle)
+        self.y += self.vitesse * math.sin(self.angle)
 
         # Rebond sur les murs haut et bas
         if self.y <= 0 or self.y >= HAUTEUR_ECRAN - self.taille:
-            self.vitesse_y *= -1
+            self.angle = -self.angle  # Inverse l'angle vertical
 
     def afficher(self):
         """Affiche la balle à l'écran"""
@@ -74,7 +76,7 @@ class Balle:
         """Réinitialise la balle au centre de l'écran et inverse sa direction"""
         self.x = LARGEUR_ECRAN // 2
         self.y = HAUTEUR_ECRAN // 2
-        self.vitesse_x *= -1  # Change la direction de la balle
+        self.angle = -self.angle  # Change de direction
 
 # Classe principale du Jeu Pong
 class Jeu:
@@ -103,11 +105,11 @@ class Jeu:
         # Collision avec les raquettes
         if (self.balle.x <= self.joueur1.x + LARGEUR_RAQUETTE and
             self.joueur1.y < self.balle.y < self.joueur1.y + HAUTEUR_RAQUETTE):
-            self.balle.vitesse_x *= -1
+            self.balle.angle = math.pi - self.balle.angle  # Inversion horizontale
 
         if (self.balle.x >= self.joueur2.x - self.balle.taille and
             self.joueur2.y < self.balle.y < self.joueur2.y + HAUTEUR_RAQUETTE):
-            self.balle.vitesse_x *= -1
+            self.balle.angle = math.pi - self.balle.angle  # Inversion horizontale
 
         # Vérifie si un joueur a marqué un point
         if self.balle.x < TROU_DU_BALLON:
