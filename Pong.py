@@ -1,5 +1,5 @@
 import pyxel
-from pong import Jeu  # Remplacez `fichier_du_jeu` par le nom de votre fichier de jeu
+import game_pong
 
 # Dimensions du menu
 LARGEUR_MENU = 160
