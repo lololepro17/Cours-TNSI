@@ -1,82 +1,139 @@
 import pyxel
-import random
 
-
-# Dimensions de la fenetre
+# Dimensions de la fenêtre et du jeu
 LARGEUR_ECRAN = 160
 HAUTEUR_ECRAN = 120
+LARGEUR_RAQUETTE = 4
+HAUTEUR_RAQUETTE = 20
+VITESSE_RAQUETTE = 3
+TROU_DU_BALLON = 1  # La marge pour marquer un point
 
+# Classe pour le Joueur 1
+class Joueur1:
+    def __init__(self):
+        self.x = 10
+        self.y = HAUTEUR_ECRAN // 2 - HAUTEUR_RAQUETTE // 2
+        self.touche_haut = pyxel.KEY_Z
+        self.touche_bas = pyxel.KEY_S
+        self.score = 0
 
-# Classe du Jeu
+    def mouvement(self):
+        """Déplace la raquette du joueur 1 en fonction des touches Z et S"""
+        if pyxel.btn(self.touche_haut) and self.y > 0:
+            self.y -= VITESSE_RAQUETTE
+        if pyxel.btn(self.touche_bas) and self.y < HAUTEUR_ECRAN - HAUTEUR_RAQUETTE:
+            self.y += VITESSE_RAQUETTE
+
+    def afficher(self):
+        """Affiche la raquette du joueur 1"""
+        pyxel.rect(self.x, self.y, LARGEUR_RAQUETTE, HAUTEUR_RAQUETTE, 9)
+
+# Classe pour le Joueur 2
+class Joueur2:
+    def __init__(self):
+        self.x = LARGEUR_ECRAN - 10 - LARGEUR_RAQUETTE
+        self.y = HAUTEUR_ECRAN // 2 - HAUTEUR_RAQUETTE // 2
+        self.touche_haut = pyxel.KEY_UP
+        self.touche_bas = pyxel.KEY_DOWN
+        self.score = 0
+
+    def mouvement(self):
+        """Déplace la raquette du joueur 2 en fonction des touches Haut et Bas"""
+        if pyxel.btn(self.touche_haut) and self.y > 0:
+            self.y -= VITESSE_RAQUETTE
+        if pyxel.btn(self.touche_bas) and self.y < HAUTEUR_ECRAN - HAUTEUR_RAQUETTE:
+            self.y += VITESSE_RAQUETTE
+
+    def afficher(self):
+        """Affiche la raquette du joueur 2"""
+        pyxel.rect(self.x, self.y, LARGEUR_RAQUETTE, HAUTEUR_RAQUETTE, 9)
+
+# Classe pour la Balle
+class Balle:
+    def __init__(self):
+        self.x = LARGEUR_ECRAN // 2
+        self.y = HAUTEUR_ECRAN // 2
+        self.vitesse_x = 2
+        self.vitesse_y = 2
+        self.taille = 4
+
+    def deplacer(self):
+        """Déplace la balle selon sa vitesse actuelle"""
+        self.x += self.vitesse_x
+        self.y += self.vitesse_y
+
+        # Rebond sur les murs haut et bas
+        if self.y <= 0 or self.y >= HAUTEUR_ECRAN - self.taille:
+            self.vitesse_y *= -1
+
+    def afficher(self):
+        """Affiche la balle à l'écran"""
+        pyxel.rect(self.x, self.y, self.taille, self.taille, 7)
+
+    def reset(self):
+        """Réinitialise la balle au centre de l'écran et inverse sa direction"""
+        self.x = LARGEUR_ECRAN // 2
+        self.y = HAUTEUR_ECRAN // 2
+        self.vitesse_x *= -1  # Change la direction de la balle
+
+# Classe principale du Jeu Pong
 class Jeu:
     def __init__(self):
-        # Init fenetre Pyxel
-        pyxel.init(LARGEUR_ECRAN, HAUTEUR_ECRAN, title="Jeu d'Évitement")
+        # Initialisation de la fenêtre
+        pyxel.init(LARGEUR_ECRAN, HAUTEUR_ECRAN, title="Pong à 2 Joueurs")
 
-        # Position de base du joueur
-        self.joueur_x = LARGEUR_ECRAN // 2
-        self.joueur_y = HAUTEUR_ECRAN - 10
-        self.joueur_taille = 8
+        # Création des joueurs et de la balle
+        self.joueur1 = Joueur1()
+        self.joueur2 = Joueur2()
+        self.balle = Balle()
 
-        # Position et vitesse de l'obstacle de base
-        self.obstacle_x = random.randint(0, LARGEUR_ECRAN - 10)
-        self.obstacle_y = 0
-        self.obstacle_taille = 8
-        self.obstacle_vitesse = 2
-
-        # Score du joueur a l'init
-        self.score = 0
-        self.game_over = False
-
-        # Demarer la boucle du jeu 
+        # Lance la boucle de jeu Pyxel
         pyxel.run(self.update, self.draw)
 
     def update(self):
-        """Mise a jour de chaque elements de la fenetre"""
-        if not self.game_over:
-            # Mouvement du joueur (gauche/droite)
-            if pyxel.btn(pyxel.KEY_LEFT) and self.joueur_x > 0:
-                self.joueur_x -= 2
-            if pyxel.btn(pyxel.KEY_RIGHT) and self.joueur_x < LARGEUR_ECRAN - self.joueur_taille:
-                self.joueur_x += 2
+        """Met à jour les éléments du jeu pour chaque image"""
+        
+        # Mouvement des raquettes
+        self.joueur1.mouvement()
+        self.joueur2.mouvement()
 
-            # Mise à jour de la position de l'obstacle
-            self.obstacle_y += self.obstacle_vitesse
+        # Déplacement de la balle
+        self.balle.deplacer()
 
-            # Réinitialisation de l'obstacle en haut lorsqu'il sort de l'écran
-            if self.obstacle_y > HAUTEUR_ECRAN:
-                self.obstacle_y = 0
-                self.obstacle_x = random.randint(0, LARGEUR_ECRAN - self.obstacle_taille)
-                self.score += 1
-                self.obstacle_vitesse += 0.2  # Augmente la difficulté
+        # Collision avec les raquettes
+        if (self.balle.x <= self.joueur1.x + LARGEUR_RAQUETTE and
+            self.joueur1.y < self.balle.y < self.joueur1.y + HAUTEUR_RAQUETTE):
+            self.balle.vitesse_x *= -1
 
-            # Vérification de la collision
-            if (self.joueur_x < self.obstacle_x + self.obstacle_taille and
-                self.joueur_x + self.joueur_taille > self.obstacle_x and
-                self.joueur_y < self.obstacle_y + self.obstacle_taille and
-                self.joueur_y + self.joueur_taille > self.obstacle_y):
-                self.game_over = True
+        if (self.balle.x >= self.joueur2.x - self.balle.taille and
+            self.joueur2.y < self.balle.y < self.joueur2.y + HAUTEUR_RAQUETTE):
+            self.balle.vitesse_x *= -1
+
+        # Vérifie si un joueur a marqué un point
+        if self.balle.x < TROU_DU_BALLON:
+            self.joueur2.score += 1
+            self.balle.reset()
+
+        if self.balle.x > LARGEUR_ECRAN - TROU_DU_BALLON:
+            self.joueur1.score += 1
+            self.balle.reset()
 
     def draw(self):
-        """Redessine l'ecran """
+        """Affiche les éléments du jeu pour chaque image"""
+        
         # Efface l'écran
         pyxel.cls(0)
 
-        # Affiche le joueur
-        pyxel.rect(self.joueur_x, self.joueur_y, self.joueur_taille, self.joueur_taille, 9)
+        # Affiche les raquettes et la balle
+        self.joueur1.afficher()
+        self.joueur2.afficher()
+        self.balle.afficher()
 
-        # Affiche l'obstacle
-        pyxel.rect(self.obstacle_x, self.obstacle_y, self.obstacle_taille, self.obstacle_taille, 8)
+        # Affiche les scores
+        pyxel.text(5, 5, f"Joueur 1: {self.joueur1.score}", 7)
+        pyxel.text(LARGEUR_ECRAN - 45, 5, f"Joueur 2: {self.joueur2.score}", 7)
 
-        # Display le score
-        pyxel.text(5, 5, f"Score: {self.score}", 7)
-
-        # Affiche le message de GO
-        if self.game_over:
-            pyxel.text(LARGEUR_ECRAN // 2 - 20, HAUTEUR_ECRAN // 2, "GAME OVER", 8)
-            pyxel.text(LARGEUR_ECRAN // 2 - 35, HAUTEUR_ECRAN // 2 + 10, "Appuyez sur Q pour Quitter", 7)
-
-        # Quit quand on click sur Q
+        # Quitte le jeu quand on appuie sur Q
         if pyxel.btn(pyxel.KEY_Q):
             pyxel.quit()
 
