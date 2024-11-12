@@ -1,177 +1,220 @@
 import pyxel
-import math  # Pour utiliser cos et sin avec des angles
+import random
 
-# Dimensions de la fenêtre et du jeu
-LARGEUR_ECRAN = 160
-HAUTEUR_ECRAN = 120
-LARGEUR_RAQUETTE = 1
-HAUTEUR_RAQUETTE = 20
-VITESSE_RAQUETTE = 3
-TROU_DU_BALLON = 5  # La marge entre la raquette et la balle
-SCORE_VICTOIRE = 5  # Score pour gagner le jeu
+SPIN = 0.6
+BOUNCE = 0.03
+BOUNCE_FRICTION = 0.2
+MAX_SPEED = 5
+PADDLE_SPEED = 4
+BOT_SPEED = 1.5
+WINNING_SCORE = 5
 
-# Classe pour le Joueur 1
-class Joueur1:
-    def __init__(self):
-        self.x = 10
-        self.y = HAUTEUR_ECRAN // 2 - HAUTEUR_RAQUETTE // 2
-        self.touche_haut = pyxel.KEY_Z
-        self.touche_bas = pyxel.KEY_S
-        self.score = 0
+class Paddle:
+    def __init__(self, x, y, colour, control_up, control_down, dimensions, is_bot=False, bot_speed=BOT_SPEED):
+        self.x, self.y = x, y
+        self.width, self.height = 5, 20
+        self.control_up = control_up
+        self.control_down = control_down
+        self.colour = colour
+        self.is_bot = is_bot
+        self.bot_speed = bot_speed
+        self.dimensions = dimensions
 
-    def mouvement(self):
-        """Déplace la raquette du joueur 1 en fonction des touches Z et S"""
-        if pyxel.btn(self.touche_haut) and self.y > 0:
-            self.y -= VITESSE_RAQUETTE
-        if pyxel.btn(self.touche_bas) and self.y < HAUTEUR_ECRAN - HAUTEUR_RAQUETTE:
-            self.y += VITESSE_RAQUETTE
+    def move(self, ball_y=None):
+        if self.is_bot and ball_y is not None:
+            self._bot_move(ball_y)
+        else:
+            self._player_move()
 
-    def afficher(self):
-        """Affiche la raquette du joueur 1"""
-        pyxel.rect(self.x, self.y, LARGEUR_RAQUETTE, HAUTEUR_RAQUETTE, 9)
+    def _bot_move(self, ball_y):
+        target_y = ball_y - self.height / 2
+        distance = target_y - self.y
+        if abs(distance) > self.bot_speed:
+            self.y += self.bot_speed if distance > 0 else -self.bot_speed
+        else:
+            self.y = target_y
+        self._keep_in_bounds()
 
-# Classe pour le Joueur 2
-class Joueur2:
-    def __init__(self):
-        self.x = LARGEUR_ECRAN - 10 - LARGEUR_RAQUETTE
-        self.y = HAUTEUR_ECRAN // 2 - HAUTEUR_RAQUETTE // 2
-        self.touche_haut = pyxel.KEY_UP
-        self.touche_bas = pyxel.KEY_DOWN
-        self.score = 0
+    def _player_move(self):
+        if pyxel.btn(self.control_up):
+            self.y -= PADDLE_SPEED
+        elif pyxel.btn(self.control_down):
+            self.y += PADDLE_SPEED
+        self._keep_in_bounds()
 
-    def mouvement(self):
-        """Déplace la raquette du joueur 2 en fonction des touches Haut et Bas"""
-        if pyxel.btn(self.touche_haut) and self.y > 0:
-            self.y -= VITESSE_RAQUETTE
-        if pyxel.btn(self.touche_bas) and self.y < HAUTEUR_ECRAN - HAUTEUR_RAQUETTE:
-            self.y += VITESSE_RAQUETTE
+    def _keep_in_bounds(self):
+        self.y = max(0, min(self.y, self.dimensions[1] - self.height))
 
-    def afficher(self):
-        """Affiche la raquette du joueur 2"""
-        pyxel.rect(self.x, self.y, LARGEUR_RAQUETTE, HAUTEUR_RAQUETTE, 9)
+    def draw(self):
+        pyxel.rect(self.x, self.y, self.width, self.height, self.colour)
 
-# Classe pour la Balle
-class Balle:
-    def __init__(self):
-        self.x = LARGEUR_ECRAN // 2
-        self.y = HAUTEUR_ECRAN // 2
-        self.vitesse = 2  # vitesse de déplacement de la balle
-        self.angle = math.radians(45)  # angle initial en radians (par exemple, 45°)
-        self.taille = 2
 
-    def deplacer(self):
-        """Déplace la balle en fonction de l'angle et de la vitesse"""
-        # Calcul de la position selon l'angle
-        self.x += self.vitesse * math.cos(self.angle)
-        self.y += self.vitesse * math.sin(self.angle)
+class Ball:
+    def __init__(self, x, y, colour, initial_velocity, dimensions):
+        self.x, self.y = x, y
+        self.width, self.height = 2, 2
+        self.colour = colour
+        self.initial_velocity = initial_velocity
+        self.dimensions = dimensions
+        self.reset()
 
-        # Rebond sur les murs haut et bas
-        if self.y <= 0 or self.y >= HAUTEUR_ECRAN - self.taille:
-            self.angle = -self.angle  # Inverse l'angle vertical
+    def move(self):
+        # Déplacement de la balle
+        self.x += self.x_velocity
+        self.y += self.y_velocity
+        
+        # Gestion du rebond en haut et en bas
+        if self.y < 0:
+            self.y = 0
+            self.y_velocity = -self.y_velocity
+        elif self.y + self.height > self.dimensions[1]:
+            self.y = self.dimensions[1] - self.height
+            self.y_velocity = -self.y_velocity
 
-    def afficher(self):
-        """Affiche la balle à l'écran"""
-        pyxel.circ(self.x, self.y, self.taille, self.taille)
+        # Vérification des sorties de l'écran
+        if self.x < 0:
+            return "right"
+        elif self.x + self.width > self.dimensions[0]:
+            return "left"
+        return None
 
     def reset(self):
-        """Réinitialise la balle au centre de l'écran et inverse sa direction"""
-        self.x = LARGEUR_ECRAN // 2
-        self.y = HAUTEUR_ECRAN // 2
-        self.angle = math.radians(45)  # Redémarre avec un angle défini
-        self.vitesse = 2  # Réinitialise la vitesse
+        # Réinitialise la position et la vitesse de la balle
+        self.x, self.y = 80, 60
+        self.x_velocity = self.initial_velocity * random.choice([-1, 1])
+        self.y_velocity = self.initial_velocity * random.choice([-1, 1])
 
-# Classe principale du Jeu Pong
-class Jeu:
+    def handle_collision(self, paddles):
+        # Gère la collision avec les raquettes
+        for paddle in paddles:
+            if self._is_colliding(paddle):
+                self._apply_spin(paddle)
+                self.x_velocity = -self.x_velocity
+                return True
+        return False
+
+    def _apply_spin(self, paddle):
+        # Calcule et applique le spin selon la position d'impact sur la raquette
+        paddle_centre = paddle.y + paddle.height / 2
+        ball_centre = self.y + self.height / 2
+        impact_position = (ball_centre - paddle.y) / paddle.height
+
+        # Ajuste la vitesse verticale en fonction de la position d'impact
+        if impact_position < 0.33:  # Impact dans la partie supérieure de la raquette
+            self.y_velocity -= SPIN
+        elif impact_position > 0.66:  # Impact dans la partie inférieure
+            self.y_velocity += SPIN
+        else:  # Impact au centre de la raquette
+            self.y_velocity *= 0.9  # Réduit la vitesse verticale pour une trajectoire plus horizontale
+
+        # Limite la vitesse verticale pour qu'elle ne dépasse pas MAX_SPEED
+        self.y_velocity = max(-MAX_SPEED, min(self.y_velocity, MAX_SPEED))
+
+    def _is_colliding(self, paddle):
+        # Vérifie la collision entre la balle et la raquette
+        return (
+            self.x < paddle.x + paddle.width and
+            self.x + self.width > paddle.x and
+            self.y < paddle.y + paddle.height and
+            self.y + self.height > paddle.y
+        )
+
+    def draw(self):
+        # Affiche la balle à l'écran
+        pyxel.circ(self.x, self.y, self.width, self.colour)
+
+class PongGame:
     def __init__(self):
-        # Initialisation de la fenêtre
-        pyxel.init(LARGEUR_ECRAN, HAUTEUR_ECRAN, title="Pong à 2 Joueurs")
-
-        # Création des joueurs et de la balle
-        self.joueur1 = Joueur1()
-        self.joueur2 = Joueur2()
-        self.balle = Balle()
-
-        # Lance la boucle de jeu Pyxel
+        pyxel.init(180, 120, title="Pong")
+        self.dimensions = (160, 120)
+        self.paddle_left = Paddle(10, 60, 8, pyxel.KEY_Z, pyxel.KEY_S, self.dimensions)
+        self.paddle_right = Paddle(145, 60, 11, pyxel.KEY_UP, pyxel.KEY_DOWN, self.dimensions, is_bot=True)
+        self.ball = Ball(80, 60, 7, initial_velocity=2, dimensions=self.dimensions)
+        self.score_left, self.score_right = 0, 0
+        self.game_started = False
+        self.single_player_mode = True
+        self.winner = None
         pyxel.run(self.update, self.draw)
 
     def update(self):
-        """Met à jour les éléments du jeu pour chaque image"""
-        
-        # Mouvement des raquettes
-        self.joueur1.mouvement()
-        self.joueur2.mouvement()
+        if not self.game_started:
+            self._select_mode()
+            return
+        if self.winner:
+            self._check_restart()
+            return
+        self._update_game_state()
 
-        # Déplacement de la balle
-        self.balle.deplacer()
+    def _select_mode(self):
+        if pyxel.btnp(pyxel.KEY_LEFT):
+            self.single_player_mode = True
+            self.paddle_right.is_bot = True
+        elif pyxel.btnp(pyxel.KEY_RIGHT):
+            self.single_player_mode = False
+            self.paddle_right.is_bot = False
+        elif pyxel.btnp(pyxel.KEY_RETURN):
+            self.game_started = True
 
-        # Collision avec les raquettes
-        # Pour le joueur 1
-        if (self.balle.x <= self.joueur1.x + LARGEUR_RAQUETTE and
-            self.joueur1.y < self.balle.y + self.balle.taille < self.joueur1.y + HAUTEUR_RAQUETTE):
-            # Inversion horizontale et ajustement de l'angle en fonction de la position de la balle
-            position_impact = (self.balle.y - self.joueur1.y) / HAUTEUR_RAQUETTE - 0.5
-            angle_variation = position_impact * math.radians(45)  # Variation de l'angle selon l'impact
-            self.balle.angle = math.pi - self.balle.angle + angle_variation
+    def _check_restart(self):
+        if pyxel.btnp(pyxel.KEY_RETURN):
+            self._reset_game()
+        elif pyxel.btnp(pyxel.KEY_Q):
+            pyxel.quit()
 
-        # Pour le joueur 2
-        if (self.balle.x + self.balle.taille >= self.joueur2.x and
-            self.joueur2.y < self.balle.y + self.balle.taille < self.joueur2.y + HAUTEUR_RAQUETTE):
-            # Inversion horizontale et ajustement de l'angle en fonction de la position de la balle
-            position_impact = (self.balle.y - self.joueur2.y) / HAUTEUR_RAQUETTE - 0.5
-            angle_variation = position_impact * math.radians(45)  # Variation de l'angle selon l'impact
-            self.balle.angle = math.pi - self.balle.angle + angle_variation
+    def _update_game_state(self):
+        self.paddle_left.move()
+        self.paddle_right.move(ball_y=self.ball.y if self.paddle_right.is_bot else None)
+        self._check_score()
+        self.ball.handle_collision([self.paddle_left, self.paddle_right])
 
+    def _check_score(self):
+        result = self.ball.move()
+        if result == "left":
+            self.score_right += 1
+            self._check_winner("Droite")
+        elif result == "right":
+            self.score_left += 1
+            self._check_winner("Gauche")
 
+    def _check_winner(self, side):
+        if self.score_left >= WINNING_SCORE or self.score_right >= WINNING_SCORE:
+            self.winner = side
+        else:
+            self.ball.reset()
 
-        # Vérifie si un joueur a marqué un point
-        if self.balle.x < TROU_DU_BALLON:
-            self.joueur2.score += 1
-            self.balle.reset()
-
-        if self.balle.x > LARGEUR_ECRAN - TROU_DU_BALLON:
-            self.joueur1.score += 1
-            self.balle.reset()
-
-        # Fin du jeu si un joueur atteint le score de victoire
-        if self.joueur1.score >= SCORE_VICTOIRE or self.joueur2.score >= SCORE_VICTOIRE:
-            self.afficher_victoire()
+    def _reset_game(self):
+        self.score_left, self.score_right = 0, 0
+        self.winner = None
+        self.ball.reset()
+        self.paddle_left.y, self.paddle_right.y = 60, 60
 
     def draw(self):
-        """Affiche les éléments du jeu pour chaque image"""
-        
-        # Efface l'écran
         pyxel.cls(0)
-
-        # Affiche les raquettes et la balle
-        self.joueur1.afficher()
-        self.joueur2.afficher()
-        self.balle.afficher()
-
-        # Affiche les scores
-        pyxel.text(5, 5, f"Joueur 1: {self.joueur1.score}", 7)
-        pyxel.text(LARGEUR_ECRAN - 45, 5, f"Joueur 2: {self.joueur2.score}", 7)
-
-        # Quitte le jeu quand on appuie sur Q
-        if pyxel.btn(pyxel.KEY_Q):
-            pyxel.quit()
-
-    def afficher_victoire(self):
-        """Affiche un message de victoire et attend que l'utilisateur appuie sur Q pour quitter"""
-        print('appel victoire')
-        pyxel.cls(0)
-        
-        # Affichage du message de victoire
-        if self.joueur1.score > self.joueur2.score:
-            pyxel.text(LARGEUR_ECRAN // 2 - 30, HAUTEUR_ECRAN // 2 - 10, "Joueur 1 gagne!", 8)
+        if not self.game_started:
+            self._draw_intro()
+        elif self.winner:
+            self._draw_winner()
         else:
-            pyxel.text(LARGEUR_ECRAN // 2 - 30, HAUTEUR_ECRAN // 2 - 10, "Joueur 2 gagne!", 8)
-        
-        pyxel.text(LARGEUR_ECRAN // 2 - 30, HAUTEUR_ECRAN // 2 + 10, "Appuyez sur Q pour quitter", 7)
-        
-        # Attente de l'appui sur la touche Q pour quitter
-        if pyxel.btn(pyxel.KEY_Q):
-            pyxel.quit()
+            self._draw_game()
+
+    def _draw_intro(self):
+        pyxel.text(30, 40, "Selectionnez le mode:", 7)
+        pyxel.text(30, 50, "Mode 1 joueur", 7 if self.single_player_mode else 6)
+        pyxel.text(30, 60, "Mode 2 joueurs", 7 if not self.single_player_mode else 6)
+        pyxel.text(20, 90, "Appuyez sur ENTREE pour commencer", 8)
+
+    def _draw_winner(self):
+        pyxel.text(40, 50, f"Le joueur {self.winner} gagne!", 7)
+        pyxel.text(30, 60, "Appuyez sur ENTREE pour rejouer", 7)
+        pyxel.text(35, 70, "Appuyez sur Q pour quitter", 8)
+
+    def _draw_game(self):
+        self.paddle_left.draw()
+        self.paddle_right.draw()
+        self.ball.draw()
+        pyxel.text(10, 5, f"Score Gauche: {self.score_left}", 7)
+        pyxel.text(110, 5, f"Score Droite: {self.score_right}", 7)
 
 
 # Lancement du jeu
-Jeu()
+PongGame()
