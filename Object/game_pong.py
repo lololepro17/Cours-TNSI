@@ -7,7 +7,7 @@ HAUTEUR_ECRAN = 120
 LARGEUR_RAQUETTE = 1
 HAUTEUR_RAQUETTE = 20
 VITESSE_RAQUETTE = 3
-TROU_DU_BALLON = 10  # La marge entre la raquette et la balle
+TROU_DU_BALLON = 5  # La marge entre la raquette et la balle
 SCORE_VICTOIRE = 5  # Score pour gagner le jeu
 
 # Classe pour le Joueur 1
@@ -109,13 +109,18 @@ class Jeu:
         if (self.balle.x <= self.joueur1.x + LARGEUR_RAQUETTE and
             self.joueur1.y < self.balle.y + self.balle.taille < self.joueur1.y + HAUTEUR_RAQUETTE):
             # Inversion horizontale et ajustement de l'angle en fonction de la position de la balle
-            self.balle.angle = math.pi - self.balle.angle  # Inversion horizontale
+            position_impact = (self.balle.y - self.joueur1.y) / HAUTEUR_RAQUETTE - 0.5
+            angle_variation = position_impact * math.radians(45)  # Variation de l'angle selon l'impact
+            self.balle.angle = math.pi - self.balle.angle + angle_variation
 
         # Pour le joueur 2
         if (self.balle.x + self.balle.taille >= self.joueur2.x and
             self.joueur2.y < self.balle.y + self.balle.taille < self.joueur2.y + HAUTEUR_RAQUETTE):
             # Inversion horizontale et ajustement de l'angle en fonction de la position de la balle
-            self.balle.angle = math.pi - self.balle.angle  # Inversion horizontale
+            position_impact = (self.balle.y - self.joueur2.y) / HAUTEUR_RAQUETTE - 0.5
+            angle_variation = position_impact * math.radians(45)  # Variation de l'angle selon l'impact
+            self.balle.angle = math.pi - self.balle.angle + angle_variation
+
 
 
         # Vérifie si un joueur a marqué un point
