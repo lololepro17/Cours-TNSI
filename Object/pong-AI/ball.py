@@ -10,40 +10,40 @@ BOT_SPEED = 1.5
 WINNING_SCORE = 5
 
 class Paddle:
-    def __init__(self, x, y, colour, control_left, control_right, dimensions, is_bot=False, bot_speed=BOT_SPEED):
+    def __init__(self, x, y, colour, control_up, control_down, dimensions, is_bot=False, bot_speed=BOT_SPEED):
         self.x, self.y = x, y
-        self.width, self.height = 20, 5  # Inverser la largeur et la hauteur pour une raquette horizontale
-        self.control_left = control_left
-        self.control_right = control_right
+        self.width, self.height = 5, 20
+        self.control_up = control_up
+        self.control_down = control_down
         self.colour = colour
         self.is_bot = is_bot
         self.bot_speed = bot_speed
         self.dimensions = dimensions
 
-    def move(self, ball_x=None):
-        if self.is_bot and ball_x is not None:
-            self._bot_move(ball_x)
+    def move(self, ball_y=None):
+        if self.is_bot and ball_y is not None:
+            self._bot_move(ball_y)
         else:
             self._player_move()
 
-    def _bot_move(self, ball_x):
-        target_x = ball_x - self.width / 2
-        distance = target_x - self.x
+    def _bot_move(self, ball_y):
+        target_y = ball_y - self.height / 2
+        distance = target_y - self.y
         if abs(distance) > self.bot_speed:
-            self.x += self.bot_speed if distance > 0 else -self.bot_speed
+            self.y += self.bot_speed if distance > 0 else -self.bot_speed
         else:
-            self.x = target_x
+            self.y = target_y
         self._keep_in_bounds()
 
     def _player_move(self):
-        if pyxel.btn(self.control_left):
-            self.x -= PADDLE_SPEED
-        elif pyxel.btn(self.control_right):
-            self.x += PADDLE_SPEED
+        if pyxel.btn(self.control_up):
+            self.y -= PADDLE_SPEED
+        elif pyxel.btn(self.control_down):
+            self.y += PADDLE_SPEED
         self._keep_in_bounds()
 
     def _keep_in_bounds(self):
-        self.x = max(0, min(self.x, self.dimensions[0] - self.width))
+        self.y = max(0, min(self.y, self.dimensions[1] - self.height))
 
     def draw(self):
         pyxel.rect(self.x, self.y, self.width, self.height, self.colour)
@@ -63,19 +63,19 @@ class Ball:
         self.x += self.x_velocity
         self.y += self.y_velocity
         
-        # Gestion du rebond à gauche et à droite
-        if self.x < 0:
-            self.x = 0
-            self.x_velocity = -self.x_velocity
-        elif self.x + self.width > self.dimensions[0]:
-            self.x = self.dimensions[0] - self.width
-            self.x_velocity = -self.x_velocity
+        # Gestion du rebond en haut et en bas
+        if self.y < 0:
+            self.y = 0
+            self.y_velocity = -self.y_velocity
+        elif self.y + self.height > self.dimensions[1]:
+            self.y = self.dimensions[1] - self.height
+            self.y_velocity = -self.y_velocity
 
         # Vérification des sorties de l'écran
-        if self.y < 0:
-            return "bottom"
-        elif self.y + self.height > self.dimensions[1]:
-            return "top"
+        if self.x < 0:
+            return "right"
+        elif self.x + self.width > self.dimensions[0]:
+            return "left"
         return None
 
     def reset(self):
@@ -89,25 +89,29 @@ class Ball:
         for paddle in paddles:
             if self._is_colliding(paddle):
                 self._apply_spin(paddle)
-                self.y_velocity = -self.y_velocity  # Inversion de la vitesse verticale
+                self.x_velocity = -self.x_velocity
                 return True
         return False
 
     def _apply_spin(self, paddle):
-        paddle_centre = paddle.x + paddle.width / 2
-        ball_centre = self.x + self.width / 2
-        impact_position = (ball_centre - paddle.x) / paddle.width
+        # Calcule et applique le spin selon la position d'impact sur la raquette
+        paddle_centre = paddle.y + paddle.height / 2
+        ball_centre = self.y + self.height / 2
+        impact_position = (ball_centre - paddle.y) / paddle.height
 
-        if impact_position < 0.33:  # Impact dans la partie gauche de la raquette
-            self.x_velocity -= SPIN
-        elif impact_position > 0.66:  # Impact dans la partie droite
-            self.x_velocity += SPIN
+        # Ajuste la vitesse verticale en fonction de la position d'impact
+        if impact_position < 0.33:  # Impact dans la partie supérieure de la raquette
+            self.y_velocity -= SPIN
+        elif impact_position > 0.66:  # Impact dans la partie inférieure
+            self.y_velocity += SPIN
         else:  # Impact au centre de la raquette
-            self.x_velocity *= 0.9
+            self.y_velocity *= 0.9  # Réduit la vitesse verticale pour une trajectoire plus horizontale
 
-        self.x_velocity = max(-MAX_SPEED, min(self.x_velocity, MAX_SPEED))
+        # Limite la vitesse verticale pour qu'elle ne dépasse pas MAX_SPEED
+        self.y_velocity = max(-MAX_SPEED, min(self.y_velocity, MAX_SPEED))
 
     def _is_colliding(self, paddle):
+        # Vérifie la collision entre la balle et la raquette
         return (
             self.x < paddle.x + paddle.width and
             self.x + self.width > paddle.x and
@@ -116,17 +120,17 @@ class Ball:
         )
 
     def draw(self):
+        # Affiche la balle à l'écran
         pyxel.circ(self.x, self.y, self.width, self.colour)
-
 
 class PongGame:
     def __init__(self):
         pyxel.init(180, 120, title="Pong")
         self.dimensions = (160, 120)
-        self.paddle_top = Paddle(80, 10, 8, pyxel.KEY_LEFT, pyxel.KEY_RIGHT, self.dimensions)
-        self.paddle_bottom = Paddle(80, 105, 11, pyxel.KEY_A, pyxel.KEY_D, self.dimensions, is_bot=True)
+        self.paddle_left = Paddle(10, 60, 8, pyxel.KEY_Z, pyxel.KEY_S, self.dimensions)
+        self.paddle_right = Paddle(145, 60, 11, pyxel.KEY_UP, pyxel.KEY_DOWN, self.dimensions, is_bot=True)
         self.ball = Ball(80, 60, 7, initial_velocity=2, dimensions=self.dimensions)
-        self.score_top, self.score_bottom = 0, 0
+        self.score_left, self.score_right = 0, 0
         self.game_started = False
         self.single_player_mode = True
         self.winner = None
@@ -144,10 +148,10 @@ class PongGame:
     def _select_mode(self):
         if pyxel.btnp(pyxel.KEY_LEFT):
             self.single_player_mode = True
-            self.paddle_bottom.is_bot = True
+            self.paddle_right.is_bot = True
         elif pyxel.btnp(pyxel.KEY_RIGHT):
             self.single_player_mode = False
-            self.paddle_bottom.is_bot = False
+            self.paddle_right.is_bot = False
         elif pyxel.btnp(pyxel.KEY_RETURN):
             self.game_started = True
 
@@ -158,31 +162,31 @@ class PongGame:
             pyxel.quit()
 
     def _update_game_state(self):
-        self.paddle_top.move()
-        self.paddle_bottom.move(ball_x=self.ball.x if self.paddle_bottom.is_bot else None)
+        self.paddle_left.move()
+        self.paddle_right.move(ball_y=self.ball.y if self.paddle_right.is_bot else None)
         self._check_score()
-        self.ball.handle_collision([self.paddle_top, self.paddle_bottom])
+        self.ball.handle_collision([self.paddle_left, self.paddle_right])
 
     def _check_score(self):
         result = self.ball.move()
-        if result == "top":
-            self.score_bottom += 1
-            self._check_winner("Bas")
-        elif result == "bottom":
-            self.score_top += 1
-            self._check_winner("Haut")
+        if result == "left":
+            self.score_right += 1
+            self._check_winner("Droite")
+        elif result == "right":
+            self.score_left += 1
+            self._check_winner("Gauche")
 
     def _check_winner(self, side):
-        if self.score_top >= WINNING_SCORE or self.score_bottom >= WINNING_SCORE:
+        if self.score_left >= WINNING_SCORE or self.score_right >= WINNING_SCORE:
             self.winner = side
         else:
             self.ball.reset()
 
     def _reset_game(self):
-        self.score_top, self.score_bottom = 0, 0
+        self.score_left, self.score_right = 0, 0
         self.winner = None
         self.ball.reset()
-        self.paddle_top.x, self.paddle_bottom.x = 80, 80
+        self.paddle_left.y, self.paddle_right.y = 60, 60
 
     def draw(self):
         pyxel.cls(0)
@@ -205,12 +209,10 @@ class PongGame:
         pyxel.text(35, 70, "Appuyez sur Q pour quitter", 8)
 
     def _draw_game(self):
-        self.paddle_top.draw()
-        self.paddle_bottom.draw()
+        self.paddle_left.draw()
+        self.paddle_right.draw()
         self.ball.draw()
-        pyxel.text(10, 5, f"Score Haut: {self.score_top}", 7)
-        pyxel.text(110, 5, f"Score Bas: {self.score_bottom}", 7)
+        pyxel.text(10, 5, f"Score Gauche: {self.score_left}", 7)
+        pyxel.text(110, 5, f"Score Droite: {self.score_right}", 7)
 
 
-# Lancement du jeu
-PongGame()
