@@ -10,7 +10,7 @@ Le modèle Entités/Associations pour gérer les réservations dans une compagni
 
 | **Attribut**       | **Type**           | **Description**                               |
 |--------------------|--------------------|-----------------------------------------------|
-| `id_client`        | INT                | Identifiant unique du client (clé primaire)   |
+| `id_client`        | INT                | Identifiant unique du client (**clé primaire**)   |
 | `Nom`              | STRING             | Nom du client                                 |
 | `Prénom`           | STRING             | Prénom du client                              |
 | `Adresse`          | STRING             | Adresse du client                             |
@@ -23,9 +23,9 @@ Le modèle Entités/Associations pour gérer les réservations dans une compagni
 
 | **Attribut**       | **Type**           | **Description**                               |
 |--------------------|--------------------|-----------------------------------------------|
-| `id_réservation`   | INT                | Identifiant unique de la réservation (clé primaire) |
-| `id_client`        | INT                | Référence à l'identifiant du client (clé étrangère) |
-| `id_chambre`       | INT                | Référence à l'identifiant de la chambre réservée (clé étrangère) |
+| `id_réservation`   | INT                | Identifiant unique de la réservation (**clé primaire**) |
+| `id_client`        | INT                | Référence à l'identifiant du client (**clé étrangère**) |
+| `id_chambre`       | INT                | Référence à l'identifiant de la chambre réservée (**clé étrangère**) |
 | `DateRéservation`  | DATE               | Date de la réservation                        |
 | `DateDébut`        | DATE               | Date de début du séjour                       |
 | `DateFin`          | DATE               | Date de fin du séjour                         |
@@ -36,16 +36,18 @@ Le modèle Entités/Associations pour gérer les réservations dans une compagni
 
 | **Attribut**       | **Type**           | **Description**                               |
 |--------------------|--------------------|-----------------------------------------------|
-| `id_chambre`       | INT                | Identifiant unique de la chambre (clé primaire) |
+| `id_chambre`       | INT                | Identifiant unique de la chambre (**clé primaire**) |
 | `numéro`           | STRING             | Numéro de la chambre                          |
 | `type`             | STRING             | Type de chambre (simple, double, suite, etc.) |
 | `disponibilité`    | BOOLEAN            | Indique si la chambre est disponible (TRUE/FALSE) |
+
+---
 
 ### Table `Hotels`
 
 | **Attribut**       | **Type**           | **Description**                               |
 |--------------------|--------------------|-----------------------------------------------|
-| `id_hotel`         | INT                | Identifiant unique de l'hôtel (clé primaire)  |
+| `id_hotel`         | INT                | Identifiant unique de l'hôtel (**clé primaire**)  |
 | `nom`              | STRING             | Nom de l'hôtel                                |
 | `adresse`          | STRING             | Adresse de l'hôtel                            |
 | `ville`            | STRING             | Ville où se situe l'hôtel                     |
