@@ -13,13 +13,12 @@ Le schéma relationnel de la table **Client** est sa :
 | **Attribut**          | **Type**         | **Description**                           |
 |------------------------|------------------|-------------------------------------------|
 | `id_client`           | INT             | Identifiant unique du client (clé primaire). |
-| `nom`                 | str             | Nom du client.                            |
-| `prenom`              | str             | Prénom du client.                         |
-| `adresse`             | str             | Adresse complète du client.               |
-| `ville`               | str             | Ville du client.                          |
-| `code_postal`         | int             | Code postal du client.                    |
-| `telephone`           | str             | Numéro de téléphone du client.            |
-| `email`               | str             | Adresse e-mail du client (peut être Null).|
+| `nom`                 | STR             | Nom du client.                            |
+| `prenom`              | STR             | Prénom du client.                         |
+| `adresse`             | STR             | Adresse complète du client.               |
+| `ville`               | STR             | Ville du client.                          |
+| `code_postal`         | INT             | Code postal du client.                    |
+| `telephone`           | STR             | Numéro de téléphone du client.            |
 | `tarif_preferentiel`  | BOOLEAN         | Indique si le client bénéficie d’un tarif préférentiel. |
 
 **Clé primaire :** `id_client`.
