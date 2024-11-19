@@ -14,7 +14,7 @@ Le modèle Entités/Associations pour gérer les réservations dans une compagni
 | `Nom`              | STRING             | Nom du client                                 |
 | `Prénom`           | STRING             | Prénom du client                              |
 | `Adresse`          | STRING             | Adresse du client                             |
-| `Téléphone`        | CHAR(10)           | Numéro de téléphone du client (nullable)      |
+| `Téléphone`        | STRING             | Numéro de téléphone du client (nullable)      |
 | `Email`            | STRING             | E-mail du client (nullable)                   |
 
 ---
