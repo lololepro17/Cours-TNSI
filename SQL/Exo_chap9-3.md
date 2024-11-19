@@ -57,5 +57,31 @@ Pour simplifier encore plus la relation et éviter des malentendus, on peut regr
 2. **Emprunt**[id_emprunt (int, clé primaire), id_client (int, clé étrangère), Auteur (string), Titre (string), DateEmprunt (date), EnRetard (booléen)]
 
 Cela permet de centraliser les informations personnelles et de réduire les redondances.
+Sous la forme d'un tableau cela donne :
+
+Schémas relationnels des tables Client et Emprunt
+
+## Table Client
+
+| **Attribut**      | **Type**           | **Description**                                 |
+|-------------------|--------------------|-------------------------------------------------|
+| `id_client`       | INT                | Identifiant unique du client (clé primaire)     |
+| `Nom`             | STRING             | Nom du client                                   |
+| `Prénom`          | STRING             | Prénom du client                                |
+| `Téléphone`       | CHAR(10)           | Numéro de téléphone du client (nullable)        |
+| `Email`           | STRING             | Adresse e-mail du client (nullable)             |
+
+---
+
+## Table Emprunt
+
+| **Attribut**      | **Type**           | **Description**                                 |
+|-------------------|--------------------|-------------------------------------------------|
+| `id_emprunt`      | INT                | Identifiant unique de l'emprunt (clé primaire)  |
+| `id_client`       | INT                | Référence à l'identifiant du client (clé étrangère) |
+| `Auteur`          | STRING             | Auteur du livre emprunté                        |
+| `Titre`           | STRING             | Titre du livre emprunté                         |
+| `DateEmprunt`     | DATE               | Date de l'emprunt                               |
+| `EnRetard`        | BOOLEAN            | Indique si le livre est en retard (TRUE/FALSE)  |
 
 ---
