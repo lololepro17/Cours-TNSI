@@ -19,6 +19,7 @@ Le schéma relationnel de la table **Client** est sa :
 | `ville`               | STR             | Ville du client.                          |
 | `code_postal`         | INT             | Code postal du client.                    |
 | `telephone`           | STR             | Numéro de téléphone du client.            |
+| `email`               | STR             | Adresse e-mail du client (peut être Null).|
 | `tarif_preferentiel`  | BOOLEAN         | Indique si le client bénéficie d’un tarif préférentiel. |
 
 **Clé primaire :** `id_client`.
