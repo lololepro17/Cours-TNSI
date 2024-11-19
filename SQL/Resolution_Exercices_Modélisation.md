@@ -225,9 +225,35 @@ erDiagram
 
 ### Normaliser le schéma
 
-1. **1NF :** Suppression des groupes de valeurs multiples.
-2. **2NF :** Élimination des dépendances partielles.
-3. **3NF :** Élimination des dépendances transitives.
+**Schéma initial :**
+
+- Table : **DEPARTEMENT**
+  - Attributs : Entreprise, Adresse, Responsable, Téléphone.
+
+**Dépendances fonctionnelles :**
+
+1. **Entreprise → Adresse, Responsable**
+2. **Responsable → Téléphone**
+
+#### **Étapes de normalisation :**
+
+1. **1NF (Première forme normale)** : Pas de groupes de valeurs multiples.
+   - Les données sont déjà atomiques.
+
+2. **2NF (Deuxième forme normale)** : Suppression des dépendances partielles.
+   - Diviser la table en deux :
+     - **Entreprise(Entreprise, Adresse, Responsable)**
+     - **Responsable(Responsable, Téléphone)**
+
+3. **3NF (Troisième forme normale)** : Suppression des dépendances transitives.
+   - Chaque attribut dépend directement de la clé primaire.
+
+**Schéma final :**
+
+- **Table Entreprise** : Clé primaire : `Entreprise`.
+  - Attributs : Adresse, Responsable.
+- **Table Responsable** : Clé primaire : `Responsable`.
+  - Attributs : Téléphone.
 
 ---
 
@@ -235,5 +261,52 @@ erDiagram
 
 ### Construire le schéma des tables correspondant au concept
 
-1. Définir chaque entité avec clé primaire.
-2. Relier les entités via des clés étrangères selon les associations décrites.
+**Structure administrative donnée :**
+
+1. **Entités principales :**
+   - **Département** : ID_Departement (clé primaire), Nom, Responsable.
+   - **Employé** : ID_Employé (clé primaire), Nom, ID_Departement (clé étrangère).
+   - **Projet** : ID_Projet (clé primaire), Nom.
+
+2. **Relations :**
+   - Un département a plusieurs employés.
+   - Un employé peut participer à plusieurs projets.
+
+**Schéma relationnel :**
+
+- **Table Département** :
+  - Attributs : ID_Departement (PK), Nom, Responsable.
+
+- **Table Employé** :
+  - Attributs : ID_Employé (PK), Nom, ID_Departement (FK).
+
+- **Table Projet** :
+  - Attributs : ID_Projet (PK), Nom.
+
+- **Table Participation** :
+  - Attributs : ID_Employé (FK), ID_Projet (FK).
+
+```mermaid
+erDiagram
+    DEPARTEMENT {
+        string idDepartement PK
+        string nom
+        string responsable
+    }
+    EMPLOYE {
+        string idEmploye PK
+        string nom
+        string idDepartement FK
+    }
+    PROJET {
+        string idProjet PK
+        string nom
+    }
+    PARTICIPATION {
+        string idEmploye FK
+        string idProjet FK
+    }
+    DEPARTEMENT ||--o{ EMPLOYE : "Possède"
+    EMPLOYE ||--o{ PARTICIPATION : "Participe"
+    PROJET ||--o{ PARTICIPATION : "A"
+```
