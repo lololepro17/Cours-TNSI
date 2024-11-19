@@ -8,7 +8,6 @@ Dans la base de données d’un magasin, on considère l’association suivante 
 |--------------|---------------------------------------|
 | **Article**  | NumArticle (clé primaire), Désignation, Prix |
 | **Commande** | NumCommande (clé primaire), DateCommande      |
-| **Contenir** | Quantité                              |
 
 ---
 
