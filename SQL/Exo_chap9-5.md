@@ -8,8 +8,6 @@ L'association *Prescrire* relie deux entités principales dans un cabinet médic
 |--------------------|--------------------|------------------------------------------------|
 | `id_medecin`       | INT                | Identifiant unique du médecin (clé primaire)   |
 | `Nom`              | STRING             | Nom du médecin                                 |
-| `Prénom`           | STRING             | Prénom du médecin                              |
-| `Spécialité`       | STRING             | Spécialité du médecin                          |
 
 ---
 
