@@ -6,5 +6,6 @@
         "pyxel",
         "rect"
     ],
-    "docwriter.style": "Google"
+    "docwriter.style": "Google",
+    "language": "fr"
 }
