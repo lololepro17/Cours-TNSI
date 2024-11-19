@@ -8,18 +8,18 @@ Monsieur Jean Dupont habite **5 grande rue, 25000 Besançon**. Son téléphone e
 
 ## 1. Schéma relationnel de la table Client
 
-Le schéma relationnel de la table **Client** est le suivant :  
+Le schéma relationnel de la table **Client** est sa :  
 
 | **Attribut**          | **Type**         | **Description**                           |
 |------------------------|------------------|-------------------------------------------|
 | `id_client`           | INT             | Identifiant unique du client (clé primaire). |
-| `nom`                 | VARCHAR(50)     | Nom du client.                            |
-| `prenom`              | VARCHAR(50)     | Prénom du client.                         |
-| `adresse`             | VARCHAR(255)    | Adresse complète du client.               |
-| `ville`               | VARCHAR(50)     | Ville du client.                          |
-| `code_postal`         | CHAR(5)         | Code postal du client.                    |
-| `telephone`           | CHAR(10)        | Numéro de téléphone du client.            |
-| `email`               | VARCHAR(100)    | Adresse e-mail du client (peut être Null).|
+| `nom`                 | str             | Nom du client.                            |
+| `prenom`              | str             | Prénom du client.                         |
+| `adresse`             | str             | Adresse complète du client.               |
+| `ville`               | str             | Ville du client.                          |
+| `code_postal`         | int             | Code postal du client.                    |
+| `telephone`           | str             | Numéro de téléphone du client.            |
+| `email`               | str             | Adresse e-mail du client (peut être Null).|
 | `tarif_preferentiel`  | BOOLEAN         | Indique si le client bénéficie d’un tarif préférentiel. |
 
 **Clé primaire :** `id_client`.
