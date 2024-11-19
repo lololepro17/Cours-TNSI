@@ -41,6 +41,21 @@ Le modèle Entités/Associations pour gérer les réservations dans une compagni
 | `type`             | STRING             | Type de chambre (simple, double, suite, etc.) |
 | `disponibilité`    | BOOLEAN            | Indique si la chambre est disponible (TRUE/FALSE) |
 
+### Table `Hotels`
+
+| **Attribut**       | **Type**           | **Description**                               |
+|--------------------|--------------------|-----------------------------------------------|
+| `id_hotel`         | INT                | Identifiant unique de l'hôtel (clé primaire)  |
+| `nom`              | STRING             | Nom de l'hôtel                                |
+| `adresse`          | STRING             | Adresse de l'hôtel                            |
+| `ville`            | STRING             | Ville où se situe l'hôtel                     |
+| `code_postal`      | CHAR(5)            | Code postal de l'hôtel                        |
+| `nombre_chambres`  | INT                | Nombre total de chambres disponibles          |
+| `rating`           | DECIMAL(2,1)       | Note moyenne de l'hôtel (de 0 à 5)            |
+| `telephone`        | CHAR(10)           | Numéro de téléphone de l'hôtel (nullable)     |
+| `email`            | STRING             | Adresse e-mail de l'hôtel (nullable)          |
+| `site_web`         | STRING             | URL du site web de l'hôtel (nullable)         |
+
 ---
 
 ## 2. Suppression du client "Jean Dupont"
