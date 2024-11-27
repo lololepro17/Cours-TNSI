@@ -1,119 +1,101 @@
 
 # Correction des Exercices d'Algèbre Relationnelle
 
-## Introduction
-Ce document contient les réponses aux exercices en algèbre relationnelle. Les formules sont rendues avec MathJax pour faciliter la lecture des expressions mathématiques.
-
-## Intégration MathJax
-Ajoutez ce fichier dans un environnement compatible avec MathJax (par exemple, un serveur local).
-
-<script type="text/javascript" async
-  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
-
----
-
 ## Exercice 1 : Gestion des cours
 
 ### Schéma relationnel
-- **Élèves** \((\text{Id}, \text{Nom}, \text{Prénom}, \text{Adresse}, \text{CP}, \text{Ville}, \text{Tel}, \text{Numprof})\)
-- **Profs** \((\text{Id}, \text{Nom}, \text{Prénom}, \text{Tel}, \text{Salle})\)
+- **Élèves** (Id, Nom, Prénom, Adresse, CP, Ville, Tel, Numprof)
+- **Profs** (Id, Nom, Prénom, Tel, Salle)
 
 **Remarque :**
-- Clés primaires : \(\text{Id}\) dans chaque table.
-- \(\text{Numprof}\) est une clé étrangère référencée à \(\text{Id}\) dans la table **Profs**.
+- Clés primaires : `Id` dans chaque table.
+- `Numprof` est une clé étrangère référencée à `Id` dans la table **Profs**.
 
 ### Réponses
 
-1. **Les salles utilisées par les professeurs :**
-   \[
-   \pi_{\text{Salle}}(\text{Profs})
-   \]
+1. **Les salles utilisées par les professeurs :**  
+   `π(Salle)(Profs)`
 
-2. **Le nom des professeurs et la salle qu’ils utilisent :**
-   \[
-   \pi_{\text{Nom, Prénom, Salle}}(\text{Profs})
-   \]
+2. **Le nom des professeurs et la salle qu’ils utilisent :**  
+   `π(Nom, Prénom, Salle)(Profs)`
 
-3. **Les numéros de téléphone des élèves qui habitent à Jonzac :**
-   \[
-   \pi_{\text{Tel}}(\sigma_{\text{Ville = 'Jonzac'}}(\text{Élèves}))
-   \]
+3. **Les numéros de téléphone des élèves qui habitent à Jonzac :**  
+   `π(Tel)(σ(Ville = 'Jonzac')(Élèves))`
 
-4. **Les noms et prénoms des élèves qui sont dans la classe NSI :**
-   *(Hypothèse : La classe NSI est identifiable dans une relation non décrite ici)*
-   \[
-   \pi_{\text{Nom, Prénom}}(\sigma_{\text{Classe = 'NSI'}}(\text{Élèves}))
-   \]
+4. **Les noms et prénoms des élèves qui sont dans la classe NSI :**  
+   *(Hypothèse : La classe NSI est identifiable dans une relation non décrite ici)*  
+   `π(Nom, Prénom)(σ(Classe = 'NSI')(Élèves))`
 
-5. **Les noms et prénoms des élèves qui ont cours avec M. Python :**
-   *(Hypothèse : Le professeur est identifiable par son nom complet)*
-   \[
-   \pi_{\text{Nom, Prénom}}(\text{Élèves} \bowtie_{\text{Numprof = Id}} \sigma_{\text{Nom = 'Python'}}(\text{Profs}))
-   \]
+5. **Les noms et prénoms des élèves qui ont cours avec M. Python :**  
+   *(Hypothèse : Le professeur est identifiable par son nom complet)*  
+   `π(Nom, Prénom)(Élèves ⨝(Numprof = Id) σ(Nom = 'Python')(Profs))`
 
 ---
 
 ## Exercice 2 : Gestion des locations
 
 ### Schéma relationnel
-- **Appartements** \((\text{Id}, \text{Ville}, \text{Loyer}, \text{Surface}, \text{IdProp}, \text{IdLoc})\)
-- **Propriétaires** \((\text{Id}, \text{Nom}, \text{Prénom}, \text{Ville}, \text{Tel})\)
-- **Locataires** \((\text{Id}, \text{Nom}, \text{Prénom}, \text{Tel}, \text{Nombre})\)
+- **Appartements** (Id, Ville, Loyer, Surface, IdProp, IdLoc)
+- **Propriétaires** (Id, Nom, Prénom, Ville, Tel)
+- **Locataires** (Id, Nom, Prénom, Tel, Nombre)
 
 **Remarque :**
-- Clés primaires : \(\text{Id}\) dans chaque table.
-- \(\text{IdProp}\) et \(\text{IdLoc}\) sont des clés étrangères référencées respectivement dans **Propriétaires** et **Locataires**.
+- Clés primaires : `Id` dans chaque table.
+- `IdProp` et `IdLoc` sont des clés étrangères référencées respectivement dans **Propriétaires** et **Locataires**.
 
 ### Réponses
 
-1. **Les noms et prénoms des locataires qui occupent seuls un appartement :**
-   \[
-   \pi_{\text{Nom, Prénom}}(\sigma_{\text{Nombre = 1}}(\text{Locataires}))
-   \]
+1. **Les noms et prénoms des locataires qui occupent seuls un appartement :**  
+   `π(Nom, Prénom)(σ(Nombre = 1)(Locataires))`
 
-2. **Les villes où se trouvent des appartements de plus de 50 m² :**
-   \[
-   \pi_{\text{Ville}}(\sigma_{\text{Surface > 50}}(\text{Appartements}))
-   \]
+2. **Les villes où se trouvent des appartements de plus de 50 m² :**  
+   `π(Ville)(σ(Surface > 50)(Appartements))`
 
-3. **Les surfaces des appartements loués occupés par plus d’une personne :**
-   \[
-   \pi_{\text{Surface}}(\sigma_{\text{Nombre > 1}}(\text{Appartements} \bowtie_{\text{IdLoc = Id}} \text{Locataires}))
-   \]
+3. **Les surfaces des appartements loués occupés par plus d’une personne :**  
+   `π(Surface)(σ(Nombre > 1)(Appartements ⨝(IdLoc = Id)(Locataires)))`
 
-4. **Les numéros de téléphone des propriétaires qui possèdent des appartements à louer de plus de 50 m² :**
-   \[
-   \pi_{\text{Tel}}(\text{Propriétaires} \bowtie_{\text{Id = IdProp}} \sigma_{\text{Surface > 50}}(\text{Appartements}))
-   \]
+4. **Les numéros de téléphone des propriétaires qui possèdent des appartements à louer de plus de 50 m² :**  
+   `π(Tel)(Propriétaires ⨝(Id = IdProp) σ(Surface > 50)(Appartements))`
+
+5. **Les noms des locataires qui occupent seuls un appartement et le loyer qu’ils payent :**  
+   `π(Nom, Prénom, Loyer)(σ(Nombre = 1)(Locataires ⨝(Id = IdLoc)(Appartements)))`
 
 ---
 
 ## Exercice 3 : Gestion d’une librairie
 
 ### Schéma relationnel
-- **Auteurs** \((\text{Id}, \text{Nom}, \text{Prénom})\)
-- **Écrits** \((\text{Id_auteur}, \text{Id_titre})\)
-- **Livres** \((\text{Id}, \text{Titre}, \text{PrixHT}, \text{Année}, \text{Id_genre}, \text{Id_editeur})\)
-- **Genres** \((\text{Id}, \text{Genre})\)
-- **Éditeurs** \((\text{Id}, \text{Nom})\)
+- **Auteurs** (Id, Nom, Prénom)
+- **Écrits** (Id_auteur, Id_titre)
+- **Livres** (Id, Titre, PrixHT, Année, Id_genre, Id_editeur)
+- **Genres** (Id, Genre)
+- **Éditeurs** (Id, Nom)
 
 **Remarque :**
-- Clés primaires : \(\text{Id}\) dans chaque table.
+- Clés primaires : `Id` dans chaque table.
 
 ### Réponses
 
-1. **Les noms et prénoms de tous les auteurs :**
-   \[
-   \pi_{\text{Nom, Prénom}}(\text{Auteurs})
-   \]
+1. **Les noms et prénoms de tous les auteurs :**  
+   `π(Nom, Prénom)(Auteurs)`
 
-2. **Les titres et années de parution de tous les livres :**
-   \[
-   \pi_{\text{Titre, Année}}(\text{Livres})
-   \]
+2. **Les titres et années de parution de tous les livres :**  
+   `π(Titre, Année)(Livres)`
 
-3. **Les titres des livres parus en 2016 :**
-   \[
-   \pi_{\text{Titre}}(\sigma_{\text{Année = 2016}}(\text{Livres}))
-   \]
+3. **Les titres des livres parus en 2016 :**  
+   `π(Titre)(σ(Année = 2016)(Livres))`
+
+4. **Les titres et années de parution des livres parus entre 2000 et 2015 :**  
+   `π(Titre, Année)(σ(2000 ≤ Année ≤ 2015)(Livres))`
+
+5. **Les titres des livres coûtant plus de 30 euros HT :**  
+   `π(Titre)(σ(PrixHT > 30)(Livres))`
+
+6. **Les titres des livres parus en 2016 avec les éditeurs respectifs :**  
+   `π(Titre, Nom)(σ(Année = 2016)(Livres ⨝(Id_editeur = Id)(Éditeurs)))`
+
+7. **Les titres des livres du genre ‘science’ :**  
+   `π(Titre)(Livres ⨝(Id_genre = Id)(σ(Genre = 'science')(Genres)))`
+
+8. **Les titres des livres avec pour chacun le nom et le prénom de l’auteur :**  
+   `π(Titre, Nom, Prénom)(Livres ⨝(Id = Id_titre)(Écrits ⨝(Id_auteur = Id)(Auteurs)))`
