@@ -24,7 +24,7 @@ Cette requête renvoie les prénoms et noms de tous les licenciés qui jouent da
 
 ### 2.b. Que renvoie la requête précédente si `prenom, nom` est remplacé par une étoile (*) ?
 
-Elle renvoie toutes les colonnes (toutes les informations disponibles) des licenciés appartenant à l'équipe des "-12 ans".
+Elle renvoie tout les attributs des licenciés qui apartiennent à l'équipe des "-12 ans".
 
 ### 2.c. Écrire la requête qui permet d'afficher les dates de tous les matchs joués à domicile de l'équipe "Vétérans"
 
