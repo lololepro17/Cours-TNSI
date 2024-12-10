@@ -106,11 +106,14 @@ FROM LanguePays
 WHERE Officielle = 1;
 
 -- Pays avec la plus grande espérance de vie
--- Tri décroissant et limitation des résultats avec "LIMIT".
-SELECT Nom AS Pays, EspeVie AS EsperanceDeVie 
-FROM Pays 
-ORDER BY EspeVie DESC 
-LIMIT 1;
+SELECT Nom AS Pays, EspeVie AS EsperanceDeVie
+FROM Pays
+WHERE EspeVie = (SELECT MAX(EspeVie) FROM Pays);
+
+-- Pays d'Asie avec la plus petite espérance de vie
+SELECT Nom AS Pays, EspeVie AS EsperanceDeVie
+FROM Pays
+WHERE Continent = 'Asie' AND EspeVie = (SELECT MIN(EspeVie) FROM Pays WHERE Continent = 'Asie');
 
 -- Pays d'Asie avec la plus petite espérance de vie
 SELECT Nom AS Pays, EspeVie AS EsperanceDeVie 
