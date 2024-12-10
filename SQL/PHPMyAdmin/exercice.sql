@@ -115,13 +115,6 @@ SELECT Nom AS Pays, EspeVie AS EsperanceDeVie
 FROM Pays
 WHERE Continent = 'Asie' AND EspeVie = (SELECT MIN(EspeVie) FROM Pays WHERE Continent = 'Asie');
 
--- Pays d'Asie avec la plus petite espérance de vie
-SELECT Nom AS Pays, EspeVie AS EsperanceDeVie 
-FROM Pays 
-WHERE Continent = 'Asie' 
-ORDER BY EspeVie ASC 
-LIMIT 1;
-
 -- Codes de pays selon les langues parlées
 
 -- Codes des pays où l'on parle français
