@@ -2,7 +2,7 @@
 import sqlite3
  # CONSTANTE
  # Connexion à la Base de données table.sqlite3
-connexion_BD =sqlite3.connect("test.sql")
+connexion_BD =sqlite3.connect("accidentsVelo.sqlite3")
 c = connexion_BD.cursor()
 
 
