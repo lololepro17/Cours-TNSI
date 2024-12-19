@@ -6,6 +6,7 @@ csv_file = "accidentsVelo.csv"  # Remplacez par le chemin de votre fichier CSV
 db_file = "accidentsVelo.sqlite3"  # Nom du fichier SQLite
 
 # Charger le fichier CSV avec pandas
+try:
     df = pd.read_csv(csv_file, sep=",")  # Ajustez le séparateur si nécessaire (par exemple, ";" au lieu de ",")
     print(f"CSV chargé avec {len(df)} lignes et {len(df.columns)} colonnes.")
 except Exception as e:
