@@ -35,19 +35,17 @@ Les données ouvertes (ou Open Data) sont des informations :
 ## Activité 1 : Utilisation d’un tableur
 
 1. **Trouver le jeu de données** sur [data.gouv.fr](https://www.data.gouv.fr/).
-2. **Lire le descriptif** du jeu de données.
-3. **Identifier l’éditeur** de ce jeu de données.
-4. **Télécharger le jeu de données** au format CSV.
-5. **Ouvrir le fichier** dans un tableur (préférablement LibreOffice Calc).
+2. **Lire le descriptif** du jeu de données. -> J'ai lu 
+3. **Identifier l’éditeur** de ce jeu de données. c'est koumoul
+4. **Télécharger le jeu de données** au format CSV. check
+5. **Ouvrir le fichier** dans un tableur. check
 6. **Choisir l’encodage correct** : UTF-8 est recommandé.
-7. **Analyser les en-têtes de colonnes**.
-8. **Compter le nombre d’accidentés** présent dans les données.
+7. **Analyser les en-têtes de colonnes**. ya plein d'info position nombre de veicule sexe etc
 
 ## Activité 2 : Importer les données dans DB Browser
 
 1. **Créer une base de données SQLite3** nommée `BDD_Accidents_Velos.sqlite3`.
 2. **Importer le fichier CSV** dans une table appelée `accidents`.
-3. Suivre le tutoriel fourni (ex. via PeerTube) pour effectuer cette étape.
 
 ## Activité 3 : Exploiter les données avec DB Browser
 
