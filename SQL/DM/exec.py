@@ -75,19 +75,19 @@ print("Nombre total d’accidents sur la période : ", c)
 
 requete_3 = "SELECT COUNT(*) AS Nombre_Accidentés FROM accident_velo WHERE dep = '69'"
 c = executer_commande_sql(connexion, requete_3)
-print("Nombre d’accidentés dans le département du Rhône : ", c)
+# print("Nombre d’accidentés dans le département du Rhône : ", c)
 
 requete_4 = "SELECT COUNT(*) AS Nombre_Accidents_Mortels FROM accident_velo WHERE dep = '69' AND grav = '3'"
 c = executer_commande_sql(connexion, requete_4)
-print("Nombre d’accidents avec décès de cyclistes dans le Rhône : ", c)
+# print("Nombre d’accidents avec décès de cyclistes dans le Rhône : ", c)
 
 requete_5 = "SELECT date, jour FROM accident_velo WHERE dep = '69' AND grav = '3' ORDER BY jour"
 c = executer_commande_sql(connexion, requete_5)
-print("Dates et jours des accidents mortels dans le Rhône : ", c)
+# print("Dates et jours des accidents mortels dans le Rhône : ", c)
 
 requete_6 = "SELECT * FROM accident_velo ORDER BY dep DESC"
 c = executer_commande_sql(connexion, requete_6)
-print("Classement des données par département : ", c)
+# print("Classement des données par département : ", c)
 
 requete_7 = """
 SELECT CASE
@@ -99,7 +99,7 @@ FROM accident_velo
 GROUP BY Periode
 """
 c = executer_commande_sql(connexion, requete_7)
-print("Accidents selon l’horaire : ", c)
+# print("Accidents selon l’horaire : ", c)
 
 requete_8 = "SELECT dep, COUNT(*) AS Nombre_Accidents FROM accident_velo GROUP BY dep ORDER BY Nombre_Accidents DESC"
 c = executer_commande_sql(connexion, requete_8)
@@ -110,7 +110,7 @@ SELECT Num_Acc, dep, lat, long
 FROM accident_velo;
 """
 c = executer_commande_sql(connexion,requete_9)
-print("Question 3.2.3 : ", c)
+# print("Question 3.2.3 : ", c)
 
 # Fermeture de la connexion
 connexion.close()

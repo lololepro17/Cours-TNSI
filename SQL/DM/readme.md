@@ -21,13 +21,13 @@
    - `an` : INTEGER
    - `dep` : TEXT
 
-2. Nombre total d’accidentés sur la période :
+2. Nombre total d’accidentés sur la période (65713) :
 
    ```sql
    SELECT COUNT(*) AS Nombre_Accidentés FROM accident_velo;
    ```
 
-3. Nombre total d’accidents sur la période :
+3. Nombre total d’accidents sur la période(62702) :
 
    ```sql
    SELECT COUNT(DISTINCT Num_Acc) AS Nombre_Accidents FROM accident_velo;
