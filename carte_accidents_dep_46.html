@@ -1,0 +1,1228 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_9e7af0fbf6a76fda4802c6c02bcd40fc {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_9e7af0fbf6a76fda4802c6c02bcd40fc" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_9e7af0fbf6a76fda4802c6c02bcd40fc = L.map(
+                "map_9e7af0fbf6a76fda4802c6c02bcd40fc",
+                {
+                    center: [44.64925937500001, 1.6583584374999998],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 8,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_a10a69c8e2a4a7f91d9ff9a82a03954c = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors", "detectRetina": false, "maxNativeZoom": 19, "maxZoom": 19, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            );
+        
+    
+            tile_layer_a10a69c8e2a4a7f91d9ff9a82a03954c.addTo(map_9e7af0fbf6a76fda4802c6c02bcd40fc);
+        
+    
+            var tile_layer_6aa1c075a85943b8e0e3d286994030e3 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "\u00a9 Contributeurs OpenStreetMap", "detectRetina": false, "maxNativeZoom": 19, "maxZoom": 19, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            );
+        
+    
+            tile_layer_6aa1c075a85943b8e0e3d286994030e3.addTo(map_9e7af0fbf6a76fda4802c6c02bcd40fc);
+        
+    
+            var marker_0ac64d7f8a298ec11cdefeb82cfd696a = L.marker(
+                [44.684, 1.26],
+                {}
+            ).addTo(map_9e7af0fbf6a76fda4802c6c02bcd40fc);
+        
+    
+            var icon_b2b6cb8738a1e31d0bfe6386aadcf7e8 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_0ac64d7f8a298ec11cdefeb82cfd696a.setIcon(icon_b2b6cb8738a1e31d0bfe6386aadcf7e8);
+        
+    
+        var popup_0ad7055f0b5f136002c6d4a92012fcc6 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_53db5d68d07d020b1955afe3f3cb70f5 = $(`<div id="html_53db5d68d07d020b1955afe3f3cb70f5" style="width: 100.0%; height: 100.0%;">Numéro d'accident: 200600073861<br>Date: 2006-12-15<br>Gravité: 4%<br>Type de véhicule: 7<br>Position: (44.684, 1.26)</div>`)[0];
+                popup_0ad7055f0b5f136002c6d4a92012fcc6.setContent(html_53db5d68d07d020b1955afe3f3cb70f5);
+            
+        
+
+        marker_0ac64d7f8a298ec11cdefeb82cfd696a.bindPopup(popup_0ad7055f0b5f136002c6d4a92012fcc6)
+        ;
+
+        
+    
+    
+            marker_0ac64d7f8a298ec11cdefeb82cfd696a.bindTooltip(
+                `<div>
+                     Accident #200600073861 - Gravité: 4%
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_3e413f3318b6861e057ae4f22658f749 = L.marker(
+                [44.881, 1.828],
+                {}
+            ).addTo(map_9e7af0fbf6a76fda4802c6c02bcd40fc);
+        
+    
+            var icon_156fce6873e96520e273917ae88d2882 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_3e413f3318b6861e057ae4f22658f749.setIcon(icon_156fce6873e96520e273917ae88d2882);
+        
+    
+        var popup_2169e0cb2d6fc904ba483fa05ee041c8 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_c470ed66e1d7c79e101f1f176836f618 = $(`<div id="html_c470ed66e1d7c79e101f1f176836f618" style="width: 100.0%; height: 100.0%;">Numéro d'accident: 200700040094<br>Date: 2007-07-31<br>Gravité: 3%<br>Type de véhicule: 7<br>Position: (44.881, 1.828)</div>`)[0];
+                popup_2169e0cb2d6fc904ba483fa05ee041c8.setContent(html_c470ed66e1d7c79e101f1f176836f618);
+            
+        
+
+        marker_3e413f3318b6861e057ae4f22658f749.bindPopup(popup_2169e0cb2d6fc904ba483fa05ee041c8)
+        ;
+
+        
+    
+    
+            marker_3e413f3318b6861e057ae4f22658f749.bindTooltip(
+                `<div>
+                     Accident #200700040094 - Gravité: 3%
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_c88f5f41c30e59a409698bf3502c061d = L.marker(
+                [44.63, 1.85],
+                {}
+            ).addTo(map_9e7af0fbf6a76fda4802c6c02bcd40fc);
+        
+    
+            var icon_346b7b2667cc8a11900e8cedae78eec5 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_c88f5f41c30e59a409698bf3502c061d.setIcon(icon_346b7b2667cc8a11900e8cedae78eec5);
+        
+    
+        var popup_fccd614cbf50f37757e8323cea2ab622 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_37e7bd0d85da1a12fded9e3ce2ac6bf4 = $(`<div id="html_37e7bd0d85da1a12fded9e3ce2ac6bf4" style="width: 100.0%; height: 100.0%;">Numéro d'accident: 200700075209<br>Date: 2007-12-11<br>Gravité: 2%<br>Type de véhicule: 7<br>Position: (44.63, 1.85)</div>`)[0];
+                popup_fccd614cbf50f37757e8323cea2ab622.setContent(html_37e7bd0d85da1a12fded9e3ce2ac6bf4);
+            
+        
+
+        marker_c88f5f41c30e59a409698bf3502c061d.bindPopup(popup_fccd614cbf50f37757e8323cea2ab622)
+        ;
+
+        
+    
+    
+            marker_c88f5f41c30e59a409698bf3502c061d.bindTooltip(
+                `<div>
+                     Accident #200700075209 - Gravité: 2%
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_285e280620564637a6c94a6d8b8b365f = L.marker(
+                [44.392, 1.368],
+                {}
+            ).addTo(map_9e7af0fbf6a76fda4802c6c02bcd40fc);
+        
+    
+            var icon_616adc8fbbfa1e251776413460f550c0 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_285e280620564637a6c94a6d8b8b365f.setIcon(icon_616adc8fbbfa1e251776413460f550c0);
+        
+    
+        var popup_07ad66fbfa06c78ec78ae8b5da87bd9d = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_58154cf5d999ff20fcedb3d8aa4ca2c9 = $(`<div id="html_58154cf5d999ff20fcedb3d8aa4ca2c9" style="width: 100.0%; height: 100.0%;">Numéro d'accident: 200800006395<br>Date: 2008-02-07<br>Gravité: 4%<br>Type de véhicule: 10<br>Position: (44.392, 1.368)</div>`)[0];
+                popup_07ad66fbfa06c78ec78ae8b5da87bd9d.setContent(html_58154cf5d999ff20fcedb3d8aa4ca2c9);
+            
+        
+
+        marker_285e280620564637a6c94a6d8b8b365f.bindPopup(popup_07ad66fbfa06c78ec78ae8b5da87bd9d)
+        ;
+
+        
+    
+    
+            marker_285e280620564637a6c94a6d8b8b365f.bindTooltip(
+                `<div>
+                     Accident #200800006395 - Gravité: 4%
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_93386e9179a6ac31d68b1dac32e4afae = L.marker(
+                [44.613, 2.038],
+                {}
+            ).addTo(map_9e7af0fbf6a76fda4802c6c02bcd40fc);
+        
+    
+            var icon_535fe4f23b9c8fb7bdda4bf8d15f13df = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_93386e9179a6ac31d68b1dac32e4afae.setIcon(icon_535fe4f23b9c8fb7bdda4bf8d15f13df);
+        
+    
+        var popup_369107c6d61b55ce6f4e2dc9dd281fd2 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_dcc99ee6dd18d88745494795eb2d7ed0 = $(`<div id="html_dcc99ee6dd18d88745494795eb2d7ed0" style="width: 100.0%; height: 100.0%;">Numéro d'accident: 200800055595<br>Date: 2008-10-10<br>Gravité: 3%<br>Type de véhicule: <br>Position: (44.613, 2.038)</div>`)[0];
+                popup_369107c6d61b55ce6f4e2dc9dd281fd2.setContent(html_dcc99ee6dd18d88745494795eb2d7ed0);
+            
+        
+
+        marker_93386e9179a6ac31d68b1dac32e4afae.bindPopup(popup_369107c6d61b55ce6f4e2dc9dd281fd2)
+        ;
+
+        
+    
+    
+            marker_93386e9179a6ac31d68b1dac32e4afae.bindTooltip(
+                `<div>
+                     Accident #200800055595 - Gravité: 3%
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_0c292826a5096c6cd5f36245c2d245c7 = L.marker(
+                [44.6089, 2.02039],
+                {}
+            ).addTo(map_9e7af0fbf6a76fda4802c6c02bcd40fc);
+        
+    
+            var icon_36c4789519cf04cc0e8ae5de7e6e7ed4 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_0c292826a5096c6cd5f36245c2d245c7.setIcon(icon_36c4789519cf04cc0e8ae5de7e6e7ed4);
+        
+    
+        var popup_7dd29381564d13b4cba88b5f3de4a11a = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_3560ec94d55d4b5b1768070ab8e31d43 = $(`<div id="html_3560ec94d55d4b5b1768070ab8e31d43" style="width: 100.0%; height: 100.0%;">Numéro d'accident: 201000006501<br>Date: 2010-04-29<br>Gravité: 3%<br>Type de véhicule: 7<br>Position: (44.6089, 2.02039)</div>`)[0];
+                popup_7dd29381564d13b4cba88b5f3de4a11a.setContent(html_3560ec94d55d4b5b1768070ab8e31d43);
+            
+        
+
+        marker_0c292826a5096c6cd5f36245c2d245c7.bindPopup(popup_7dd29381564d13b4cba88b5f3de4a11a)
+        ;
+
+        
+    
+    
+            marker_0c292826a5096c6cd5f36245c2d245c7.bindTooltip(
+                `<div>
+                     Accident #201000006501 - Gravité: 3%
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_d9d683eac34709afe4032f863b0883fb = L.marker(
+                [44.8932, 1.78655],
+                {}
+            ).addTo(map_9e7af0fbf6a76fda4802c6c02bcd40fc);
+        
+    
+            var icon_f71f801002ca814b5f503c2198b400ac = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_d9d683eac34709afe4032f863b0883fb.setIcon(icon_f71f801002ca814b5f503c2198b400ac);
+        
+    
+        var popup_a61f54f3281a70da7f755d904507c86c = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_767fa43f578404f4595c483a05eed253 = $(`<div id="html_767fa43f578404f4595c483a05eed253" style="width: 100.0%; height: 100.0%;">Numéro d'accident: 201000006518<br>Date: 2010-06-25<br>Gravité: 3%<br>Type de véhicule: 7<br>Position: (44.8932, 1.78655)</div>`)[0];
+                popup_a61f54f3281a70da7f755d904507c86c.setContent(html_767fa43f578404f4595c483a05eed253);
+            
+        
+
+        marker_d9d683eac34709afe4032f863b0883fb.bindPopup(popup_a61f54f3281a70da7f755d904507c86c)
+        ;
+
+        
+    
+    
+            marker_d9d683eac34709afe4032f863b0883fb.bindTooltip(
+                `<div>
+                     Accident #201000006518 - Gravité: 3%
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_928cef16c155d64ced93bfe11e0910e0 = L.marker(
+                [44.9271, 1.86475],
+                {}
+            ).addTo(map_9e7af0fbf6a76fda4802c6c02bcd40fc);
+        
+    
+            var icon_8fb3f181d57b07864f65031a78285645 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_928cef16c155d64ced93bfe11e0910e0.setIcon(icon_8fb3f181d57b07864f65031a78285645);
+        
+    
+        var popup_3f892567646702d69bc1198911826ffa = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_b56531f5d46fef69b06bd48248a90ceb = $(`<div id="html_b56531f5d46fef69b06bd48248a90ceb" style="width: 100.0%; height: 100.0%;">Numéro d'accident: 201000006519<br>Date: 2010-07-18<br>Gravité: 3%<br>Type de véhicule: <br>Position: (44.9271, 1.86475)</div>`)[0];
+                popup_3f892567646702d69bc1198911826ffa.setContent(html_b56531f5d46fef69b06bd48248a90ceb);
+            
+        
+
+        marker_928cef16c155d64ced93bfe11e0910e0.bindPopup(popup_3f892567646702d69bc1198911826ffa)
+        ;
+
+        
+    
+    
+            marker_928cef16c155d64ced93bfe11e0910e0.bindTooltip(
+                `<div>
+                     Accident #201000006519 - Gravité: 3%
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_01e55404368af7b5a5af835d4fa5fc24 = L.marker(
+                [44.3837, 1.8318],
+                {}
+            ).addTo(map_9e7af0fbf6a76fda4802c6c02bcd40fc);
+        
+    
+            var icon_a3e0f6d6c04d72a107b5075a93095730 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_01e55404368af7b5a5af835d4fa5fc24.setIcon(icon_a3e0f6d6c04d72a107b5075a93095730);
+        
+    
+        var popup_3f8360db7c1a5030abfa9ef90081b942 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_c9afdf54971c45f4dad5f2fa4a796bad = $(`<div id="html_c9afdf54971c45f4dad5f2fa4a796bad" style="width: 100.0%; height: 100.0%;">Numéro d'accident: 201000018488<br>Date: 2010-08-08<br>Gravité: 3%<br>Type de véhicule: 7<br>Position: (44.3837, 1.8318)</div>`)[0];
+                popup_3f8360db7c1a5030abfa9ef90081b942.setContent(html_c9afdf54971c45f4dad5f2fa4a796bad);
+            
+        
+
+        marker_01e55404368af7b5a5af835d4fa5fc24.bindPopup(popup_3f8360db7c1a5030abfa9ef90081b942)
+        ;
+
+        
+    
+    
+            marker_01e55404368af7b5a5af835d4fa5fc24.bindTooltip(
+                `<div>
+                     Accident #201000018488 - Gravité: 3%
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_84b21d0ce8f524d3e468f6f785b23126 = L.marker(
+                [44.549, 1.068],
+                {}
+            ).addTo(map_9e7af0fbf6a76fda4802c6c02bcd40fc);
+        
+    
+            var icon_d4c22a8f59c1ed77cdad6adca7e46835 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_84b21d0ce8f524d3e468f6f785b23126.setIcon(icon_d4c22a8f59c1ed77cdad6adca7e46835);
+        
+    
+        var popup_648204a0aec7657282fdbe1c83a56714 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_875c5c4027b8b25c05b156d755c4b40e = $(`<div id="html_875c5c4027b8b25c05b156d755c4b40e" style="width: 100.0%; height: 100.0%;">Numéro d'accident: 201100006308<br>Date: 2011-08-12<br>Gravité: 3%<br>Type de véhicule: 7<br>Position: (44.549, 1.068)</div>`)[0];
+                popup_648204a0aec7657282fdbe1c83a56714.setContent(html_875c5c4027b8b25c05b156d755c4b40e);
+            
+        
+
+        marker_84b21d0ce8f524d3e468f6f785b23126.bindPopup(popup_648204a0aec7657282fdbe1c83a56714)
+        ;
+
+        
+    
+    
+            marker_84b21d0ce8f524d3e468f6f785b23126.bindTooltip(
+                `<div>
+                     Accident #201100006308 - Gravité: 3%
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_68cc83fd04c8f9a204bc51c96238ed43 = L.marker(
+                [44.69, 2.001],
+                {}
+            ).addTo(map_9e7af0fbf6a76fda4802c6c02bcd40fc);
+        
+    
+            var icon_f5e925c4cff9e8d3ab011aa49b6b3bda = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_68cc83fd04c8f9a204bc51c96238ed43.setIcon(icon_f5e925c4cff9e8d3ab011aa49b6b3bda);
+        
+    
+        var popup_960152be987271e5309430f0fe68a560 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_10178fd44761f53151cfacf188239fdb = $(`<div id="html_10178fd44761f53151cfacf188239fdb" style="width: 100.0%; height: 100.0%;">Numéro d'accident: 201100006314<br>Date: 2011-05-25<br>Gravité: 2%<br>Type de véhicule: <br>Position: (44.69, 2.001)</div>`)[0];
+                popup_960152be987271e5309430f0fe68a560.setContent(html_10178fd44761f53151cfacf188239fdb);
+            
+        
+
+        marker_68cc83fd04c8f9a204bc51c96238ed43.bindPopup(popup_960152be987271e5309430f0fe68a560)
+        ;
+
+        
+    
+    
+            marker_68cc83fd04c8f9a204bc51c96238ed43.bindTooltip(
+                `<div>
+                     Accident #201100006314 - Gravité: 2%
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_2e196ea9ac6b5f492e7508a0ee323263 = L.marker(
+                [44.826, 1.476],
+                {}
+            ).addTo(map_9e7af0fbf6a76fda4802c6c02bcd40fc);
+        
+    
+            var icon_070286753d72721686c6449cc796cf51 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_2e196ea9ac6b5f492e7508a0ee323263.setIcon(icon_070286753d72721686c6449cc796cf51);
+        
+    
+        var popup_88e39d2d00e5f5d4e04743c5b1d36a88 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_e992aefdca5a2456a925e9b920974c22 = $(`<div id="html_e992aefdca5a2456a925e9b920974c22" style="width: 100.0%; height: 100.0%;">Numéro d'accident: 201100006343<br>Date: 2011-07-28<br>Gravité: 3%<br>Type de véhicule: 7<br>Position: (44.826, 1.476)</div>`)[0];
+                popup_88e39d2d00e5f5d4e04743c5b1d36a88.setContent(html_e992aefdca5a2456a925e9b920974c22);
+            
+        
+
+        marker_2e196ea9ac6b5f492e7508a0ee323263.bindPopup(popup_88e39d2d00e5f5d4e04743c5b1d36a88)
+        ;
+
+        
+    
+    
+            marker_2e196ea9ac6b5f492e7508a0ee323263.bindTooltip(
+                `<div>
+                     Accident #201100006343 - Gravité: 3%
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_2ab9354d0038d36f74b9bde0bd8ae7d4 = L.marker(
+                [44.947, 1.677],
+                {}
+            ).addTo(map_9e7af0fbf6a76fda4802c6c02bcd40fc);
+        
+    
+            var icon_de5e4b9bdd26d8c924d7036d9fae9f87 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_2ab9354d0038d36f74b9bde0bd8ae7d4.setIcon(icon_de5e4b9bdd26d8c924d7036d9fae9f87);
+        
+    
+        var popup_017914d57145641e97d1d85f71589f84 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_7dfbd272759fd3d52aeb32246f4e005e = $(`<div id="html_7dfbd272759fd3d52aeb32246f4e005e" style="width: 100.0%; height: 100.0%;">Numéro d'accident: 201100006363<br>Date: 2011-08-01<br>Gravité: 3%<br>Type de véhicule: 7<br>Position: (44.947, 1.677)</div>`)[0];
+                popup_017914d57145641e97d1d85f71589f84.setContent(html_7dfbd272759fd3d52aeb32246f4e005e);
+            
+        
+
+        marker_2ab9354d0038d36f74b9bde0bd8ae7d4.bindPopup(popup_017914d57145641e97d1d85f71589f84)
+        ;
+
+        
+    
+    
+            marker_2ab9354d0038d36f74b9bde0bd8ae7d4.bindTooltip(
+                `<div>
+                     Accident #201100006363 - Gravité: 3%
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_6e80b2d69352694896061ca5383ee7de = L.marker(
+                [44.47757, 1.28405],
+                {}
+            ).addTo(map_9e7af0fbf6a76fda4802c6c02bcd40fc);
+        
+    
+            var icon_08d4af2bf6aeeb9d4923d2fa9520bbce = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_6e80b2d69352694896061ca5383ee7de.setIcon(icon_08d4af2bf6aeeb9d4923d2fa9520bbce);
+        
+    
+        var popup_de2b036efcf2802eec27ba4645ee5ed5 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_707c7263b810808ea327121450bb4778 = $(`<div id="html_707c7263b810808ea327121450bb4778" style="width: 100.0%; height: 100.0%;">Numéro d'accident: 201200004239<br>Date: 2012-12-20<br>Gravité: 3%<br>Type de véhicule: 7<br>Position: (44.47757, 1.28405)</div>`)[0];
+                popup_de2b036efcf2802eec27ba4645ee5ed5.setContent(html_707c7263b810808ea327121450bb4778);
+            
+        
+
+        marker_6e80b2d69352694896061ca5383ee7de.bindPopup(popup_de2b036efcf2802eec27ba4645ee5ed5)
+        ;
+
+        
+    
+    
+            marker_6e80b2d69352694896061ca5383ee7de.bindTooltip(
+                `<div>
+                     Accident #201200004239 - Gravité: 3%
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_6333b967e93088fa7668ff789ace5040 = L.marker(
+                [44.87669, 1.82573],
+                {}
+            ).addTo(map_9e7af0fbf6a76fda4802c6c02bcd40fc);
+        
+    
+            var icon_b4a38b1d6c0f3e8a8853401e6aaa2a58 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_6333b967e93088fa7668ff789ace5040.setIcon(icon_b4a38b1d6c0f3e8a8853401e6aaa2a58);
+        
+    
+        var popup_7fe9fb81e8ec5511a11d58db1351c99f = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_7717c0fd9cf5ce69c60c20b69e6cb06e = $(`<div id="html_7717c0fd9cf5ce69c60c20b69e6cb06e" style="width: 100.0%; height: 100.0%;">Numéro d'accident: 201200004257<br>Date: 2012-05-03<br>Gravité: 3%<br>Type de véhicule: <br>Position: (44.87669, 1.82573)</div>`)[0];
+                popup_7fe9fb81e8ec5511a11d58db1351c99f.setContent(html_7717c0fd9cf5ce69c60c20b69e6cb06e);
+            
+        
+
+        marker_6333b967e93088fa7668ff789ace5040.bindPopup(popup_7fe9fb81e8ec5511a11d58db1351c99f)
+        ;
+
+        
+    
+    
+            marker_6333b967e93088fa7668ff789ace5040.bindTooltip(
+                `<div>
+                     Accident #201200004257 - Gravité: 3%
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_2bf8a3f1df9732454eb780c37281e33f = L.marker(
+                [44.44471, 1.4305],
+                {}
+            ).addTo(map_9e7af0fbf6a76fda4802c6c02bcd40fc);
+        
+    
+            var icon_8a04298717d31cc5f692cff2e8f2eac0 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_2bf8a3f1df9732454eb780c37281e33f.setIcon(icon_8a04298717d31cc5f692cff2e8f2eac0);
+        
+    
+        var popup_7993b0b1ee6e0a84804ea18ee66fc635 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_d16bbd8c2391b9a2718de63e1e302f2e = $(`<div id="html_d16bbd8c2391b9a2718de63e1e302f2e" style="width: 100.0%; height: 100.0%;">Numéro d'accident: 201200029371<br>Date: 2012-05-27<br>Gravité: 1%<br>Type de véhicule: <br>Position: (44.44471, 1.4305)</div>`)[0];
+                popup_7993b0b1ee6e0a84804ea18ee66fc635.setContent(html_d16bbd8c2391b9a2718de63e1e302f2e);
+            
+        
+
+        marker_2bf8a3f1df9732454eb780c37281e33f.bindPopup(popup_7993b0b1ee6e0a84804ea18ee66fc635)
+        ;
+
+        
+    
+    
+            marker_2bf8a3f1df9732454eb780c37281e33f.bindTooltip(
+                `<div>
+                     Accident #201200029371 - Gravité: 1%
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_05f07060ab0a5f0d725419e2b672d754 = L.marker(
+                [44.91202, 1.79306],
+                {}
+            ).addTo(map_9e7af0fbf6a76fda4802c6c02bcd40fc);
+        
+    
+            var icon_4dfa537b60ebbb4f70caaf9fc455a8c6 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_05f07060ab0a5f0d725419e2b672d754.setIcon(icon_4dfa537b60ebbb4f70caaf9fc455a8c6);
+        
+    
+        var popup_b4b8e3564e498880df524b8c478ec138 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_6402bfc61ce82cdb878fb5fd58b40bd8 = $(`<div id="html_6402bfc61ce82cdb878fb5fd58b40bd8" style="width: 100.0%; height: 100.0%;">Numéro d'accident: 201300004005<br>Date: 2013-01-14<br>Gravité: 3%<br>Type de véhicule: 7<br>Position: (44.91202, 1.79306)</div>`)[0];
+                popup_b4b8e3564e498880df524b8c478ec138.setContent(html_6402bfc61ce82cdb878fb5fd58b40bd8);
+            
+        
+
+        marker_05f07060ab0a5f0d725419e2b672d754.bindPopup(popup_b4b8e3564e498880df524b8c478ec138)
+        ;
+
+        
+    
+    
+            marker_05f07060ab0a5f0d725419e2b672d754.bindTooltip(
+                `<div>
+                     Accident #201300004005 - Gravité: 3%
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_b28f7909968e5c7b3625af54420109c1 = L.marker(
+                [44.75855, 1.35195],
+                {}
+            ).addTo(map_9e7af0fbf6a76fda4802c6c02bcd40fc);
+        
+    
+            var icon_47adf2d8aed72b5ee8869b8c43f27875 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_b28f7909968e5c7b3625af54420109c1.setIcon(icon_47adf2d8aed72b5ee8869b8c43f27875);
+        
+    
+        var popup_9a41df473f37ff0ff235598ff5c77a29 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_8fe2c95061b05e7e4804a0cbc9acbfe4 = $(`<div id="html_8fe2c95061b05e7e4804a0cbc9acbfe4" style="width: 100.0%; height: 100.0%;">Numéro d'accident: 201300004017<br>Date: 2013-05-26<br>Gravité: 3%<br>Type de véhicule: 7<br>Position: (44.75855, 1.35195)</div>`)[0];
+                popup_9a41df473f37ff0ff235598ff5c77a29.setContent(html_8fe2c95061b05e7e4804a0cbc9acbfe4);
+            
+        
+
+        marker_b28f7909968e5c7b3625af54420109c1.bindPopup(popup_9a41df473f37ff0ff235598ff5c77a29)
+        ;
+
+        
+    
+    
+            marker_b28f7909968e5c7b3625af54420109c1.bindTooltip(
+                `<div>
+                     Accident #201300004017 - Gravité: 3%
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_233adc1ea05bcc3a8c3749c70226741b = L.marker(
+                [44.73203, 1.92491],
+                {}
+            ).addTo(map_9e7af0fbf6a76fda4802c6c02bcd40fc);
+        
+    
+            var icon_0c7d51009dbf8ef2cb27a117fbb8541b = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_233adc1ea05bcc3a8c3749c70226741b.setIcon(icon_0c7d51009dbf8ef2cb27a117fbb8541b);
+        
+    
+        var popup_adee2c8de6b3c09ea8e11607018f4beb = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_0f2f7ce4499cf63d28acc4cbd97a2cab = $(`<div id="html_0f2f7ce4499cf63d28acc4cbd97a2cab" style="width: 100.0%; height: 100.0%;">Numéro d'accident: 201400003968<br>Date: 2014-04-17<br>Gravité: 3%<br>Type de véhicule: 21<br>Position: (44.73203, 1.92491)</div>`)[0];
+                popup_adee2c8de6b3c09ea8e11607018f4beb.setContent(html_0f2f7ce4499cf63d28acc4cbd97a2cab);
+            
+        
+
+        marker_233adc1ea05bcc3a8c3749c70226741b.bindPopup(popup_adee2c8de6b3c09ea8e11607018f4beb)
+        ;
+
+        
+    
+    
+            marker_233adc1ea05bcc3a8c3749c70226741b.bindTooltip(
+                `<div>
+                     Accident #201400003968 - Gravité: 3%
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_b0331d4828167f01f2b630fbfbbc08d5 = L.marker(
+                [44.87339, 2.03663],
+                {}
+            ).addTo(map_9e7af0fbf6a76fda4802c6c02bcd40fc);
+        
+    
+            var icon_2004a6088e161f31cd3bde1d294df120 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_b0331d4828167f01f2b630fbfbbc08d5.setIcon(icon_2004a6088e161f31cd3bde1d294df120);
+        
+    
+        var popup_dbd6b06cb9fcf415982872a7e3d7f608 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_73d8f95c229de145eed8645ec6620121 = $(`<div id="html_73d8f95c229de145eed8645ec6620121" style="width: 100.0%; height: 100.0%;">Numéro d'accident: 201400003979<br>Date: 2014-07-03<br>Gravité: 3%<br>Type de véhicule: 7<br>Position: (44.87339, 2.03663)</div>`)[0];
+                popup_dbd6b06cb9fcf415982872a7e3d7f608.setContent(html_73d8f95c229de145eed8645ec6620121);
+            
+        
+
+        marker_b0331d4828167f01f2b630fbfbbc08d5.bindPopup(popup_dbd6b06cb9fcf415982872a7e3d7f608)
+        ;
+
+        
+    
+    
+            marker_b0331d4828167f01f2b630fbfbbc08d5.bindTooltip(
+                `<div>
+                     Accident #201400003979 - Gravité: 3%
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_04f2aa5f59bccf2e2668a001be90def1 = L.marker(
+                [44.44076, 1.443],
+                {}
+            ).addTo(map_9e7af0fbf6a76fda4802c6c02bcd40fc);
+        
+    
+            var icon_f1afa1205621f2c3c4fb24a60b43287c = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_04f2aa5f59bccf2e2668a001be90def1.setIcon(icon_f1afa1205621f2c3c4fb24a60b43287c);
+        
+    
+        var popup_9ee594d82a9b06446b496befb22aca4d = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_ccef823e611f000ae91b3a38232e36fb = $(`<div id="html_ccef823e611f000ae91b3a38232e36fb" style="width: 100.0%; height: 100.0%;">Numéro d'accident: 201400028193<br>Date: 2014-05-20<br>Gravité: 4%<br>Type de véhicule: 7<br>Position: (44.44076, 1.443)</div>`)[0];
+                popup_9ee594d82a9b06446b496befb22aca4d.setContent(html_ccef823e611f000ae91b3a38232e36fb);
+            
+        
+
+        marker_04f2aa5f59bccf2e2668a001be90def1.bindPopup(popup_9ee594d82a9b06446b496befb22aca4d)
+        ;
+
+        
+    
+    
+            marker_04f2aa5f59bccf2e2668a001be90def1.bindTooltip(
+                `<div>
+                     Accident #201400028193 - Gravité: 4%
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_13d8c1fc38cc33bef860b7a709d5e4a8 = L.marker(
+                [44.43194, 1.45655],
+                {}
+            ).addTo(map_9e7af0fbf6a76fda4802c6c02bcd40fc);
+        
+    
+            var icon_6fb094c4308f3b961baf8a469c1c7c70 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_13d8c1fc38cc33bef860b7a709d5e4a8.setIcon(icon_6fb094c4308f3b961baf8a469c1c7c70);
+        
+    
+        var popup_e28e4acb39f85df9be8a596cb7e758b4 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_d7d78326d8a9365abe8d24e504f458e5 = $(`<div id="html_d7d78326d8a9365abe8d24e504f458e5" style="width: 100.0%; height: 100.0%;">Numéro d'accident: 201400028196<br>Date: 2014-07-19<br>Gravité: 4%<br>Type de véhicule: 7<br>Position: (44.43194, 1.45655)</div>`)[0];
+                popup_e28e4acb39f85df9be8a596cb7e758b4.setContent(html_d7d78326d8a9365abe8d24e504f458e5);
+            
+        
+
+        marker_13d8c1fc38cc33bef860b7a709d5e4a8.bindPopup(popup_e28e4acb39f85df9be8a596cb7e758b4)
+        ;
+
+        
+    
+    
+            marker_13d8c1fc38cc33bef860b7a709d5e4a8.bindTooltip(
+                `<div>
+                     Accident #201400028196 - Gravité: 4%
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_db28a38b1bdeaf1a3fa593a681940516 = L.marker(
+                [44.50107, 1.85056],
+                {}
+            ).addTo(map_9e7af0fbf6a76fda4802c6c02bcd40fc);
+        
+    
+            var icon_74791e4f0aab9f6e02b54eb8c644e699 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_db28a38b1bdeaf1a3fa593a681940516.setIcon(icon_74791e4f0aab9f6e02b54eb8c644e699);
+        
+    
+        var popup_8dab14891a625b25f9486c14c4f0a8a1 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_55fb8b9bbe5ab2eaae2ebd7ea17ee3cd = $(`<div id="html_55fb8b9bbe5ab2eaae2ebd7ea17ee3cd" style="width: 100.0%; height: 100.0%;">Numéro d'accident: 201500003885<br>Date: 2015-06-11<br>Gravité: 3%<br>Type de véhicule: 10<br>Position: (44.50107, 1.85056)</div>`)[0];
+                popup_8dab14891a625b25f9486c14c4f0a8a1.setContent(html_55fb8b9bbe5ab2eaae2ebd7ea17ee3cd);
+            
+        
+
+        marker_db28a38b1bdeaf1a3fa593a681940516.bindPopup(popup_8dab14891a625b25f9486c14c4f0a8a1)
+        ;
+
+        
+    
+    
+            marker_db28a38b1bdeaf1a3fa593a681940516.bindTooltip(
+                `<div>
+                     Accident #201500003885 - Gravité: 3%
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_9659cb3d19349b2941c64b7126f8bbd6 = L.marker(
+                [44.74276, 1.79161],
+                {}
+            ).addTo(map_9e7af0fbf6a76fda4802c6c02bcd40fc);
+        
+    
+            var icon_be5438e5598a1ef072dc0952738acb96 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_9659cb3d19349b2941c64b7126f8bbd6.setIcon(icon_be5438e5598a1ef072dc0952738acb96);
+        
+    
+        var popup_33fe8244fd66b014b50c29c5def60100 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_f522d6f905553ae2a35c670846813ab5 = $(`<div id="html_f522d6f905553ae2a35c670846813ab5" style="width: 100.0%; height: 100.0%;">Numéro d'accident: 201500003887<br>Date: 2015-03-18<br>Gravité: 3%<br>Type de véhicule: 7<br>Position: (44.74276, 1.79161)</div>`)[0];
+                popup_33fe8244fd66b014b50c29c5def60100.setContent(html_f522d6f905553ae2a35c670846813ab5);
+            
+        
+
+        marker_9659cb3d19349b2941c64b7126f8bbd6.bindPopup(popup_33fe8244fd66b014b50c29c5def60100)
+        ;
+
+        
+    
+    
+            marker_9659cb3d19349b2941c64b7126f8bbd6.bindTooltip(
+                `<div>
+                     Accident #201500003887 - Gravité: 3%
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_966a3305b3ba07d4f7bf03271ebfd864 = L.marker(
+                [44.8537, 1.90591],
+                {}
+            ).addTo(map_9e7af0fbf6a76fda4802c6c02bcd40fc);
+        
+    
+            var icon_8b5c9ba17cc9d108af7bbc2d6d45d75a = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_966a3305b3ba07d4f7bf03271ebfd864.setIcon(icon_8b5c9ba17cc9d108af7bbc2d6d45d75a);
+        
+    
+        var popup_ed350f0c1309198d214a41b7b7b8b194 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_659873c98ecc32d3105385beb82e02db = $(`<div id="html_659873c98ecc32d3105385beb82e02db" style="width: 100.0%; height: 100.0%;">Numéro d'accident: 201500003896<br>Date: 2015-06-27<br>Gravité: 3%<br>Type de véhicule: 7<br>Position: (44.8537, 1.90591)</div>`)[0];
+                popup_ed350f0c1309198d214a41b7b7b8b194.setContent(html_659873c98ecc32d3105385beb82e02db);
+            
+        
+
+        marker_966a3305b3ba07d4f7bf03271ebfd864.bindPopup(popup_ed350f0c1309198d214a41b7b7b8b194)
+        ;
+
+        
+    
+    
+            marker_966a3305b3ba07d4f7bf03271ebfd864.bindTooltip(
+                `<div>
+                     Accident #201500003896 - Gravité: 3%
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_6f151e13c02c474eace8c7de94dffc9d = L.marker(
+                [44.51452, 1.36691],
+                {}
+            ).addTo(map_9e7af0fbf6a76fda4802c6c02bcd40fc);
+        
+    
+            var icon_b3ea684be8fb15b8889c66dba63154ac = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_6f151e13c02c474eace8c7de94dffc9d.setIcon(icon_b3ea684be8fb15b8889c66dba63154ac);
+        
+    
+        var popup_884ffecb2de048126e09bd9a20c5f50e = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_e8f4925759fa5b5a2212f9d62d7df4cf = $(`<div id="html_e8f4925759fa5b5a2212f9d62d7df4cf" style="width: 100.0%; height: 100.0%;">Numéro d'accident: 201600027322<br>Date: 2016-05-21<br>Gravité: 4%<br>Type de véhicule: 7<br>Position: (44.51452, 1.36691)</div>`)[0];
+                popup_884ffecb2de048126e09bd9a20c5f50e.setContent(html_e8f4925759fa5b5a2212f9d62d7df4cf);
+            
+        
+
+        marker_6f151e13c02c474eace8c7de94dffc9d.bindPopup(popup_884ffecb2de048126e09bd9a20c5f50e)
+        ;
+
+        
+    
+    
+            marker_6f151e13c02c474eace8c7de94dffc9d.bindTooltip(
+                `<div>
+                     Accident #201600027322 - Gravité: 4%
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_dba4de1bec86c39243b93f413f13842f = L.marker(
+                [44.44022, 1.43548],
+                {}
+            ).addTo(map_9e7af0fbf6a76fda4802c6c02bcd40fc);
+        
+    
+            var icon_4d35a8a34a4e26ff4e3e3540401b0299 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_dba4de1bec86c39243b93f413f13842f.setIcon(icon_4d35a8a34a4e26ff4e3e3540401b0299);
+        
+    
+        var popup_7f3f4f3358660b0a77d6c025e58c1131 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_12dd68ee4213107ade58b86cd4c62fbd = $(`<div id="html_12dd68ee4213107ade58b86cd4c62fbd" style="width: 100.0%; height: 100.0%;">Numéro d'accident: 201700029051<br>Date: 2017-06-24<br>Gravité: 4%<br>Type de véhicule: 7<br>Position: (44.44022, 1.43548)</div>`)[0];
+                popup_7f3f4f3358660b0a77d6c025e58c1131.setContent(html_12dd68ee4213107ade58b86cd4c62fbd);
+            
+        
+
+        marker_dba4de1bec86c39243b93f413f13842f.bindPopup(popup_7f3f4f3358660b0a77d6c025e58c1131)
+        ;
+
+        
+    
+    
+            marker_dba4de1bec86c39243b93f413f13842f.bindTooltip(
+                `<div>
+                     Accident #201700029051 - Gravité: 4%
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_daeb7edab387f18aaaaea4539fc4e66e = L.marker(
+                [44.40381, 1.34669],
+                {}
+            ).addTo(map_9e7af0fbf6a76fda4802c6c02bcd40fc);
+        
+    
+            var icon_a8f4c1fc93ef271918dcda5f5bdae5c5 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_daeb7edab387f18aaaaea4539fc4e66e.setIcon(icon_a8f4c1fc93ef271918dcda5f5bdae5c5);
+        
+    
+        var popup_aa56bae1961b636659b4095a2d5fba97 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_96d9d51ac735dd5c097444d3b9321a22 = $(`<div id="html_96d9d51ac735dd5c097444d3b9321a22" style="width: 100.0%; height: 100.0%;">Numéro d'accident: 201800016565<br>Date: 2018-04-26<br>Gravité: 3%<br>Type de véhicule: 7<br>Position: (44.40381, 1.34669)</div>`)[0];
+                popup_aa56bae1961b636659b4095a2d5fba97.setContent(html_96d9d51ac735dd5c097444d3b9321a22);
+            
+        
+
+        marker_daeb7edab387f18aaaaea4539fc4e66e.bindPopup(popup_aa56bae1961b636659b4095a2d5fba97)
+        ;
+
+        
+    
+    
+            marker_daeb7edab387f18aaaaea4539fc4e66e.bindTooltip(
+                `<div>
+                     Accident #201800016565 - Gravité: 3%
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_070d9673471d39731dc9ed7243f2c0ab = L.marker(
+                [44.45053, 1.52078],
+                {}
+            ).addTo(map_9e7af0fbf6a76fda4802c6c02bcd40fc);
+        
+    
+            var icon_00b1f99adaf556e5522a8c75fce19516 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_070d9673471d39731dc9ed7243f2c0ab.setIcon(icon_00b1f99adaf556e5522a8c75fce19516);
+        
+    
+        var popup_6a1d93304e4706bfede02fa2d2d393a8 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_0130cfe9b3e0b546d93112f8033095a2 = $(`<div id="html_0130cfe9b3e0b546d93112f8033095a2" style="width: 100.0%; height: 100.0%;">Numéro d'accident: 201800016570<br>Date: 2018-08-22<br>Gravité: 3%<br>Type de véhicule: 7<br>Position: (44.45053, 1.52078)</div>`)[0];
+                popup_6a1d93304e4706bfede02fa2d2d393a8.setContent(html_0130cfe9b3e0b546d93112f8033095a2);
+            
+        
+
+        marker_070d9673471d39731dc9ed7243f2c0ab.bindPopup(popup_6a1d93304e4706bfede02fa2d2d393a8)
+        ;
+
+        
+    
+    
+            marker_070d9673471d39731dc9ed7243f2c0ab.bindTooltip(
+                `<div>
+                     Accident #201800016570 - Gravité: 3%
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_288a9c0f22e044eedbfdb66352cd0969 = L.marker(
+                [44.85252, 1.95687],
+                {}
+            ).addTo(map_9e7af0fbf6a76fda4802c6c02bcd40fc);
+        
+    
+            var icon_b50882696fdc9bf104baa6e7a8b7ddbe = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_288a9c0f22e044eedbfdb66352cd0969.setIcon(icon_b50882696fdc9bf104baa6e7a8b7ddbe);
+        
+    
+        var popup_1678eb55f8ead306502f7c5700cf1593 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_ee1547676f2b453e6fab56162601bd6e = $(`<div id="html_ee1547676f2b453e6fab56162601bd6e" style="width: 100.0%; height: 100.0%;">Numéro d'accident: 201800016584<br>Date: 2018-07-27<br>Gravité: 3%<br>Type de véhicule: 7<br>Position: (44.85252, 1.95687)</div>`)[0];
+                popup_1678eb55f8ead306502f7c5700cf1593.setContent(html_ee1547676f2b453e6fab56162601bd6e);
+            
+        
+
+        marker_288a9c0f22e044eedbfdb66352cd0969.bindPopup(popup_1678eb55f8ead306502f7c5700cf1593)
+        ;
+
+        
+    
+    
+            marker_288a9c0f22e044eedbfdb66352cd0969.bindTooltip(
+                `<div>
+                     Accident #201800016584 - Gravité: 3%
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_3e8e01b0570b2b43ce11165870323e8f = L.marker(
+                [44.77627, 1.73338],
+                {}
+            ).addTo(map_9e7af0fbf6a76fda4802c6c02bcd40fc);
+        
+    
+            var icon_69b65bdd24c0bb06726883b9e7fcc392 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_3e8e01b0570b2b43ce11165870323e8f.setIcon(icon_69b65bdd24c0bb06726883b9e7fcc392);
+        
+    
+        var popup_15b90e0c9c7171233a2f9195f421185a = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_c62115f92a429d45c2804504ef3704a8 = $(`<div id="html_c62115f92a429d45c2804504ef3704a8" style="width: 100.0%; height: 100.0%;">Numéro d'accident: 201800016593<br>Date: 2018-08-21<br>Gravité: 3%<br>Type de véhicule: 7<br>Position: (44.77627, 1.73338)</div>`)[0];
+                popup_15b90e0c9c7171233a2f9195f421185a.setContent(html_c62115f92a429d45c2804504ef3704a8);
+            
+        
+
+        marker_3e8e01b0570b2b43ce11165870323e8f.bindPopup(popup_15b90e0c9c7171233a2f9195f421185a)
+        ;
+
+        
+    
+    
+            marker_3e8e01b0570b2b43ce11165870323e8f.bindTooltip(
+                `<div>
+                     Accident #201800016593 - Gravité: 3%
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_8da1e866ef8fb6044330466c4d344f21 = L.marker(
+                [44.26834, 1.54341],
+                {}
+            ).addTo(map_9e7af0fbf6a76fda4802c6c02bcd40fc);
+        
+    
+            var icon_3c9232d9d47c4b67cf791f4f7c346fc6 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_8da1e866ef8fb6044330466c4d344f21.setIcon(icon_3c9232d9d47c4b67cf791f4f7c346fc6);
+        
+    
+        var popup_2be2d370c5dfb0052851f1761b228a3a = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_857d8f9908b566fd1124c16cb6976690 = $(`<div id="html_857d8f9908b566fd1124c16cb6976690" style="width: 100.0%; height: 100.0%;">Numéro d'accident: 201800022439<br>Date: 2018-04-14<br>Gravité: 4%<br>Type de véhicule: 7<br>Position: (44.26834, 1.54341)</div>`)[0];
+                popup_2be2d370c5dfb0052851f1761b228a3a.setContent(html_857d8f9908b566fd1124c16cb6976690);
+            
+        
+
+        marker_8da1e866ef8fb6044330466c4d344f21.bindPopup(popup_2be2d370c5dfb0052851f1761b228a3a)
+        ;
+
+        
+    
+    
+            marker_8da1e866ef8fb6044330466c4d344f21.bindTooltip(
+                `<div>
+                     Accident #201800022439 - Gravité: 4%
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_36d1be5ce39ac0657846f23163ae3ef4 = L.marker(
+                [44.64925937500001, 1.6583584374999998],
+                {}
+            ).addTo(map_9e7af0fbf6a76fda4802c6c02bcd40fc);
+        
+    
+            var icon_6f33d16668410c7cf2c4b1d732a148ad = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "star", "iconColor": "white", "markerColor": "purple", "prefix": "glyphicon"}
+            );
+            marker_36d1be5ce39ac0657846f23163ae3ef4.setIcon(icon_6f33d16668410c7cf2c4b1d732a148ad);
+        
+    
+        var popup_c14a4b12627b13c175adf0d3c6d8e2c9 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_fa0d4be3a0d95aada961164355bfeaea = $(`<div id="html_fa0d4be3a0d95aada961164355bfeaea" style="width: 100.0%; height: 100.0%;">Centre des accidents : (44.64925937500001, 1.6583584374999998)</div>`)[0];
+                popup_c14a4b12627b13c175adf0d3c6d8e2c9.setContent(html_fa0d4be3a0d95aada961164355bfeaea);
+            
+        
+
+        marker_36d1be5ce39ac0657846f23163ae3ef4.bindPopup(popup_c14a4b12627b13c175adf0d3c6d8e2c9)
+        ;
+
+        
+    
+</script>
+</html>

@@ -6,11 +6,16 @@ import math
 # CONSTANTES
 FICHIER_BDD = "accidents.db"
 TABLE = "accidents"
-DEPARTEMENT_CIBLE = "64"
-RAYON_MAX = 150  # Distance maximale en kilomètres
+DEPARTEMENT_CIBLE = "46"
+RAYON_MAX = 150  # Distance max en kilomètres
 
-def haversine(coord1, coord2):
-    R = 6371  # Rayon de la Terre en kilomètres
+def dis(coord1, coord2):
+    """
+    Calcul la distance entre deux point.
+      coord1 : bool de coordonnées
+      coord2 : bool de coordonnées
+    """
+    R = 6371  # Rayon de la Terre en km
     lat1, lon1 = math.radians(coord1[0]), math.radians(coord1[1])
     lat2, lon2 = math.radians(coord2[0]), math.radians(coord2[1])
 
@@ -23,9 +28,12 @@ def haversine(coord1, coord2):
     return R * c
 
 def creation_carte(location: tuple, zoom_start: int):
+    
+    # Connexions a la bases de données 
     connexion_BD = sqlite3.connect(FICHIER_BDD)
     c = connexion_BD.cursor()
-
+    
+    # Recuperation des données dans la base 
     MA_REQUETE = f"""
     SELECT Num_Acc, date, grav, typevehicules, lat, long 
     FROM {TABLE}
@@ -36,8 +44,9 @@ def creation_carte(location: tuple, zoom_start: int):
 
     print(f"J’ai {len(data)} enregistrements dans ma base de données.")
 
-    coordonnees_utilisees = set()
+    coordonnees_utilisees = set() # Utilisation d'un ensemble pour zevitez les doublons.
     data_unique = []
+    # Verification que les coordonnées soit sur terres et non nul.
     for accident in data:
         try:
             lat, long = round(accident[4], 4), round(accident[5], 4)
@@ -51,14 +60,16 @@ def creation_carte(location: tuple, zoom_start: int):
             print(f"Erreur de conversion des coordonnées pour l'accident #{accident[0]}")
             continue
 
+    # Calcul des coordonnées moyenne pour pouvoir centrer notre carte dessus.
     if data_unique:
         latitude_moyenne = sum(acc[4] for acc in data_unique) / len(data_unique)
         longitude_moyenne = sum(acc[5] for acc in data_unique) / len(data_unique)
         centre = (latitude_moyenne, longitude_moyenne)
 
+    # Supression des points trop de loin de notre dep.
         data_filtre = []
         for accident in data_unique:
-            distance = haversine(centre, (accident[4], accident[5]))
+            distance = dis(centre, (accident[4], accident[5]))
             if distance <= RAYON_MAX:
                 data_filtre.append(accident)
             else:
@@ -68,9 +79,11 @@ def creation_carte(location: tuple, zoom_start: int):
         centre = location
         data_filtre = []
 
+    # Création d'une carte m centrer sur notre position moyennes des points et rajouts des copyrigt en Layer.
     m = folium.Map(location=[latitude_moyenne, longitude_moyenne], zoom_start=zoom_start)
     folium.TileLayer('OpenStreetMap', attr='© Contributeurs OpenStreetMap').add_to(m)
 
+    # Ajout d'une couleur en fonction de la gravité de l'accidents.
     for accident in data_filtre:
         gravite = accident[2]
         if int(gravite) <= 1:
@@ -82,6 +95,7 @@ def creation_carte(location: tuple, zoom_start: int):
         else:
             couleur = "red"
 
+        # Affichage des info sur l'accidents dans le marker.
         folium.Marker(
             location=[accident[4], accident[5]],
             popup=(f"Numéro d'accident: {accident[0]}<br>"
@@ -93,13 +107,15 @@ def creation_carte(location: tuple, zoom_start: int):
             icon=Icon(color=couleur, icon="info-sign")
         ).add_to(m)
 
+    # Marker au centre 
     folium.Marker(
         location=[latitude_moyenne, longitude_moyenne],
         popup=f"Centre des accidents : ({latitude_moyenne}, {longitude_moyenne})",
         icon=Icon(color="purple", icon="star")
     ).add_to(m)
 
-    NOM_FICHIER = f"carte_accidents_dep_{DEPARTEMENT_CIBLE}.html"
+    # Enregistrement de notre carte dans le dossier courant 
+    NOM_FICHIER = f".\carte_accidents_dep_{DEPARTEMENT_CIBLE}.html"
     m.save(NOM_FICHIER)
     print(f"Carte générée : {NOM_FICHIER}")
 
