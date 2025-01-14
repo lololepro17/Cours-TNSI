@@ -1,8 +1,10 @@
-### Réponse au sujet portant sur les arbres binaires, la programmation orientée objet et la récursivité
+# Réponse au sujet portant sur les arbres binaires, la programmation orientée objet et la récursivité
 
-#### Question 1 : Plus grande somme racine-feuille
+## Question 1 : Plus grande somme racine-feuille
+
 Pour l'arbre donné dans le sujet :
-```
+
+```nocode
         5
       /   \
      7     2
@@ -12,23 +14,24 @@ Pour l'arbre donné dans le sujet :
  2   3       5
 ```
 
-Les chemins racine-feuille et leurs sommes sont :
-1. 5 -> 7 -> 4 -> 2 = 18
-2. 5 -> 7 -> 4 -> 3 = 19
-3. 5 -> 7 -> 1 = 13
-4. 5 -> 2 -> 8 = 15
-5. 5 -> 2 -> 3 -> 5 = 15
+Les chemins racine-feuille et leurs Somme sont :
+
+1. 5 → 7 →4 → 2 = 18
+2. 5 → 7 → 4 → 3 = 19
+3. 5 → 7 → 1 = 13
+4. 5 → 2 → 8 = 15
+5. 5 → 2 → 3 → 5 = 15
 
 **19**.
 
 ---
 
-#### Question 2 : Représentation de l'arbre avec la classe Noeud
+## Question 2 : Représentation de l'arbre avec la class Noeud
 
 ```python
 class Noeud:
     def __init__(self, v):
-        self.etiquette = v
+        self.étiquette = v
         self.sag = None
         self.sad = None
 
@@ -67,7 +70,8 @@ noeud_3.modifier_sad(noeud_5b)
 
 ---
 
-#### Question 3 : Méthode `pgde_somme`
+## Question 3 : Method `pgde_somme`
+
 plus grande somme racine-feuille :
 
 ```python
@@ -75,19 +79,21 @@ class Noeud:
 
     def pgde_somme(self):
         if self.sag is None and self.sad is None:
-            return self.etiquette
+            return self.étiquette
         
         somme_gauche = self.sag.pgde_somme() if self.sag else float('-inf')
         somme_droite = self.sad.pgde_somme() if self.sad else float('-inf')
         
-        return self.etiquette + max(somme_gauche, somme_droite)
+        return self.étiquette + max(somme_gauche, somme_droite)
 ```
 
 ---
 
-#### Question 4 : Arbre magique
-##### a. Complétion de l'arbre magique
-```
+## Question 4 : Arbre magique
+
+### a. Complétion de l'arbre magique
+
+```nocode
         5
       /   \
      7     2
@@ -97,8 +103,9 @@ class Noeud:
  3   3       7
 ```
 
-##### b. Méthode `est_magique`
-Methode de verification d'arbre magique :
+### b. Méthode `est_magique`
+
+Méthode de verification d'arbre magique :
 
 ```python
 class Noeud:
