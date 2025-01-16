@@ -32,7 +32,7 @@ def fusionne(gauche, droite) -> ArbreHuffman:
 def compte_occurrences(texte: str) -> dict:
     """Renvoie un dictionnaire avec chaque caractère du texte comme clé et le nombre d'apparition de ce caractère
     dans le texte en valeur
-    >>> compte_occurrences ( "AABCECA")
+    >>> compte_occurrences ( "AABCECA")"""
     occ = {}
     for car in texte:
         if car not in occ:
