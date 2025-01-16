@@ -1,4 +1,6 @@
-# Partie A
+# Huffman
+
+## Partie A
 
 ## 1. Coder chaque lettre de l'alphabet
 
@@ -103,3 +105,26 @@ En utilisant les fréquences et les longueurs de codes :
 Total :
 \[ 480 + 420 + 480 + 204 + 560 + 196 + 180 + 140 = 2 660  bits
  2 660 bits.**
+
+## Partie B
+
+1.
+
+```mermaid
+graph TD;
+    root[1000]
+    root --> node420[420]
+    root --> node580[580]
+    node420 --> A[240]
+    node420 --> node180[180]
+    node180 --> node100[100]
+    node180 --> node80[80]
+    node100 --> F[49]
+    node100 --> D[51]
+    node80 --> H[35]
+    node80 --> G[45]
+    node580 --> E[280]
+    node580 --> node300[300]
+    node300 --> B[140]
+    node300 --> C[160]
+```
