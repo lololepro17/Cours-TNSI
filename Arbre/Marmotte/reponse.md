@@ -106,23 +106,26 @@ Total :
 
 ## Partie B
 
-1.
+1.Pour fusionner 8 arbres en un seul, il faut effectuer 7 fusion.
+Au départ, il y a 8 arbres
+À chaque étape, deux arbres sont fusionnés pour en former un seul.
+Ce processus est répété jusqu’à ce qu’il ne reste plus qu’un arbre unique, pour n arbres, il faut n-1 fusions.
+2.
 
 ```mermaid
-graph TD;
-    root[1000]
-    root --> node420[420]
-    root --> node580[580]
-    node420 --> A[240]
-    node420 --> node180[180]
-    node180 --> node100[100]
-    node180 --> node80[80]
-    node100 --> F[49]
-    node100 --> D[51]
-    node80 --> H[35]
-    node80 --> G[45]
-    node580 --> E[280]
-    node580 --> node300[300]
-    node300 --> B[140]
-    node300 --> C[160]
+graph TD
+    G["G : 45"] --> GH["G+H : 80"]
+    H["H : 35"] --> GH
+    F["F : 49"] --> FG["F+GH : 129"]
+    GH --> FG
+    D["D : 51"] --> DG["D+FG : 180"]
+    FG --> DG
+    B["B : 140"] --> BC["B+C : 300"]
+    C["C : 160"] --> BC
+    A["A : 240"] --> AE["A+E : 520"]
+    E["E : 280"] --> AE
+    DG --> DGB["DG+BC : 480"]
+    BC --> DGB
+    DGB --> Final["DGB+AE : 1 000"]
+    AE --> Final
 ```
