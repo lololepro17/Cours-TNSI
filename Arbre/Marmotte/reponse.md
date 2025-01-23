@@ -129,3 +129,25 @@ graph TD
     DGB --> Final["DGB+AE : 1 000"]
     AE --> Final
 ```
+
+`
+3.
+
+```mermaid
+graph TD
+    Final["Racine : 1 000"]
+    Final --> AE["A+E : 520"]
+    Final --> DGB["DG+BC : 480"]
+    AE --> A["A : 240 | Code : 0"]
+    AE --> E["E : 280 | Code : 1"]
+    DGB --> DG["D+FG : 180"]
+    DGB --> BC["B+C : 300"]
+    DG --> D["D : 51 | Code : 00"]
+    DG --> FG["F+GH : 129"]
+    FG --> F["F : 49 | Code : 000"]
+    FG --> GH["G+H : 80"]
+    GH --> G["G : 45 | Code : 0000"]
+    GH --> H["H : 35 | Code : 0001"]
+    BC --> B["B : 140 | Code : 01"]
+    BC --> C["C : 160 | Code : 11"]
+```
