@@ -151,3 +151,25 @@ graph TD
     BC --> B["B : 140 | Code : 01"]
     BC --> C["C : 160 | Code : 11"]
 ```
+
+## Partie c
+
+Le fichier `huffman.py` a été completer.
+
+## partie D
+
+1. Apres compression du fichier `texte.txt`:
+    - Taille originale : 56 bits
+    - Taille compressée : 18 bits
+    - Taux de compression : 67.86%
+
+2. Apres compression du fichier `recueillments.txt` :
+    - Taille originale : 5600 bits
+    - Taille compressée : 3196 bits
+    - Taux de compression : 42.93%
+
+3. Apres compression du fichier `swann.txt` :
+
+    - Taille originale : 8099528 bits
+    - Taille compressée : 4537100 bits
+    - Taux de compression : 43.98%

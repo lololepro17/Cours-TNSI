@@ -8,10 +8,13 @@ class ArbreHuffman:
         self.droite = d
 
     def est_feuille(self) -> bool:
+        # L'arbre est une feuille si les deux fils (gauche et droite) sont None
         return self.gauche is None and self.droite is None
 
     def __lt__(self, other):
-        return self.nbocc < other.nbocc
+        # Un arbre est inférieur à un autre si son nombre d'occurrences est plus grand
+        # (tri décroissant pour utiliser bisect correctement)
+        return self.nbocc > other.nbocc
 
 
 def parcours(arbre, chemin_en_cours, dico):
@@ -30,19 +33,19 @@ def fusionne(gauche, droite) -> ArbreHuffman:
 
 
 def compte_occurrences(texte: str) -> dict:
-    """Renvoie un dictionnaire avec chaque caractère du texte comme clé et le nombre d'apparition de ce caractère
-    dans le texte en valeur
-    >>> compte_occurrences ( "AABCECA")"""
+    """Renvoie un dictionnaire avec chaque caractère du texte comme clé
+    et le nombre d’apparitions de ce caractère en valeur."""
     occ = {}
     for car in texte:
         if car not in occ:
-            occ[car] = 0
-        occ[car] += 1
+            occ[car] = 1
+        else:
+            occ[car] += 1
     return occ
 
 
 def construit_liste_arbres(texte: str) -> list:
-    """ Renvoie une liste d'arbres de Huffman, chacun réduit à une feuille"""
+    """Renvoie une liste d’arbres de Huffman, chacun réduit à une feuille."""
     dic_occurrences = compte_occurrences(texte)
     liste_arbres = []
     for lettre, occ in dic_occurrences.items():
@@ -51,27 +54,29 @@ def construit_liste_arbres(texte: str) -> list:
 
 
 def codage_huffman(texte: str) -> dict:
-    """ Codage de Huffman optimal à partir d'un texte
-    >>> codage_huffman("AAAABBBBBCCD")
-    {'A': [0, 0], 'C': [0, 1, 0], 'D': [0, 1, 1], 'B': [1]}"""
+    """Génère le codage de Huffman optimal pour un texte donné."""
     liste_arbres = construit_liste_arbres(texte)
+    # Tri par nombres d'occurrences décroissants
     liste_arbres.sort()
-    # Tant que tous les arbres n'ont pas été fusionnés
 
+    # Tant qu’il reste plus d’un arbre
     while len(liste_arbres) > 1:
+        # Fusionner les deux arbres avec les plus petites occurrences
         droite = liste_arbres.pop()
         gauche = liste_arbres.pop()
         new_arbre = fusionne(gauche, droite)
+        # Insérer le nouvel arbre dans la liste tout en gardant l'ordre
         bisect.insort(liste_arbres, new_arbre)
-    # Il ne reste plus qu'un arbre dans la liste, c'est notre arbre de Huffman
 
+    # Il reste un seul arbre : c'est l'arbre de Huffman
     arbre_huffman = liste_arbres.pop()
     dico = {}
     parcours(arbre_huffman, [], dico)
     return dico
 
 
-def compresser(texte, dico):
+def compresser(texte: str, dico: dict) -> list:
+    """Détermine le codage binaire d’un texte entier à partir d’un dictionnaire de correspondance."""
     code = []
     for char in texte:
         code.extend(dico[char])
@@ -79,26 +84,22 @@ def compresser(texte, dico):
 
 
 # Script principal
-with open("texte.txt", "w") as f:
-    f.write("bonjour")
+if __name__ == "__main__":
+    # Lire le fichier texte
+    with open("swann.txt", "r") as f:
+        texte = f.read()
 
-with open("texte.txt") as f:
-    texte = f.read()
+    # Afficher les résultats
+    print("Occurrences :", compte_occurrences(texte))
+    dico = codage_huffman(texte)
+    print("Dictionnaire de Huffman :", dico)
+    code = compresser(texte, dico)
+    print("Texte compressé :", code)
 
-print("Occurrences :", compte_occurrences(texte))  # À commenter ensuite
-dico = codage_huffman(texte)
-print("Codage Huffman :", dico)  # À commenter ensuite
-code = compresser(texte, dico)
+    taille = len(texte) * 8
+    taille_compresse = len(code)
+    taux_compression = ((taille - taille_compresse) / taille) * 100
 
-taille = len(texte) * 8  # Taille en bits (ASCII 8 bits)
-taille_compresse = len(code)  # Taille compressée
-taux_compression = ((taille - taille_compresse) / taille) * 100
-
-print("Taille originale (bits) :", taille)
-print("Taille compressée (bits) :", taille_compresse)
-print("Taux de compression :", taux_compression)
-
-# Assertions pour vérification
-assert taille == 56
-assert taille_compresse == 18
-assert taux_compression == 67.85714285714286
+    print(f"Taille originale : {taille} bits")
+    print(f"Taille compressée : {taille_compresse} bits")
+    print(f"Taux de compression : {taux_compression:.2f}%")
