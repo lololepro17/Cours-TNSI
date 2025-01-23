@@ -38,7 +38,7 @@ b) **Longueur en octets d’un message de 1 000 caractères :**
 
 ---
 
-## 3. Code préfixe (longueur variable)
+## 3. Code préfixe
 
 | Lettre | Code  |
 |--------|-------|
@@ -51,7 +51,7 @@ b) **Longueur en octets d’un message de 1 000 caractères :**
 | G      | 1110  |
 | H      | 1111  |
 
-a) **Code du message "CACHE"** :
+a) Code du message "CACHE" :
 
 - C : 000
 - A : 10
@@ -60,11 +60,9 @@ a) **Code du message "CACHE"** :
 - E : 01
 
 Le code est donc :
-*Réponse : 00010000111101**
+Réponse : 00010000111101
 
-b) **Message correspondant au code `001101100111001` :**
-
-En décomposant le code selon les correspondances :
+b)
 
 - 001 : B
 - 10 : A
@@ -78,16 +76,16 @@ Le message est : **BADEF**
 
 ### 4. Longueur des messages en bits
 
-a) **Avec le code de taille fixe :**
+a) Avec le code de taille fixe :
 
 - Chaque caractère est codé sur 3 bits.
 - Nombre total de caractères : 1 000.
 - Longueur totale :
 1 000 * 3 = 3 000  bits
 
-**Réponse : 3 000 bits.**
+Réponse : 3 000 bits.
 
-b) **Avec le code préfixe :**
+b) Avec le code préfixe :
 
 En utilisant les fréquences et les longueurs de codes :
 
@@ -103,7 +101,7 @@ En utilisant les fréquences et les longueurs de codes :
 | H      | 35     | 1111  | 4                | 35 \* 4 = 140  |
 
 Total :
-\[ 480 + 420 + 480 + 204 + 560 + 196 + 180 + 140 = 2 660  bits
+480 + 420 + 480 + 204 + 560 + 196 + 180 + 140 = 2 660  bits
  2 660 bits.**
 
 ## Partie B
