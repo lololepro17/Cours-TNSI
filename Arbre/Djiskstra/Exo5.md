@@ -47,7 +47,7 @@ Le tableau ci-dessous donne les durées et coût (péage) des trajets autoroutie
 | Pau        | 2h10    | -        | -     | -         | -           | -      | 2h08     | -       | 1h32     | -      | -        |
 | Grenoble   | -       | -        | 1h20  | -         | -           | -      | -        | 1h05    | -        | -      | -        |
 
-
+```mermaid
 graph TD;
     Bordeaux -- 16.80€ --> Brive;
     Bordeaux -- 18.00€ --> Toulouse;
@@ -94,3 +94,4 @@ graph TD;
 
     Grenoble -- 1h20 --> Lyon;
     Grenoble -- 1h05 --> Valence;
+``` 
