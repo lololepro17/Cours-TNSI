@@ -49,49 +49,32 @@ Le tableau ci-dessous donne les durées et coût (péage) des trajets autoroutie
 
 ```mermaid
 graph TD;
-    Bordeaux -- 16.80€ --> Brive;
-    Bordeaux -- 18.00€ --> Toulouse;
-    Bordeaux -- 5.60€ --> Biarritz;
-    Bordeaux -- 25€ --> Pau;
+    Bordeaux -- "2h08 / 16.80€" --- Brive;
+    Bordeaux -- "2h24 / 18.00€" --- Toulouse;
+    Bordeaux -- "2h17 / 5.60€" --- Biarritz;
+    Bordeaux -- "2h10 / 25€" --- Pau;
 
-    Clermont -- 13.80€ --> Lyon;
-    Clermont -- 8.60€ --> Montpellier;
-    Clermont -- 11.60€ --> Brive;
-    Clermont -- 12.10€ --> Grenoble;
+    Clermont -- "1h58 / 13.80€" --- Lyon;
+    Clermont -- "3h26 / 8.60€" --- Montpellier;
+    Clermont -- "2h10 / 11.60€" --- Brive;
+    Clermont -- "12.10€" --- Grenoble;
 
-    Lyon -- 1h58 --> Clermont;
-    Lyon -- 7.10€ --> Valence;
-    Lyon -- 1h20 --> Grenoble;
+    Lyon -- "1h13 / 7.10€" --- Valence;
+    Lyon -- "1h20" --- Grenoble;
 
-    Marseille -- 10.80€ --> Montpellier;
-    Marseille -- 16.20€ --> Valence;
-    
-    Montpellier -- 3h26 --> Clermont;
-    Montpellier -- 1h47 --> Marseille;
-    Montpellier -- 19.60€ --> Toulouse;
-    Montpellier -- 17.80€ --> Valence;
+    Marseille -- "1h47 / 10.80€" --- Montpellier;
+    Marseille -- "2h08 / 16.20€" --- Valence;
 
-    Brive -- 2h08 --> Bordeaux;
-    Brive -- 2h10 --> Clermont;
-    Brive -- 15.10€ --> Toulouse;
+    Montpellier -- "2h28 / 19.60€" --- Toulouse;
+    Montpellier -- "1h58 / 17.80€" --- Valence;
 
-    Toulouse -- 2h24 --> Bordeaux;
-    Toulouse -- 2h28 --> Montpellier;
-    Toulouse -- 2h09 --> Brive;
-    Toulouse -- 11.60€ --> Pau;
+    Brive -- "2h09 / 15.10€" --- Toulouse;
 
-    Valence -- 1h13 --> Lyon;
-    Valence -- 2h08 --> Marseille;
-    Valence -- 1h58 --> Montpellier;
-    Valence -- 8.80€ --> Grenoble;
+    Toulouse -- "2h08" --- Pau;
+    Toulouse -- "11.60€" --- Pau;
 
-    Biarritz -- 2h17 --> Bordeaux;
-    Biarritz -- 9.50€ --> Pau;
+    Valence -- "1h05 / 8.80€" --- Grenoble;
 
-    Pau -- 2h10 --> Bordeaux;
-    Pau -- 2h08 --> Toulouse;
-    Pau -- 1h32 --> Biarritz;
+    Biarritz -- "1h32 / 9.50€" --- Pau;
 
-    Grenoble -- 1h20 --> Lyon;
-    Grenoble -- 1h05 --> Valence;
 ``` 
