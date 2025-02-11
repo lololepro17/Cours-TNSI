@@ -78,3 +78,24 @@ graph TD;
     Biarritz -- "1h32 / 9.50€" --- Pau;
 
 ``` 
+
+## Chemin le plus court en durée 🕒
+
+| Étape        |   Départ    |   Arrivée  | Durée (min) | Durée cumulée |
+|-------------|-------------|-------------|-------------|---------------|
+| 1️⃣ | Grenoble    | Valence     | 65  | 65         |
+| 2️⃣ | Valence     | Montpellier | 118 | 183        |
+| 3️⃣ | Montpellier | Toulouse    | 148 | 331        |
+| 4️⃣ | Toulouse    | Pau         | 128 | 459        |
+| 5️⃣ | Pau         | Biarritz    | 92  | 551        |
+
+## Chemin le moins cher 💰
+
+| Étape        | Départ    | Arrivée   | Coût (€) | Coût cumulé (€) |
+|-------------|----------|----------|---------|----------------|
+| 1️⃣ | Grenoble  | Valence   | 8.80    | 8.80           |
+| 2️⃣ | Valence   | Lyon      | 7.10    | 15.90          |
+| 3️⃣ | Lyon      | Clermont  | 13.80   | 29.70          |
+| 4️⃣ | Clermont  | Brive     | 11.60   | 41.30          |
+| 5️⃣ | Brive     | Bordeaux  | 16.80   | 58.10          |
+| 6️⃣ | Bordeaux  | Biarritz  | 5.60    | 63.70          |
