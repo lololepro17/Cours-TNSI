@@ -1,6 +1,6 @@
 # Réponses aux Sujets d'Examen NSI 2024
 
-Ce document présente, pour chaque sujet, les solutions aux exercices proposés. Les solutions sont rédigées avec des explications détaillées, adaptées au niveau d’un élève de Terminale NSI.
+Reponse en 20 sujet de type bac.
 
 ---
 
@@ -10,8 +10,6 @@ Ce document présente, pour chaque sujet, les solutions aux exercices proposés.
 
 **Énoncé :**  
 On stocke un arbre binaire de caractères dans un dictionnaire. Pour un nœud donné, `arbre[lettre]` renvoie la liste `[fils_gauche, fils_droit]` (le fils vide est représenté par la chaîne vide `""`). On souhaite définir la fonction récursive `taille(arbre, lettre)` qui renvoie le nombre total de nœuds de l'arbre.
-
-**Solution :**
 
 ```python
 def taille(arbre, lettre):
@@ -25,13 +23,12 @@ def taille(arbre, lettre):
 ```
 
 Explication :
-Si la valeur de lettre est vide, cela signifie qu'il n'y a pas de nœud. Sinon, on compte 1 (le nœud courant) et on ajoute récursivement la taille des sous-arbres gauche et droit.
+Si la valeur de lettre est vide il n'y a pas de nœud. Sinon, on compte 1 et on ajoute récursivement la taille des sous-arbres gauche et droit.
 
-Exercice 2 : Tri par sélection
-Énoncé :
-Compléter le code du tri par sélection : à chaque itération, on parcourt le sous-tableau des éléments non triés et on échange le plus petit avec le premier élément de ce sous-tableau.
+### Exercice 2 : Tri par sélection
 
-Solution :
+**Énoncé :**
+Compléter le code du tri par sélection
 
 ```python
 def echange(tab, i, j):
@@ -51,15 +48,12 @@ def tri_selection(tab):
         echange(tab, k, imin)
 ```
 
-Explication :
-Pour chaque position k du tableau, on trouve l'indice du plus petit élément du sous-tableau [k…N-1] et on l'échange avec l'élément en position k. Ainsi, le tableau est trié par ordre croissant.
+## Sujet 02
 
-Sujet 02
-Exercice 1 : Correspondance d’un mot à trous
-Énoncé :
+### Exercice 1 : Correspondance d’un mot à trous
+
+**Énoncé :**
 Écrire la fonction correspond(mot, mot_a_trous) qui renvoie True si le mot peut être obtenu en remplaçant les '*' de mot_a_trous par les lettres appropriées, et False sinon.
-
-Solution :
 
 ```python
 def correspond(mot, mot_a_trous):
@@ -73,19 +67,15 @@ def correspond(mot, mot_a_trous):
     return True
 ```
 
-Explication :
+**Explication :**
 On vérifie d'abord que les deux chaînes ont la même longueur. Puis, pour chaque position, si le caractère dans mot_a_trous n'est pas un joker ('*'), il doit être identique au caractère correspondant dans mot.
 
-Exercice 2 : Plan d'envoi cyclique
-Énoncé :
+### Exercice 2 : Plan d'envoi cyclique
+
+**Énoncé :**
 On représente un plan d’envoi par un dictionnaire (exemple : {'A':'E', 'B':'F', ...}). Un plan est cyclique si, en partant de 'A' et en suivant les destinataires, on parcourt toutes les personnes avant de revenir à 'A'.
 
-Solution :
-
-python
-Toujours afficher les détails
-
-Copier
+```python
 def est_cyclique(plan):
     expediteur_initial = 'A'
     destinataire = plan[expediteur_initial]
@@ -95,34 +85,36 @@ def est_cyclique(plan):
         destinataire = plan[destinataire]
         nb_destinataires += 1
     return nb_destinataires == len(plan)
-Explication :
+```
+
+**Explication :**
 On part de 'A' et on suit la chaîne d'envois en comptant le nombre de personnes visitées. Si ce nombre est égal au nombre total de personnes dans le plan, le plan est cyclique.
 
-Sujet 03
-Exercice 1 : Maximum d’un tableau
-Énoncé :
-Écrire la fonction maximum_tableau(tab) qui renvoie le plus grand élément d’une liste non vide d’entiers.
+## Sujet 03
 
-Solution :
+### Exercice 1 : Max d'une table
 
-python
-Toujours afficher les détails
+**Énoncé :**
+Écrire la fonction maximum_tableau(tab) qui renvoie le max.
 
-Copier
+```python
+
 def maximum_tableau(tab):
     max_val = tab[0]
     for x in tab[1:]:
         if x > max_val:
             max_val = x
     return max_val
-Explication :
+```
+
+**Explication :**
 On parcourt la liste en mettant à jour le maximum dès qu’un élément supérieur est trouvé.
 
-Exercice 2 : Vérification d'un parenthésage
-Énoncé :
+### Exercice 2 : Vérification d'un parenthésage
+
+**Énoncé :**
 Compléter la fonction bon_parenthesage(ch) qui renvoie True si la chaîne de parenthèses est correctement parenthésée, False sinon. On utilisera une pile.
 
-Solution :
 
 ```python
 
@@ -149,39 +141,36 @@ def bon_parenthesage(ch):
     return pile.est_vide()
 ```
 
-Explication :
+**Explication :**
 Pour chaque '(' on empile, et pour chaque ')' on dépile. La chaîne est bien parenthésée si la pile est vide à la fin.
 
-Sujet 04
-Exercice 1 : Recherche de la dernière occurrence
-Énoncé :
+## Sujet 04
+
+### Exercice 1 : Recherche de la dernière occurrence
+
+**Énoncé :**
 Écrire la fonction recherche(tab, n) qui renvoie l’indice de la dernière occurrence de n dans la liste tab, ou None si n n’y apparaît pas.
 
-Solution :
+```python
 
-python
-Toujours afficher les détails
-
-Copier
 def recherche(tab, n):
     indice_derniere = None
     for i in range(len(tab)):
         if tab[i] == n:
             indice_derniere = i
     return indice_derniere
-Explication :
+```
+
+**Explication :**
 On parcourt le tableau et on met à jour l’indice à chaque fois que n est trouvé. Ainsi, à la fin, l’indice stocké est celui de la dernière occurrence.
 
-Exercice 2 : Point le plus proche
-Énoncé :
+### Exercice 2 : Point le plus proche
+
+**Énoncé :**
 On dispose d’un tableau de points (tuples d’entiers) et d’un point de départ. La fonction point_le_plus_proche(depart, tab) renvoie le point du tableau le plus proche du point de départ en termes de distance au carré.
 
-Solution :
+```python
 
-python
-Toujours afficher les détails
-
-Copier
 def distance_carre(point1, point2):
     x1, y1 = point1
     x2, y2 = point2
@@ -196,20 +185,20 @@ def point_le_plus_proche(depart, tab):
             min_dist = d
             min_point = tab[i]
     return min_point
-Explication :
+```
+
+**Explication :**
 On calcule la distance au carré pour chaque point du tableau et on garde celui dont la distance est minimale.
 
-Sujet 05
-Exercice 1 : Maximum et indice
-Énoncé :
+## Sujet 05
+
+### Exercice 1 : Maximum et indice
+
+**Énoncé :**
 Écrire la fonction max_et_indice(tab) qui renvoie un tuple contenant la valeur maximale d’une liste d’entiers et l’indice de sa première apparition.
 
-Solution :
+```python
 
-python
-Toujours afficher les détails
-
-Copier
 def max_et_indice(tab):
     max_val = tab[0]
     max_index = 0
@@ -218,21 +207,21 @@ def max_et_indice(tab):
             max_val = tab[i]
             max_index = i
     return (max_val, max_index)
-Explication :
+```
+
+**Explication :**
 On parcourt la liste en mettant à jour le maximum et son indice dès qu’un élément supérieur est trouvé.
 
-Exercice 2 : Ordre de gènes et points de rupture
-Énoncé :
+### Exercice 2 : Ordre de gènes et points de rupture
+
+**Énoncé :**
 On considère un tableau ordre qui est une permutation des entiers de 1 à n.
 
 La fonction est_un_ordre(tab) vérifie que le tableau contient bien tous les entiers de 1 à n.
 La fonction nombre_points_rupture(ordre) renvoie le nombre de points de rupture selon les règles données.
-Solution :
 
-python
-Toujours afficher les détails
+```python
 
-Copier
 def est_un_ordre(tab):
     n = len(tab)
     vus = []
@@ -255,42 +244,43 @@ def nombre_points_rupture(ordre):
         if diff != 1 and diff != -1:
             nb += 1
     return nb
-Explication :
+```
+
+**Explication :**
 est_un_ordre s’assure que chaque entier de 1 à n apparaît exactement une fois.
 nombre_points_rupture compte un point de rupture si le premier élément n’est pas 1, si le dernier n’est pas n et si deux éléments consécutifs ne se suivent pas (écart différent de 1 ou -1).
 
-Sujet 06
-Exercice 1 : Vérification de l'ordre croissant
-Énoncé :
+## Sujet 06
+
+### Exercice 1 : Vérification de l'ordre croissant
+
+**Énoncé :**
 Écrire la fonction verifie(tab) qui renvoie True si la liste est triée en ordre croissant, False sinon.
 Un tableau vide ou à un seul élément est considéré comme trié.
 
-Solution :
+```python
 
-python
-Toujours afficher les détails
-
-Copier
 def verifie(tab):
     for i in range(len(tab)-1):
         if tab[i] > tab[i+1]:
             return False
     return True
-Explication :
+```
+
+**Explication :**
 On compare chaque élément à celui qui le suit. Si un élément est supérieur à son successeur, l'ordre croissant est violé.
 
-Exercice 2 : Vote et détermination du gagnant
-Énoncé :
+### Exercice 2 : Vote et détermination du gagnant
+
+**Énoncé :**
 Écrire deux fonctions :
 
 depouille(urne) qui renvoie un dictionnaire comptant le nombre de voix pour chaque candidat à partir d'une liste de suffrages.
 vainqueurs(election) qui renvoie la liste des candidats ayant obtenu le maximum de voix.
 Solution :
 
-python
-Toujours afficher les détails
+```python
 
-Copier
 def depouille(urne):
     resultat = {}
     for bulletin in urne:
@@ -310,21 +300,21 @@ def vainqueurs(election):
             nmax = voix
             liste_finale = [candidat]
     return liste_finale
-Explication :
+```
+
+**Explication :**
 depouille parcourt la liste des votes et construit un dictionnaire de comptage.
 vainqueurs parcourt ce dictionnaire pour déterminer le ou les candidats ayant obtenu le plus grand nombre de voix.
 
-Sujet 07
-Exercice 1 : Conversion d'une liste de booléens en entier
-Énoncé :
+## Sujet 07
+
+### Exercice 1 : Conversion d'une liste de booléens en entier
+
+**Énoncé :**
 Écrire la fonction gb_vers_entier(tab) qui convertit une liste de booléens (représentation big-endian) en un entier.
 
-Solution :
+```python
 
-python
-Toujours afficher les détails
-
-Copier
 def gb_vers_entier(tab):
     entier = 0
     n = len(tab)
@@ -332,19 +322,18 @@ def gb_vers_entier(tab):
         if bit:
             entier += 2 ** (n - 1 - i)
     return entier
-Explication :
+```
+
+**Explication :**
 Chaque bit True ajoute 2^(n-1-i) à la somme, où n est la taille de la liste et i l’indice du bit.
 
-Exercice 2 : Tri par insertion
-Énoncé :
+### Exercice 2 : Tri par insertion
+
+**Énoncé :**
 Compléter la fonction tri_insertion(tab) qui trie la liste en insérant successivement chaque élément dans la partie déjà triée.
 
-Solution :
+```python
 
-python
-Toujours afficher les détails
-
-Copier
 def tri_insertion(tab):
     n = len(tab)
     for i in range(1, n):
@@ -354,20 +343,20 @@ def tri_insertion(tab):
             tab[j] = tab[j-1]
             j -= 1
         tab[j] = valeur_insertion
-Explication :
+```
+
+**Explication :**
 Pour chaque élément à partir du second, on le déplace vers la gauche dans la partie triée jusqu'à trouver sa place.
 
-Sujet 08
-Exercice 1 : Codage par différence (delta encoding)
-Énoncé :
+## Sujet 08
+
+### Exercice 1 : Codage par différence (delta encoding)
+
+**Énoncé :**
 Écrire la fonction delta(tab) qui renvoie un tableau où le premier élément reste inchangé et chaque autre élément est remplacé par la différence avec le précédent.
 
-Solution :
+```python
 
-python
-Toujours afficher les détails
-
-Copier
 def delta(tab):
     if tab == []:
         return []
@@ -375,41 +364,42 @@ def delta(tab):
     for i in range(1, len(tab)):
         resultat.append(tab[i] - tab[i-1])
     return resultat
-Explication :
+```
+
+**Explication :**
 Le premier élément est conservé, et pour chaque position i (à partir de 1), on calcule la différence entre tab[i] et tab[i-1].
 
-Exercice 2 : Expression arithmétique infixée
-Énoncé :
+### Exercice 2 : Expression arithmétique infixée
+
+**Énoncé :**
 Compléter la méthode infixe de la classe Expr qui renvoie la représentation infixe (avec parenthèses) d'une expression arithmétique représentée par un arbre binaire.
 
-Solution (méthode infixe) :
+```python
 
-python
-Toujours afficher les détails
-
-Copier
 def infixe(self):
     if self.est_une_feuille():
         return str(self.valeur)
     partie_gauche = self.gauche.infixe()
     partie_droite = self.droite.infixe()
     return "(" + partie_gauche + str(self.valeur) + partie_droite + ")"
-Explication :
+```
+
+**Explication :**
 Si le nœud est une feuille, on retourne sa valeur. Sinon, on renvoie la chaîne composée de la représentation infixe du sous-arbre gauche, de la valeur du nœud, puis du sous-arbre droit, le tout encadré de parenthèses.
 
-Sujet 09
-Exercice 1 : Tri des notes par effectif
-Énoncé :
+## Sujet 09
+
+### Exercice 1 : Tri des notes par effectif
+
+**Énoncé :**
 À partir d’une liste de notes entières (entre 0 et 10), écrire :
 
 effectif_notes(notes_eval) qui renvoie une liste de longueur 11 contenant le nombre d’occurrences de chaque note.
 notes_triees(eff) qui renvoie la liste des notes triées.
 Solution :
 
-python
-Toujours afficher les détails
+```python
 
-Copier
 def effectif_notes(notes_eval):
     eff = [0] * 11
     for note in notes_eval:
@@ -421,21 +411,22 @@ def notes_triees(eff):
     for note, count in enumerate(eff):
         resultat += [note] * count
     return resultat
-Explication :
+```
+
+**Explication :**
 On compte le nombre d’occurrences de chaque note puis on reconstruit la liste triée en ajoutant chaque note le nombre de fois qu’elle apparaît.
 
-Exercice 2 : Conversion binaire/décimale récursive
-Énoncé :
+### Exercice 2 : Conversion binaire/décimale récursive
+
+**Énoncé :**
 Écrire deux fonctions récursives :
 
 dec_to_bin(nb_dec) qui convertit un entier décimal en chaîne binaire.
 bin_to_dec(nb_bin) qui convertit une chaîne binaire en entier décimal.
 Solution :
 
-python
-Toujours afficher les détails
+```python
 
-Copier
 def dec_to_bin(nb_dec):
     q, r = nb_dec // 2, nb_dec % 2
     if q == 0:
@@ -449,10 +440,12 @@ def bin_to_dec(nb_bin):
     else:
         dernier_bit = 0 if nb_bin[-1] == '0' else 1
         return bin_to_dec(nb_bin[:-1]) * 2 + dernier_bit
-Explication :
+```
+
+**Explication :**
 Pour dec_to_bin, on divise récursivement par 2 en accumulant le reste. Pour bin_to_dec, on traite la chaîne en retirant le dernier caractère et en multipliant par 2.
 
-Sujet 10
+### Sujet 10
 Exercice 1 : Moyenne pondérée
 Énoncé :
 Écrire la fonction moyenne(notes) qui calcule la moyenne pondérée d’une liste de tuples (note, coefficient). Si la somme des coefficients est nulle, renvoyer None.
