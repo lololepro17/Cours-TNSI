@@ -445,17 +445,15 @@ def bin_to_dec(nb_bin):
 **Explication :**
 Pour dec_to_bin, on divise récursivement par 2 en accumulant le reste. Pour bin_to_dec, on traite la chaîne en retirant le dernier caractère et en multipliant par 2.
 
-### Sujet 10
-Exercice 1 : Moyenne pondérée
-Énoncé :
+## Sujet 10
+
+### Exercice 1 : Moyenne pondérée
+
+**Énoncé :**
 Écrire la fonction moyenne(notes) qui calcule la moyenne pondérée d’une liste de tuples (note, coefficient). Si la somme des coefficients est nulle, renvoyer None.
 
-Solution :
+```python
 
-python
-Toujours afficher les détails
-
-Copier
 def moyenne(notes):
     somme_coeff = 0
     somme_ponderee = 0.0
@@ -465,19 +463,18 @@ def moyenne(notes):
     if somme_coeff == 0:
         return None
     return somme_ponderee / somme_coeff
-Explication :
+```
+
+**Explication :**
 On multiplie chaque note par son coefficient, on somme le tout et on divise par la somme des coefficients. Si cette somme est nulle, on renvoie None.
 
-Exercice 2 : Jeu du Plus ou Moins
-Énoncé :
+### Exercice 2 : Jeu du Plus ou Moins
+
+**Énoncé :**
 Compléter la fonction plus_ou_moins() qui génère un nombre mystère entre 1 et 99 et permet à l’utilisateur de deviner ce nombre en 10 essais ou moins, en indiquant "Trop petit" ou "Trop grand" à chaque proposition.
 
-Solution :
+```python
 
-python
-Toujours afficher les détails
-
-Copier
 from random import randint
 
 def plus_ou_moins():
@@ -494,38 +491,37 @@ def plus_ou_moins():
         print("Gagné ! Le nombre était", nb_mystere, "trouvé en", compteur, "essais.")
     else:
         print("Perdu... Le nombre mystère était", nb_mystere)
-Explication :
+```
+
+**Explication :**
 On génère un nombre aléatoire et on lit successivement les propositions de l’utilisateur, en donnant un indice à chaque essai. Le jeu s’arrête dès que le nombre mystère est trouvé ou après 10 essais.
 
-Sujet 11
-Exercice 1 : Nombre de mots dans une phrase
-Énoncé :
+## Sujet 11
+
+### Exercice 1 : Nombre de mots dans une phrase
+
+**Énoncé :**
 Écrire la fonction nombre_de_mots(phrase) qui renvoie le nombre de mots dans une phrase, sachant que les mots sont séparés par un espace.
 
-Solution :
+```python
 
-python
-Toujours afficher les détails
-
-Copier
 def nombre_de_mots(phrase):
     nb_espaces = phrase.count(' ')
     if phrase.endswith(' !') or phrase.endswith(' ?'):
         nb_espaces -= 1
     return nb_espaces + 1 if phrase != "" else 0
-Explication :
+```
+
+**Explication :**
 Le nombre de mots est égal au nombre d’espaces plus 1, en ajustant le cas particulier où la ponctuation finale est précédée d’un espace.
 
-Exercice 2 : Insertion dans un arbre binaire de recherche
-Énoncé :
+### Exercice 2 : Insertion dans un arbre binaire de recherche
+
+**Énoncé :**
 Compléter la méthode inserer(self, cle) de la classe Noeud pour insérer une clé dans un arbre binaire de recherche sans doublon.
 
-Solution :
+```python
 
-python
-Toujours afficher les détails
-
-Copier
 class Noeud:
     def __init__(self, etiquette):
         self.etiquette = etiquette
@@ -544,20 +540,20 @@ class Noeud:
             else:
                 self.droit = Noeud(cle)
         # si cle == self.etiquette, ne rien faire (pas de doublons)
-Explication :
+```
+
+**Explication :**
 On compare cle à la valeur du nœud courant. Si elle est inférieure, on l’insère dans le sous-arbre gauche (création si nécessaire) ; si elle est supérieure, dans le sous-arbre droit. Aucun traitement n’est fait si la clé existe déjà.
 
-Sujet 12
-Exercice 1 : Tri par sélection (version complète)
-Énoncé :
+## Sujet 12
+
+### Exercice 1 : Tri par sélection (version complète)
+
+**Énoncé :**
 Écrire la fonction tri_selection(tab) qui trie la liste par ordre croissant en place.
 
-Solution :
+```python
 
-python
-Toujours afficher les détails
-
-Copier
 def tri_selection(tab):
     N = len(tab)
     for k in range(0, N-1):
@@ -566,45 +562,61 @@ def tri_selection(tab):
             if tab[i] < tab[imin]:
                 imin = i
         tab[k], tab[imin] = tab[imin], tab[k]
-Explication :
+```
+
+**Explication :**
 Même principe que dans Sujet 01. On parcourt la liste et on échange à chaque itération le plus petit élément avec celui en position k.
 
-Exercice 2 : Jeu du Plus ou Moins (version reprise)
-Énoncé :
+### Exercice 2 : Jeu du Plus ou Moins (version reprise)
+
+**Énoncé :**
 Compléter la fonction plus_ou_moins() pour le jeu de devinette.
 
-Solution :
-(Voir Sujet 10, Exercice 2 – le même code est applicable.)
+```python
+from random import randint
 
-Sujet 13
-Exercice 1 : Recherche de la première occurrence
-Énoncé :
+def plus_ou_moins():
+    nb_mystere = randint(1, 99)
+    nb_test = int(input("Proposez un nombre entre 1 et 99 : "))
+    compteur = 1
+    while nb_mystere != nb_test and compteur < 10:
+        if nb_test < nb_mystere:
+            nb_test = int(input("Trop petit ! Testez encore : "))
+        else:
+            nb_test = int(input("Trop grand ! Testez encore : "))
+        compteur += 1
+    if nb_mystere == nb_test:
+        print("Gagné ! Le nombre était", nb_mystere, "trouvé en", compteur, "essais.")
+    else:
+        print("Perdu... Le nombre mystère était", nb_mystere)
+```
+
+## Sujet 13
+
+### Exercice 1 : Recherche de la première occurrence
+
+**Énoncé :**
 Écrire la fonction recherche(elt, tab) qui renvoie l’indice de la première occurrence de elt dans tab, ou None si absent.
 
-Solution :
+```python
 
-python
-Toujours afficher les détails
-
-Copier
 def recherche(elt, tab):
     for i in range(len(tab)):
         if tab[i] == elt:
             return i
     return None
-Explication :
+```
+
+**Explication :**
 On parcourt la liste du début et on retourne dès qu’on trouve l’élément recherché.
 
-Exercice 2 : Insertion dans un tableau trié
-Énoncé :
+## Exercice 2 : Insertion dans un tableau trié
+
+**Énoncé :**
 Compléter la fonction insere(tab, a) qui insère l’entier a dans une liste triée tab de manière à conserver l’ordre.
 
-Solution :
+```python
 
-python
-Toujours afficher les détails
-
-Copier
 def insere(tab, a):
     tab_a = [a] + tab[:]  # création d'une copie avec a en tête
     i = 0
@@ -613,20 +625,20 @@ def insere(tab, a):
         tab_a[i+1] = a
         i += 1
     return tab_a
-Explication :
+```
+
+**Explication :**
 On insère a en tête, puis on décale les éléments jusqu’à trouver la position correcte pour que la nouvelle liste reste triée.
 
-Sujet 14
-Exercice 1 : Minimum et maximum d’un tableau
-Énoncé :
+## Sujet 14
+
+### Exercice 1 : Minimum et maximum d’un tableau
+
+**Énoncé :**
 Écrire la fonction min_et_max(tab) qui renvoie un dictionnaire avec les clés 'min' et 'max'.
 
-Solution :
+```python
 
-python
-Toujours afficher les détails
-
-Copier
 def min_et_max(tab):
     min_val = tab[0]
     max_val = tab[0]
@@ -636,19 +648,18 @@ def min_et_max(tab):
         if x > max_val:
             max_val = x
     return {'min': min_val, 'max': max_val}
-Explication :
+```
+
+**Explication :**
 On parcourt la liste pour déterminer les valeurs minimale et maximale et on les renvoie dans un dictionnaire.
 
-Exercice 2 : Paquet de cartes
-Énoncé :
+### Exercice 2 : Paquet de cartes
+
+**Énoncé :**
 Compléter la classe Paquet_de_cartes qui doit initialiser un paquet de 52 cartes (ordonnées par couleur et valeur) et la méthode recuperer_carte(pos) qui renvoie la carte à la position pos après avoir vérifié que l’indice est valide.
 
-Solution :
+```python
 
-python
-Toujours afficher les détails
-
-Copier
 class Carte:
     def __init__(self, c, v):
         self.couleur = c
@@ -673,38 +684,37 @@ class Paquet_de_cartes:
     def recuperer_carte(self, pos):
         assert 0 <= pos < len(self.contenu), "paramètre pos invalide"
         return self.contenu.pop(pos)
-Explication :
+```
+
+**Explication :**
 Le constructeur crée la liste de 52 cartes. La méthode recuperer_carte vérifie que l’indice est valide grâce à une assertion avant de retirer et renvoyer la carte.
 
-Sujet 15
-Exercice 1 : Moyenne arithmétique
-Énoncé :
+## Sujet 15
+
+### Exercice 1 : Moyenne arithmétique
+
+**Énoncé :**
 Écrire la fonction moyenne(notes) qui renvoie la moyenne simple des nombres d'une liste non vide de flottants.
 
-Solution :
+```python
 
-python
-Toujours afficher les détails
-
-Copier
 def moyenne(notes):
     total = 0.0
     for x in notes:
         total += x
     return total / len(notes)
-Explication :
+```
+
+**Explication :**
 On calcule la somme des éléments puis on divise par le nombre d’éléments.
 
-Exercice 2 : Conversion en binaire
-Énoncé :
+### Exercice 2 : Conversion en binaire
+
+**Énoncé :**
 Compléter la fonction binaire(a) qui convertit un entier en sa représentation binaire sous forme de chaîne.
 
-Solution :
+```python
 
-python
-Toujours afficher les détails
-
-Copier
 def binaire(a):
     if a == 0:
         return '0'
@@ -713,20 +723,20 @@ def binaire(a):
         bin_a = str(a % 2) + bin_a
         a = a // 2
     return bin_a
-Explication :
+```
+
+**Explication :**
 On utilise la méthode des divisions successives pour construire la chaîne binaire.
 
-Sujet 16
-Exercice 1 : Écriture binaire d’un entier positif
-Énoncé :
+## Sujet 16
+
+### Exercice 1 : Écriture binaire d’un entier positif
+
+**Énoncé :**
 Écrire la fonction ecriture_binaire_entier_positif(n) qui renvoie la représentation binaire de n sous forme de chaîne, sans utiliser la fonction bin.
 
-Solution :
+```python
 
-python
-Toujours afficher les détails
-
-Copier
 def ecriture_binaire_entier_positif(n):
     if n == 0:
         return '0'
@@ -735,19 +745,18 @@ def ecriture_binaire_entier_positif(n):
         resultat = str(n % 2) + resultat
         n = n // 2
     return resultat
-Explication :
+```
+
+**Explication :**
 Même principe que précédemment, on construit la chaîne binaire en préfixant les bits calculés.
 
-Exercice 2 : Tri à bulles
-Énoncé :
+### Exercice 2 : Tri à bulles
+
+**Énoncé :**
 Compléter la fonction tri_bulles(tab) qui trie la liste en place en utilisant l’algorithme du tri à bulles.
 
-Solution :
+```python
 
-python
-Toujours afficher les détails
-
-Copier
 def echange(tab, i, j):
     temp = tab[i]
     tab[i] = tab[j]
@@ -759,47 +768,48 @@ def tri_bulles(tab):
         for j in range(0, n-1-i):
             if tab[j] > tab[j+1]:
                 echange(tab, j, j+1)
-Explication :
+```
+
+**Explication :**
 À chaque passe, le plus grand élément "bulle" jusqu’à la fin du tableau. On répète sur la partie non triée.
 
-Sujet 17
-Exercice 1 : Nombre de répétitions
-Énoncé :
+## Sujet 17
+
+### Exercice 1 : Nombre de répétitions
+
+**Énoncé :**
 Écrire la fonction nb_repetitions(elt, tab) qui renvoie le nombre de fois que elt apparaît dans la liste tab.
 
-Solution :
+```python
 
-python
-Toujours afficher les détails
-
-Copier
 def nb_repetitions(elt, tab):
     count = 0
     for x in tab:
         if x == elt:
             count += 1
     return count
-Explication :
+```
+
+**Explication :**
 On incrémente un compteur pour chaque occurrence de l’élément.
 
-Exercice 2 : Conversion en binaire (version reprise)
-Énoncé :
+### Exercice 2 : Conversion en binaire (version reprise)
+
+**Énoncé :**
 Compléter la fonction binaire(a) pour convertir un entier positif en binaire.
 
 Solution :
-(Voir Sujet 15, Exercice 2 – même code.)
+(Sujet 15, Exercice 2 – même code.)
 
-Sujet 18
-Exercice 1 : Multiplication sans utiliser '*' ou '//'
-Énoncé :
+## Sujet 18
+
+### Exercice 1 : Multiplication sans utiliser '*' ou '//'
+
+**Énoncé :**
 Écrire la fonction multiplication(n1, n2) qui renvoie le produit de deux nombres entiers en n'utilisant que l'addition et la soustraction.
 
-Solution :
+```python
 
-python
-Toujours afficher les détails
-
-Copier
 def multiplication(n1, n2):
     if n1 == 0 or n2 == 0:
         return 0
@@ -814,19 +824,18 @@ def multiplication(n1, n2):
     for i in range(n2):
         resultat += n1
     return -resultat if negatif else resultat
-Explication :
+```
+
+**Explication :**
 On détermine le signe du résultat, puis on ajoute n1 à lui-même n2 fois.
 
-Exercice 2 : Recherche dichotomique
-Énoncé :
+### Exercice 2 : Recherche dichotomique
+
+**Énoncé :**
 Compléter la fonction récursive chercher(tab, x, i, j) qui renvoie l'indice de x dans tab (trié), ou None si x n’est pas présent.
 
-Solution :
+```python
 
-python
-Toujours afficher les détails
-
-Copier
 def chercher(tab, x, i, j):
     if i > j:
         return None
@@ -837,21 +846,21 @@ def chercher(tab, x, i, j):
         return chercher(tab, x, i, m-1)
     else:
         return m
-Explication :
+```
+
+**Explication :**
 C’est l’algorithme classique de recherche dichotomique, en divisant le tableau en deux à chaque appel récursif.
 
-Sujet 19
-Exercice 1 : Liste des puissances
-Énoncé :
+## Sujet 19
+
+### Exercice 1 : Liste des puissances
+
+**Énoncé :**
 Écrire la fonction liste_puissances(a, n) qui renvoie la liste des puissances de a de a¹ à aⁿ sans utiliser l'opérateur ** ni pow.
 Écrire aussi liste_puissances_borne(a, borne) qui renvoie les puissances de a (à partir de a¹) strictement inférieures à borne.
 
-Solution :
+```python
 
-python
-Toujours afficher les détails
-
-Copier
 def liste_puissances(a, n):
     """Renvoie la liste [a, a², ..., aⁿ] sans utiliser ** ou pow."""
     resultat = []
@@ -869,23 +878,23 @@ def liste_puissances_borne(a, borne):
         resultat.append(current)
         current = current * a
     return resultat
-Explication :
+```
+
+**Explication :**
 On utilise une variable current initialisée à a et on la multiplie par a à chaque itération pour obtenir la puissance suivante.
 
-Exercice 2 : Code parfait d'un mot
-Énoncé :
+### Exercice 2 : Code parfait d'un mot
+
+**Énoncé :**
 À l’aide d’un dictionnaire qui associe à chaque lettre son code, écrire la fonction codes_parfait(mot) qui renvoie un triplet (code_additionne, code_concatene, mot_est_parfait)
 où :
 
 code_additionne est la somme des codes des lettres du mot
 code_concatene est la concaténation des codes (convertie en entier)
 mot_est_parfait est un booléen indiquant si code_additionne divise code_concatene.
-Solution :
 
-python
-Toujours afficher les détails
+```python
 
-Copier
 dico = {"A": 1, "B": 2, "C": 3, "D": 4, "E": 5, "F": 6,
         "G": 7, "H": 8, "I": 9, "J": 10, "K": 11, "L": 12,
         "M": 13, "N": 14, "O": 15, "P": 16, "Q": 17,
@@ -902,21 +911,22 @@ def codes_parfait(mot):
     code_concatene_int = int(code_concatene)
     mot_est_parfait = (code_concatene_int % code_additionne == 0) if code_additionne != 0 else False
     return code_additionne, code_concatene_int, mot_est_parfait
-Explication :
+```
+
+**Explication :**
 Pour chaque lettre du mot, on ajoute son code à la chaîne et à la somme. On teste ensuite si la somme divise le nombre formé par la concaténation.
 
-Sujet 20
-Exercice 1 : Lancer de dés et vérification de la paire de 6
-Énoncé :
+## Sujet 20
+
+### Exercice 1 : Lancer de dés et vérification de la paire de 6
+
+**Énoncé :**
 
 Écrire la fonction lancer(n) qui renvoie une liste de n entiers aléatoires entre 1 et 6.
 Écrire la fonction paire_6(tab) qui renvoie True si le nombre de 6 dans tab est supérieur ou égal à 2, sinon False.
-Solution :
 
-python
-Toujours afficher les détails
+```python
 
-Copier
 from random import randint
 
 def lancer(n):
@@ -933,20 +943,19 @@ def paire_6(tab):
         if x == 6:
             count += 1
     return count >= 2
-Explication :
+```
+
+**Explication :**
 La fonction lancer utilise randint pour générer des entiers aléatoires compris entre 1 et 6.
 La fonction paire_6 compte les 6 dans la liste et vérifie si ce nombre est supérieur ou égal à 2.
 
-Exercice 2 : Conversion en binaire (version itérative)
-Énoncé :
+### Exercice 2 : Conversion en binaire (version itérative)
+
+**Énoncé :**
 Compléter la fonction binaire(a) qui convertit un entier en sa représentation binaire sous forme de chaîne.
 
-Solution :
+```python
 
-python
-Toujours afficher les détails
-
-Copier
 def binaire(a):
     """Convertit l'entier a en sa représentation binaire (chaine de caractères)."""
     if a == 0:
@@ -956,5 +965,7 @@ def binaire(a):
         bin_a = str(a % 2) + bin_a
         a = a // 2
     return bin_a
-Explication :
+```
+
+**Explication :**
 On utilise la méthode des divisions successives pour construire la chaîne binaire en préfixant le reste obtenu à chaque division.
