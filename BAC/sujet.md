@@ -115,7 +115,6 @@ On parcourt la liste en mettant à jour le maximum dès qu’un élément supér
 **Énoncé :**
 Compléter la fonction bon_parenthesage(ch) qui renvoie True si la chaîne de parenthèses est correctement parenthésée, False sinon. On utilisera une pile.
 
-
 ```python
 
 class Pile:
