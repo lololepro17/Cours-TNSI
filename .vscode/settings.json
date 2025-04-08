@@ -8,5 +8,10 @@
         "rect"
     ],
     "docwriter.style": "Google",
-    "language": "fr"
+    "language": "fr",
+    "python.testing.pytestArgs": [
+        "."
+    ],
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestEnabled": true
 }
