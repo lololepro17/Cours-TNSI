@@ -22,7 +22,7 @@ def convertit_texte_en_binaire(texte: str) -> str:
     """
     return ''.join(format(ord(i), '08b') for i in texte)
 
-print(convertit_texte_en_binaire("caca"))
+assert(convertit_texte_en_binaire("NSI")) == "010011100101001101001001"
 
 def convertit_binaire_en_texte(binaire: str) -> str:
     """
@@ -33,6 +33,8 @@ def convertit_binaire_en_texte(binaire: str) -> str:
     """
     return ''.join(chr(int(binaire[i:i + 8], 2)) for i in range(0, len(binaire), 8))
 
+assert(convertit_binaire_en_texte("010011100101001101001001")) == "NSI"
+convertit_binaire_en_texte("010011100101001101001001")
 def convertit_texte_en_binaire(texte: str) -> str:
     """
     Convertit un texte en une chaîne de bits.
