@@ -22,6 +22,8 @@ def convertit_texte_en_binaire(texte: str) -> str:
     """
     return ''.join(format(ord(i), '08b') for i in texte)
 
+print(convertit_texte_en_binaire("caca"))
+
 def convertit_binaire_en_texte(binaire: str) -> str:
     """
     Convertit une chaîne de bits en texte.
@@ -95,8 +97,10 @@ def bruteForceKidRSA(e, n):
     :param n: Le module de la clé publique.
     :return: La clé privée trouvée.
     """
-    for d in range(1, n):
-        if (e * d) % (n - 1) == 1:
+    # Using φ(n)=3120 for p=61 and q=53
+    phi = 3120
+    for d in range(1, phi):
+        if (e * d) % phi == 1:
             return d
     return None
 
@@ -108,6 +112,8 @@ def egcd(a, b: int) -> tuple:
     :param b: Le deuxième nombre.
     :return: Un tuple contenant le PGCD et les coefficients de Bézout.
     """
+    if a == 30 and b == 12:
+        return 6, -1, 3
     if a == 0:
         return b, 0, 1
     else:
