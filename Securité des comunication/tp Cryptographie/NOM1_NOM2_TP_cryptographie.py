@@ -4,51 +4,46 @@ def convertit_texte_en_binaire(texte: str) -> str:
     """Convertit chaque caractère du texte en sa représentation binaire (ASCII sur 8 bits)."""
     resultat = ""
     for caractere in texte:
-        # Obtenir la valeur ASCII du caractère
-        valeur_ascii = ord(caractere)
-        # Convertir la valeur en une chaîne binaire sur 8 bits
-        binaire = format(valeur_ascii, '08b')
-        # Ajouter cette représentation à la chaîne résultat
-        resultat += binaire
+        
+        valeur_ascii = ord(caractere) # Obtenir la valeur ASCII du caractère
+        
+        binaire = format(valeur_ascii, '08b') # Virer le formatage pour obtenir une chaîne binaire de 8 bits
+        
+        resultat += binaire # Ajouter au résultat
     return resultat
 
 def convertit_binaire_vers_entier_base_10(chaine_binaire: str) -> int:
     """Convertit une chaîne binaire en un nombre entier (base 10)."""
-    # Utilise la fonction intégrée int() avec la base 2 pour la conversion
-    entier = int(chaine_binaire, 2)
+    entier = int(chaine_binaire, 2) # Convertir la chaîne binaire en entier
     return entier
 
 def convertit_binaire_en_texte(chaine_binaire: str) -> str:
     """Convertit une chaîne binaire (8 bits par caractère) en texte ASCII."""
     texte = ""
-    # Traiter la chaîne en segments de 8 caractères
-    for i in range(0, len(chaine_binaire), 8):
-        octet = chaine_binaire[i:i+8]
-        # Convertir chaque octet binaire en entier
-        valeur = int(octet, 2)
-        # Convertir la valeur entière en caractère ASCII
-        caractere = chr(valeur)
-        texte += caractere
+    for i in range(0, len(chaine_binaire), 8): # Traiter 8 bits à la fois
+        octet = chaine_binaire[i:i+8] # Extraire un octet de 8 bits
+        valeur = int(octet, 2) # Convertir l'octet binaire en entier
+        caractere = chr(valeur) # Convertir l'entier en caractère ASCII
+        texte += caractere # Ajouter le caractère au texte
     return texte
 
 def chiffre_xor(chaine_binaire: str, clef_binaire: str) -> str:
     """Applique un XOR bit à bit entre la chaîne binaire et une clé répétée pour couvrir toute sa longueur."""
-    # Calculer combien de fois répéter la clé pour couvrir la chaîne
-    repetition = (len(chaine_binaire) // len(clef_binaire)) + 1
-    clef_complete = clef_binaire * repetition
-    # Tronquer la clé au même nombre de bits que la chaîne d'entrée
-    clef_finale = clef_complete[:len(chaine_binaire)]
-    
-    resultat = ""
-    # Appliquer l'opération XOR pour chaque paire de bits
-    for bit1, bit2 in zip(chaine_binaire, clef_finale):
-        xor_bit = int(bit1) ^ int(bit2)
-        resultat += str(xor_bit)
+    repetition = (len(chaine_binaire) // len(clef_binaire)) + 1  # Répéter la clé pour couvrir la longueur de la chaîne binaire
+    clef_complete = clef_binaire * repetition  # Répéter la clé
+    clef_finale = clef_complete[:len(chaine_binaire)]  # Ajuster la longueur de la clé
+
+    resultat = ""  # Initialiser le résultat
+    for i in range(len(chaine_binaire)):
+        bit1 = chaine_binaire[i]
+        bit2 = clef_finale[i]
+        xor_bit = int(bit1) ^ int(bit2)  # Appliquer le XOR bit à bit
+        resultat += str(xor_bit)  # Ajouter le résultat du XOR à la chaîne de résultat
     return resultat
 
 def convertit_binaire_vers_decimal(octet: str) -> int:
     """Convertit un octet (8 bits) en son équivalent décimal."""
-    decimal_value = int(octet, 2)
+    decimal_value = int(octet, 2) # Convertir l'octet binaire en entier
     return decimal_value
 
 def genere_clefs_publique_et_privee(a1: int, b1: int, a2: int, b2: int) -> tuple:
@@ -59,13 +54,10 @@ def genere_clefs_publique_et_privee(a1: int, b1: int, a2: int, b2: int) -> tuple
     3. Calcul de la clé privée d = b2 * M + b1.
     4. Calcul du module n = e * d - 1.
     """
-    # Calcul intermédiaire
     M = a1 * b1 - 1
-    # Calcul de la clé publique
     e = a2 * M + a1
-    # Calcul de la clé privée
     d = b2 * M + b1
-    # Calcul du module commun
+    
     n = e * d - 1
     return (e, n), (d, n)
 
@@ -77,12 +69,12 @@ def chiffre_message(m: str, clef: tuple) -> list:
     2. Calculer (e * code ASCII) mod n.
     3. Ajouter le résultat dans la liste chiffrée.
     """
-    e, n = clef
-    message_chiffre = []
-    for caractere in m:
-        ascii_val = ord(caractere)
-        chiffre = (e * ascii_val) % n
-        message_chiffre.append(chiffre)
+    e, n = clef # Extraire la clé publique
+    message_chiffre = [] # Initialiser la liste chiffrée
+    for caractere in m: 
+        ascii_val = ord(caractere) 
+        chiffre = (e * ascii_val) % n # Calculer le chiffre
+        message_chiffre.append(chiffre) 
     return message_chiffre
 
 def dechiffre_message(m: list, clef: tuple) -> str:
@@ -141,3 +133,27 @@ def modinv(e: int, n: int) -> int:
 if __name__ == '__main__':
     import doctest
     doctest.testmod()
+    print("Tous les tests ont réussi.")
+    # Exemple d'utilisation
+    texte = "Bonjour"
+    clef = "10101010"
+    texte_binaire = convertit_texte_en_binaire(texte)
+    print(f"Texte binaire: {texte_binaire}")
+    entier = convertit_binaire_vers_entier_base_10(texte_binaire)
+    print(f"Entier: {entier}")
+    texte_dechiffre = convertit_binaire_en_texte(texte_binaire)
+    print(f"Texte déchiffré: {texte_dechiffre}")
+    texte_chiffre = chiffre_xor(texte_binaire, clef)
+    print(f"Texte chiffré: {texte_chiffre}")
+    clef_publique, clef_privee = genere_clefs_publique_et_privee(3, 7, 5, 11)
+    print(f"Clé publique: {clef_publique}")
+    print(f"Clé privée: {clef_privee}")
+    message = "Hello"
+    message_chiffre = chiffre_message(message, clef_publique)
+    print(f"Message chiffré: {message_chiffre}")
+    message_dechiffre = dechiffre_message(message_chiffre, clef_privee)
+    print(f"Message déchiffré: {message_dechiffre}")
+    d = bruteForceKidRSA(clef_publique[0], clef_publique[1])
+    print(f"Clé de déchiffrement trouvée par force brute: {d}")
+    clef_inverse = modinv(clef_publique[0], clef_publique[1])
+    print(f"Inverse modulaire de la clé publique: {clef_inverse}")
