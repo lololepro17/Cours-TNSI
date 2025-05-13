@@ -34,15 +34,6 @@ def convertit_binaire_en_texte(binaire: str) -> str:
     return ''.join(chr(int(binaire[i:i + 8], 2)) for i in range(0, len(binaire), 8))
 
 assert(convertit_binaire_en_texte("010011100101001101001001")) == "NSI"
-convertit_binaire_en_texte("010011100101001101001001")
-def convertit_texte_en_binaire(texte: str) -> str:
-    """
-    Convertit un texte en une chaîne de bits.
-
-    :param texte: Le texte à convertir.
-    :return: La chaîne de bits correspondante.
-    """
-    return ''.join(format(ord(i), '08b') for i in texte)
 
 def chiffre_XOR(texte: str, cle: str) -> str:
     """
@@ -54,6 +45,8 @@ def chiffre_XOR(texte: str, cle: str) -> str:
     """
     return ''.join(chr(ord(a) ^ ord(b)) for a, b in zip(texte, cle))
 
+print(chiffre_XOR("NSI", "CLE"))
+
 def convertit_binaire_vers_decimal(decimal: int) -> str:
     """
     Convertit un nombre décimal en binaire.
@@ -62,6 +55,8 @@ def convertit_binaire_vers_decimal(decimal: int) -> str:
     :return: La chaîne binaire correspondante.
     """
     return bin(decimal)[2:]
+
+convertit_binaire_vers_decimal(10)
 
 def genere_clés_publique_et_privee() -> tuple:
     """
