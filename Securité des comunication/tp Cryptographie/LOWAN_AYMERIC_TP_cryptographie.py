@@ -1,7 +1,14 @@
 import doctest
 
 def convertit_texte_en_binaire(texte: str) -> str:
-    """Convertit chaque caractère du texte en sa représentation binaire (ASCII sur 8 bits)."""
+    """Convertit chaque caractère du texte en sa représentation binaire (ASCII sur 8 bits).
+    >>> convertit_texte_en_binaire('A')
+    '01000001'
+    >>> convertit_texte_en_binaire('Hello')
+    '0100100001100101011011000110110001101111'
+    >>> convertit_texte_en_binaire('')
+    ''
+    """
     resultat = ""
     for caractere in texte:
         
@@ -13,12 +20,26 @@ def convertit_texte_en_binaire(texte: str) -> str:
     return resultat
 
 def convertit_binaire_vers_entier_base_10(chaine_binaire: str) -> int:
-    """Convertit une chaîne binaire en un nombre entier (base 10)."""
+    """Convertit une chaîne binaire en un nombre entier (base 10).
+    >>> convertit_binaire_vers_entier_base_10('01000001') 
+    65
+    >>> convertit_binaire_vers_entier_base_10('00000000')
+    0
+    >>> convertit_binaire_vers_entier_base_10('11111111')
+    255
+    """
     entier = int(chaine_binaire, 2) # Convertir la chaîne binaire en entier
     return entier
 
 def convertit_binaire_en_texte(chaine_binaire: str) -> str:
-    """Convertit une chaîne binaire (8 bits par caractère) en texte ASCII."""
+    """Convertit une chaîne binaire (8 bits par caractère) en texte ASCII.
+    >>> convertit_binaire_en_texte('01000001')
+    'A'
+    >>> convertit_binaire_en_texte('0100100001100101011011000110110001101111')
+    'Hello'
+    >>> convertit_binaire_en_texte('')
+    ''
+    """
     texte = ""
     for i in range(0, len(chaine_binaire), 8): # Traiter 8 bits à la fois
         octet = chaine_binaire[i:i+8] # Extraire un octet de 8 bits
@@ -28,7 +49,14 @@ def convertit_binaire_en_texte(chaine_binaire: str) -> str:
     return texte
 
 def chiffre_xor(chaine_binaire: str, clef_binaire: str) -> str:
-    """Applique un XOR bit à bit entre la chaîne binaire et une clé répétée pour couvrir toute sa longueur."""
+    """Applique un XOR bit à bit entre la chaîne binaire et une clé répétée pour couvrir toute sa longueur.
+    >>> chiffre_xor('0000', '01')
+    '0101'
+    >>> chiffre_xor('11111111', '10101010') 
+    '01010101'
+    >>> chiffre_xor('', '1')
+    ''
+    """
     repetition = (len(chaine_binaire) // len(clef_binaire)) + 1  # Répéter la clé pour couvrir la longueur de la chaîne binaire
     clef_complete = clef_binaire * repetition  # Répéter la clé
     clef_finale = clef_complete[:len(chaine_binaire)]  # Ajuster la longueur de la clé
@@ -42,7 +70,14 @@ def chiffre_xor(chaine_binaire: str, clef_binaire: str) -> str:
     return resultat
 
 def convertit_binaire_vers_decimal(octet: str) -> int:
-    """Convertit un octet (8 bits) en son équivalent décimal."""
+    """Convertit un octet (8 bits) en son équivalent décimal.
+    >>> convertit_binaire_vers_decimal('00000000')
+    0
+    >>> convertit_binaire_vers_decimal('11111111')
+    255
+    >>> convertit_binaire_vers_decimal('01000001')
+    65
+    """
     decimal_value = int(octet, 2) # Convertir l'octet binaire en entier
     return decimal_value
 
@@ -53,6 +88,10 @@ def genere_clefs_publique_et_privee(a1: int, b1: int, a2: int, b2: int) -> tuple
     2. Calcul de la clé publique e = a2 * M + a1.
     3. Calcul de la clé privée d = b2 * M + b1.
     4. Calcul du module n = e * d - 1.
+    
+    >>> clef_pub, clef_priv = genere_clefs_publique_et_privee(3, 7, 5, 11)
+    >>> clef_pub[0] * clef_priv[0] - 1 == clef_pub[1]
+    True
     """
     M = a1 * b1 - 1
     e = a2 * M + a1
@@ -68,6 +107,10 @@ def chiffre_message(m: str, clef: tuple) -> list:
     1. Convertir le caractère en son code ASCII.
     2. Calculer (e * code ASCII) mod n.
     3. Ajouter le résultat dans la liste chiffrée.
+
+    >>> msg = chiffre_message('A', (5, 20))
+    >>> msg[0] > 0
+    True
     """
     e, n = clef # Extraire la clé publique
     message_chiffre = [] # Initialiser la liste chiffrée
@@ -84,6 +127,13 @@ def dechiffre_message(m: list, clef: tuple) -> str:
     1. Calculer (d * entier) mod n.
     2. Convertir le résultat en caractère ASCII.
     3. Assembler les caractères pour former le message.
+
+    >>> clef_pub, clef_priv = genere_clefs_publique_et_privee(3, 7, 5, 11)
+    >>> msg = 'Hello'
+    >>> chiffre = chiffre_message(msg, clef_pub)
+    >>> dechiffre_message(chiffre, clef_priv)
+    'Hello'
+    
     """
     d, n = clef
     message = ""
@@ -97,6 +147,11 @@ def bruteForceKidRSA(e: int, n: int) -> int:
     """Recherche par force brute la clé de décryptage d pour kidRSA telle que (e * d - 1) est divisible par n.
     
     Itère sur des valeurs possibles de d de 1 à n-1.
+    
+    >>> clef_pub, clef_priv = genere_clefs_publique_et_privee(3, 7, 5, 11)
+    >>> d = bruteForceKidRSA(clef_pub[0], clef_pub[1])
+    >>> (clef_pub[0] * d - 1) % clef_pub[1] == 0
+    True
     """
     for d in range(1, n):
         if (e * d - 1) % n == 0:
@@ -108,6 +163,12 @@ def egcd(a: int, b: int) -> tuple:
     
     Retourne un tuple (g, x, y) satisfaisant l'équation: a * x + b * y = g,
     où g est le plus grand commun diviseur (PGCD) de a et b.
+    
+    >>> g, x, y = egcd(48, 30)
+    >>> g == 6
+    True
+    >>> 48 * x + 30 * y == g
+    True
     """
     if a == 0:
         return (b, 0, 1)
@@ -123,6 +184,11 @@ def modinv(e: int, n: int) -> int:
     """Calcule l'inverse modulaire de e modulo n en utilisant l'algorithme d'Euclide étendu.
     
     Si e et n ne sont pas premiers entre eux, la fonction retourne False.
+    
+    >>> modinv(7, 20)
+    3
+    >>> modinv(15, 20) # No modular inverse exists since gcd(15,20) != 1
+    False
     """
     g, x, _ = egcd(e, n)
     if g != 1:
@@ -134,8 +200,9 @@ if __name__ == '__main__':
     import doctest
     doctest.testmod()
     print("Tous les tests ont réussi.")
-    # Exemple d'utilisation
-    texte = "Bonjour"
+    
+    #### Exemple d'utilisation ####
+    texte = "NSI"
     clef = "10101010"
     texte_binaire = convertit_texte_en_binaire(texte)
     print(f"Texte binaire: {texte_binaire}")
@@ -148,7 +215,7 @@ if __name__ == '__main__':
     clef_publique, clef_privee = genere_clefs_publique_et_privee(3, 7, 5, 11)
     print(f"Clé publique: {clef_publique}")
     print(f"Clé privée: {clef_privee}")
-    message = "Hello"
+    message = "Hello World"
     message_chiffre = chiffre_message(message, clef_publique)
     print(f"Message chiffré: {message_chiffre}")
     message_dechiffre = dechiffre_message(message_chiffre, clef_privee)
