@@ -26,17 +26,17 @@
 2. **Modélisation mathématique** :
    - Utilisation de **modèles statistiques**, comme la **régression logistique**.
 3. **Calcul du score** (fonction sigmoïde) :
-   \[
+   $
    P(\text{humain}) = \frac{1}{1 + e^{-(a_0 + a_1x_1 + a_2x_2 + \dots + a_nx_n)}}
-   \]
-   - \(x_i\) : variables observées
-   - \(a_i\) : coefficients appris à partir de données réelles
+   $
+   - $(x_i)$ : variables observées
+   - $(a_i)$ : coefficients appris à partir de données réelles
    - Le résultat est une **probabilité** entre 0 (robot) et 1 (humain)
 
 #### Interprétation
 
-- \( P > 0.9 \) → humain → accès au site
-- \( P < 0.3 \) → robot → blocage ou vérification
+- ($ P > 0.9 $) → humain → accès au site
+- ($ P < 0.3 $) → robot → blocage ou vérification
 - Le système apprend en continu avec de nouvelles données
 
 ---
@@ -77,12 +77,12 @@ Non, pas directement, mais elle repose sur l’**exponentielle**, qui elle **est
 
 ## Fonction sigmoïde (forme en S)
 
-\[
+$
 f(x) = \frac{1}{1 + e^{-x}}
-\]
+$
 
-- Quand \( x \to -\infty \), \( f(x) \to 0 \)
-- Quand \( x \to +\infty \), \( f(x) \to 1 \)
+- Quand $( x \to -\infty )$, $ f(x) \to 0 $)
+- Quand $( x \to +\infty )$, ($ f(x) \to 1 $)
 - Idéale pour transformer un score brut en probabilité
 
 ---
