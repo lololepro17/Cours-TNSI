@@ -2,67 +2,70 @@
 
 ## Introduction
 
-Bonjour,
+Bonjour à toutes et à tous,
 
-Aujourd’hui, je vais répondre à la question :  
+Aujourd’hui, nous allons explorer la question suivante :  
 **Comment un ordinateur exécute-t-il un programme écrit en Python ?**
 
-Quand on programme en Python, on a l’impression que l’ordinateur « comprend » ce qu’on écrit. Mais en réalité, un ordinateur ne comprend que des suites de 0 et de 1, ce qu’on appelle le langage binaire.
+Quand nous écrivons du code en Python, il peut sembler que l’ordinateur comprend ce que nous saisissons. En réalité, il ne traite que des séquences de 0 et de 1, c'est-à-dire du langage binaire.
 
-Alors, comment passe-t-on d’un code Python à quelque chose que le processeur peut exécuter ?
+Alors, comment passe-t-on d’un script Python à des instructions compréhensibles par le processeur ?
 
 ---
 
 ## 🧱 I – De Python au langage machine
 
-Python est un **langage de haut niveau** : il est conçu pour être facile à lire et à écrire pour nous, les humains.
+Python est un **langage de haut niveau** conçu pour être intuitif et accessible aux humains.
 
-Mais pour qu’un ordinateur puisse l’exécuter, ce code doit être **traduit**.  
-Cette traduction se fait grâce à un **interpréteur Python**.
+Mais pour qu’un ordinateur puisse exécuter un programme Python, le code doit d’abord être **traduit**.  
+Cette traduction est réalisée par un **interpréteur Python**.
 
-L’interpréteur transforme le code source en **bytecode**, une forme intermédiaire plus proche du langage machine.  
+L’interpréteur convertit le code source en **bytecode**, une forme intermédiaire plus proche du langage machine.  
 Ce bytecode est ensuite exécuté par une **machine virtuelle Python** (PVM).
 
-Contrairement à des langages compilés comme le C, Python est **interprété** : chaque ligne est traduite et exécutée au fur et à mesure.
+Contrairement aux langages compilés comme le C, Python est **interprété** : chaque instruction est traduite et exécutée au fur et à mesure.
 
 ---
 
-## ⚙️ II – Le rôle du matériel : architecture de von Neumann
+## ⚙️ II – Le rôle du matériel : l’architecture de von Neumann
 
-Une fois que le code est prêt à être exécuté, c’est le **processeur (CPU)** qui entre en action.  
-Il suit le **cycle d’exécution** : *fetch*, *decode*, *execute*.
+Une fois le code converti, c’est le **processeur (CPU)** qui prend le relais.  
+Le processeur suit le **cycle d’exécution** composé de trois étapes : *fetch*, *decode* et *execute*.
 
-Cela signifie qu’il va :
-- chercher une instruction en mémoire (**fetch**),
-- la comprendre (**decode**),
-- puis l’exécuter (**execute**).
+En pratique, il :
 
-Cette organisation repose sur l’**architecture de von Neumann**, où les **instructions** et les **données** sont stockées dans la **mémoire RAM**.
+- **Fetch** (récupère) une instruction depuis la mémoire,
+- **Decode** (décode) l’instruction pour en comprendre le sens,
+- **Execute** (exécute) l’instruction.
 
-Pendant l’exécution, le processeur utilise aussi des **registres**, des mémoires très rapides pour les opérations temporaires.
+Ce fonctionnement repose sur l’**architecture de von Neumann**, dans laquelle les **instructions** et les **données** sont stockées dans la **mémoire RAM**.
+
+Pendant l’exécution, le processeur utilise aussi des **registres**, des mémoires très rapides pour stocker temporairement des informations.
 
 ---
 
 ## 🔗 III – Le lien entre Python et le matériel
 
-Toutes les instructions, les nombres, les caractères, tout est **converti en binaire** (0 et 1).  
-Par exemple, `x = 5` en Python devient une valeur binaire stockée dans la mémoire.
+Toutes les informations — instructions, nombres, caractères — sont finalement **converties en binaire** (0 et 1).  
+Par exemple, l’instruction `x = 5` en Python devient une valeur binaire enregistrée en mémoire.
 
-Ensuite, le processeur va exécuter des **instructions simples**, en manipulant ces bits.
+Ensuite, le processeur exécute des **instructions simples** en manipulant ces bits.
 
-Il existe donc plusieurs **couches d’abstraction** :
+On peut voir ce processus comme une série de **couches d’abstraction** :
+
 - le code source (Python),
 - l’interpréteur,
 - le système d’exploitation,
 - le matériel.
 
-Chaque couche repose sur la précédente, ce qui permet une grande **modularité**.
+Chaque couche s’appuie sur la précédente, ce qui offre une grande **flexibilité**.
 
 ---
 
-## 📌 Petit exemple pour illustrer
+## 📌 Exemple pour illustrer
 
 ```python
 x = 3
 x = x + 2
 print(x)
+```
