@@ -1,10 +1,20 @@
-def parcours_largeur(graphe):
-    
-
+def parcours_largeur(arbre):
+    """
+    Affiche les valeurs d'un arbre binaire en parcours en largeur.
+    """
+    if arbre is None:
+        return
+    file = [arbre]
+    while file:
+        noeud = file.pop(0)
+        if noeud is not None:
+            print(noeud[1], end=',')
+            file.append(noeud[0])
+            file.append(noeud[2])
 
 
 arbre = ( ( (None, 1, None), 2, (None, 3, None) ),4,( (None, 5, None), 6, (None, 7, None) ) )
-parcours_largeur(arbre)
+print(parcours_largeur(arbre))
 
 
 
