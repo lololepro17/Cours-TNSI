@@ -5,13 +5,14 @@ def parcours_largeur(arbre):
     if arbre is None:
         return
     file = [arbre]
+    large = []
     while file:
         noeud = file.pop(0)
         if noeud is not None:
-            print(noeud[1], end=',')
+            large.append(noeud[1])
             file.append(noeud[0])
             file.append(noeud[2])
-
+    return large
 
 arbre = ( ( (None, 1, None), 2, (None, 3, None) ),4,( (None, 5, None), 6, (None, 7, None) ) )
 print(parcours_largeur(arbre))
